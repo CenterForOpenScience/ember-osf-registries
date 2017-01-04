@@ -4,7 +4,7 @@ import Analytics from '../mixins/analytics';
 
 import { elasticEscape } from '../utils/elastic-query';
 
-var getProvidersPayload = '{"from": 0,"query": {"bool": {"must": {"query_string": {"query": "*"}}, "filter": [{"term": {"types.raw": "preprint"}}]}},"aggregations": {"sources": {"terms": {"field": "sources.raw","size": 200}}}}';
+var getProvidersPayload = '{"from": 0,"query": {"bool": {"must": {"query_string": {"query": "*"}}, "filter": [{"term": {"types.raw": "registration"}}]}},"aggregations": {"sources": {"terms": {"field": "sources.raw","size": 200}}}}';
 
 const filterMap = {
     providers: 'sources.raw',

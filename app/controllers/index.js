@@ -5,19 +5,20 @@ import Analytics from '../mixins/analytics';
 export default Ember.Controller.extend(Analytics, {
     theme: Ember.inject.service(),
     sharePreprintsTotal: null,
+    recentRegistrations: Ember.A(),
     init() {
         // Fetch total number of preprints. Allow elasticsearch failure to pass silently.
         // This is considered to be a one-time fetch, and therefore is run in controller init.
         const filter = [
             {
                 term: {
-                    'types.raw': 'preprint'
+                    'types.raw': 'registration'
                 }
             }
         ];
 
         const getTotalPayload = {
-            size: 0,
+            size: 5,
             from: 0,
             query: {
                 bool: {
@@ -47,7 +48,13 @@ export default Ember.Controller.extend(Analytics, {
             contentType: 'application/json',
             crossDomain: true,
         })
-          .then(results => this.set('sharePreprintsTotal', results.hits.total));
+        .then(results => {
+            this.set('recentRegistrations', results.hits.hits.map(each => ({
+                title: each._source.title,
+                url: each._source.identifiers[0]
+            })));
+            this.set('sharePreprintsTotal', results.hits.total);
+        });
 
         this.set('currentDate', new Date());
     },

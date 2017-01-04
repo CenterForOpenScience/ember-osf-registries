@@ -1,5 +1,6 @@
 const preprints = `Preprints`;
-const brand = `OSF ${preprints}`;
+const registries = `Registries`
+const brand = `OSF ${registries}`;
 
 export default {
     global: {
@@ -60,10 +61,10 @@ export default {
     },
     discover: {
         search: {
-            heading: `Preprint Archive Search`,
+            heading: `Registration Archive Search`,
             paragraph: `powered by`,
             partner: `Partner Repositories`,
-            placeholder: `Search preprints...`
+            placeholder: `Search registrations...`
         },
         sort_by: `Sort by`,
         main: {
@@ -88,10 +89,10 @@ export default {
     index: {
         header: {
             title: {
-                paragraph: `The <span class="f-w-lg">open</span> preprint repository network`
+                paragraph: `The <span class="f-w-lg">open</span> registries network`
             },
             powered_by: `Powered by ${brand}`,
-            search: `{{count}} searchable preprints`,
+            search: `{{count}} searchable registrations`,
             as_of: `as of`,
             example: `See an example`
         },
@@ -100,11 +101,11 @@ export default {
         },
         services: {
             top: {
-                heading: `Preprint Services`,
-                paragraph: `Leading preprint service providers use this open source infrastructure to support their communities.`
+                heading: `Registry Services`,
+                paragraph: `Leading registry service providers use this open source infrastructure to support their communities.`
             },
             bottom: {
-                p1: `Create your own branded preprint servers backed by the OSF.`,
+                p1: `Create your own branded registry backed by the OSF.`,
                 div: {
                     line1: `Check out the`,
                     linkText1: `open source code`,
@@ -117,8 +118,12 @@ export default {
         },
         advisory: {
             heading: `Advisory Group`,
-            paragraph: `Our advisory group includes leaders in preprints and scholarly communication`
-        }
+            paragraph: `Our advisory group includes leaders in registrations across disciplines`
+        },
+        recent: {
+            title: `Browse Recent Registrations`,
+            more: `See more`
+        },
     },
     'page-not-found': {
         heading: `Page not found`,
