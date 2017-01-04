@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import config from 'ember-get-config';
 import Analytics from '../mixins/analytics';
+import RegistrationCount from '../mixins/registration-count';
 
 import { elasticEscape } from '../utils/elastic-query';
 
@@ -11,7 +12,7 @@ const filterMap = {
     subjects: 'subjects'
 };
 
-export default Ember.Controller.extend(Analytics, {
+export default Ember.Controller.extend(Analytics, RegistrationCount, {
     theme: Ember.inject.service(), // jshint ignore:line
     // TODO: either remove or add functionality to info icon on "Refine your search panel"
 
