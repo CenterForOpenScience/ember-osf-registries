@@ -9,7 +9,7 @@ var getProvidersPayload = '{"from": 0,"query": {"bool": {"must": {"query_string"
 
 const filterMap = {
     providers: 'sources.raw',
-    subjects: 'subjects'
+    types: 'subjects' //TODO ?????
 };
 
 export default Ember.Controller.extend(Analytics, RegistrationCount, {
@@ -20,36 +20,31 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
     queryParams: {
         page: 'page',
         queryString: 'q',
-        subjectFilter: 'subject',
+        registrationType: 'type',
         providerFilter: 'provider',
     },
 
-    activeFilters: { providers: [], subjects: [] },
+    activeFilters: { providers: [], types: [] },
 
     osfProviders: [
         'OSF',
-        'PsyArXiv',
-        'SocArXiv',
-        'engrXiv'
+        'AEA Registry', //These need to be added to the language filter once on SHARE (OSF -> OSF Registries)
+        'ANZCTR',
+        'Clinicaltrials.gov',
+        'EGAP',
+        'EU Clinical Trials',
+        'ISRCTN',
+        'Research Registry',
+        'RIDIE'
     ],
 
-    whiteListedProviders: [
-        'OSF',
-        'arXiv',
-        'bioRxiv',
-        'Cogprints',
-        'engrXiv',
-        'PeerJ',
-        'PsyArXiv',
-        'Research Papers in Economics',
-        'SocArXiv'
-    ].map(item => item.toLowerCase()),
+    whiteListedProviders: [].map(item => item.toLowerCase()),
 
     page: 1,
     size: 10,
     numberOfResults: 0,
     queryString: '',
-    subjectFilter: null,
+    typeFilter: null,
     queryBody: {},
     providersPassed: false,
 
@@ -86,8 +81,8 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
         }).then(results => {
             const hits = results.aggregations.sources.buckets;
             const whiteList = this.get('whiteListedProviders');
-            const providers = hits
-                .filter(hit => whiteList.includes(hit.key.toLowerCase()));
+            const providers = hits;
+                // .filter(hit => whiteList.includes(hit.key.toLowerCase()));
 
             providers.push(
                 ...this.get('osfProviders')
@@ -125,11 +120,11 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
 
         this.loadPage();
     },
-    subjectChanged: Ember.observer('subjectFilter', function() {
+    typeChanged: Ember.observer('typeFilter', function() {
         Ember.run.once(() => {
-            let filter = this.get('subjectFilter');
+            let filter = this.get('typeFilter');
             if (!filter || filter === 'true') return;
-            this.set('activeFilters.subjects', filter.split('AND'));
+            this.set('activeFilters.types', filter.split('AND'));
             this.notifyPropertyChange('activeFilters');
             this.loadPage();
         });
@@ -165,13 +160,13 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
             this.set('numberOfResults', json.hits.total);
 
             let results = json.hits.hits.map(hit => {
+                debugger;
+
                 // HACK: Make share data look like apiv2 preprints data
                 let result = Ember.merge(hit._source, {
                     id: hit._id,
                     type: 'elastic-search-result',
                     workType: hit._source['@type'],
-                    abstract: hit._source.description,
-                    subjects: hit._source.subjects.map(each => ({text: each})),
                     providers: hit._source.sources.map(item => ({name: item})),
                     osfProvider: hit._source.sources.reduce((acc, source) => (acc || this.get('osfProviders').includes(source)), false),
                     hyperLinks: [// Links that are hyperlinks from hit._source.lists.links
@@ -220,7 +215,7 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
     getQueryBody() {
         const facetFilters = this.get('activeFilters');
 
-        this.set('subjectFilter', facetFilters.subjects.join('AND'));
+        this.set('typeFilter', facetFilters.types.join('AND'));
 
         if (!this.get('theme.isProvider'))
             this.set('providerFilter', facetFilters.providers.join('AND'));
@@ -229,7 +224,7 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
             {
                 terms: {
                     'type.raw': [
-                        'preprint'
+                        'registration'
                     ]
                 }
             }
@@ -327,7 +322,7 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
         clearFilters() {
             this.set('activeFilters', {
                 providers: this.get('theme.isProvider') ? this.get('activeFilters.providers') : [],
-                subjects: []
+                types: []
             });
 
             Ember.get(this, 'metrics')

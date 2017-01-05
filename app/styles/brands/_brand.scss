@@ -23,12 +23,12 @@ $logo-dir: '../img/provider_logos/';
         }
     }
 
-    .preprint-header {
+    .registries-header {
         background-image: none;
         background-color: $theme-color-1;
         color: $theme-color-2;
 
-        .preprint-brand {
+        .registries-brand {
             height: 140px;
         }
 
@@ -41,7 +41,7 @@ $logo-dir: '../img/provider_logos/';
         background-image: url($logo-square);
     }
 
-    .preprint-brand {
+    .registries-brand {
         background-image: url($logo);
     }
 
@@ -139,7 +139,7 @@ $logo-dir: '../img/provider_logos/';
         color: $theme-color-2;
     }
 
-    .subject-filter {
+    .type-filter {
         &,
         .fa {
             background-color: $theme-color-3;

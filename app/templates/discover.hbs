@@ -6,7 +6,7 @@
             <div class="col-xs-12 text-center">
                 {{#if theme.isProvider}}
                     <div class="col-xs-6 text-right">
-                        <div class="preprint-brand" style="height: 140px; background-position-x: right;"></div>
+                        <div class="registries-brand" style="height: 140px; background-position-x: right;"></div>
                     </div>
                 {{/if}}
                 <div class={{if theme.isProvider 'col-xs-6 text-left'}}>
@@ -42,12 +42,12 @@
                 {{/if}}
             </div>
         </div> -->
-        <div class="preprint-header"> {{!HEADER}}
+        <div class="registries-header"> {{!HEADER}}
             <div class="container"> {{!CONTAINER}}
                 <div class="row">{{!HEADER ROW}}
                     {{!TITLE}}
                     <div class="text-center m-t-lg col-xs-12">
-                        <div class="preprint-brand"></div>
+                        <div class="registries-brand"></div>
                         <p class="lead">
                             <span>{{if theme.isProvider theme.provider.description (t "index.header.title.paragraph")}}</span>
                             {{#if theme.isProvider}}
@@ -60,7 +60,12 @@
                     </div>
                     {{!SEARCH}}
                     <div class="preprint-search col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 m-v-lg" >
-                        {{search-preprints search="search"}}
+                        <div class="input-group input-group-lg">
+                            {{input id="searchBox" value=(mut queryString) class="form-control" key-up='search' placeholder=(t "discover.search.placeholder")}}
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" {{action "search" this}}>{{t "global.search"}}</button>
+                            </span>
+                        </div>
 
                         {{#if sharePreprintsTotal}}
                             <p class="p-l-md">
@@ -70,7 +75,7 @@
                         {{/if}}
                     </div>
                 </div> {{!END ROW}}
-            
+
 
         <div class="row m-v-md">
             <div class="col-xs-6 col-xs-offset-6">
@@ -118,8 +123,8 @@
                                     {{/unless}}
                                 </span>
                             {{/each}}
-                            {{#each activeFilters.subjects as |filter|}}
-                                <span class='preprint-filter subject-filter'>{{filter}} <span class='pointer'>{{fa-icon 'times-circle' click=(action 'updateFilters' 'subjects' filter)}}</span></span>
+                            {{#each activeFilters.types as |filter|}}
+                                <span class='preprint-filter type-filter'>{{filter}} <span class='pointer'>{{fa-icon 'times-circle' click=(action 'updateFilters' 'types' filter)}}</span></span>
                             {{/each}}
                         </div>
                     </div>
@@ -143,17 +148,9 @@
                     </ul>
                 </div>
                 <div class="m-t-lg">
-                    <h4 class="filter-heading p-sm">{{t "discover.main.subject"}}</h4>
-                    {{taxonomy-tree select=(action 'updateFilters' 'subjects') subjects=treeSubjects}}
-                </div>
-                <div class="osf-box p-md m-b-lg clearfix m-t-xl">
-                    <p>{{t "discover.main.box.paragraph"}}</p>
-                    {{#link-to (if theme.isProvider "provider.submit" "submit")
-                               type="button" class="btn btn-success btn-lg"
-                               invokeAction=(action 'click' 'button' 'Preprints - Discover - Add Preprint')
-                    }}
-                        {{t "discover.main.box.button"}}
-                    {{/link-to}}
+                    <h4 class="filter-heading p-sm">{{t "discover.main.type"}}</h4>
+                    ALL SUBJECTS GET SELECTED HERE!
+                    <!-- {{taxonomy-tree select=(action 'updateFilters' 'subjects') subjects=treeSubjects}} -->
                 </div>
             </div>
 
@@ -165,7 +162,7 @@
                 {{else}}
                     {{#if numberOfResults}}
                         {{#each results as |result|}}
-                            {{search-result result=result select=(action 'updateFilters' 'subjects')}}
+                            {{search-result result=result}}
                         {{/each}}
 
                         <div class="row">

@@ -3,11 +3,7 @@ import Analytics from '../mixins/analytics';
 
 export default Ember.Component.extend(Analytics, {
     providerUrlRegex: {
-        //'bioRxiv': '', doesnt currently have urls
-        Cogprints: /cogprints/,
-        OSF: /https?:\/\/((?!api).)*osf.io/, // Doesn't match api.osf urls
-        PeerJ: /peerj/,
-        arXiv: /arxivj/
+        OSF: /https?:\/\/((?!api).)*osf.io/ // Doesn't match api.osf urls
     },
     didRender() {
         MathJax.Hub.Queue(['Typeset', MathJax.Hub, this.$()[0]]);  // jshint ignore:line
@@ -25,18 +21,6 @@ export default Ember.Component.extend(Analytics, {
             return result.description.substring(0, this.numMaxChars) + '...';
         }
         return result.description.slice();
-    }),
-
-    osfID: Ember.computed('result', function() {
-        let re = /osf.io\/(\w+)\/$/;
-        // NOTE / TODO : This will have to be removed later. Currently the only "true" preprints are solely from the OSF
-        // socarxiv and the like sometimes get picked up by as part of OSF, which is technically true. This will prevent
-        // broken links to things that aren't really preprints.
-        if (this.get('result.providers.length') === 1 && this.get('result.providers').find(provider => provider.name === 'OSF'))
-            for (let i = 0; i < this.get('result.identifiers.length'); i++)
-                if (re.test(this.get('result.identifiers')[i]))
-                    return re.exec(this.get('result.identifiers')[i])[1];
-        return false;
     }),
 
     hyperlink: Ember.computed('result', function() {
@@ -68,9 +52,6 @@ export default Ember.Component.extend(Analytics, {
                     action: !this.showBody ? 'contract' : 'expand',
                     label: `Preprints - Discover - ${this.result.title}`
                 });
-        },
-        select(item) {
-            this.attrs.select(item);
         }
     }
 

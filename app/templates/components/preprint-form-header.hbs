@@ -24,7 +24,7 @@
 </div>
 
 {{#if (and (not isOpen) (eq name 'Upload'))}}
-    <div class="m-t-md preprint-header-preview">
+    <div class="m-t-md registries-header-preview">
         {{#if preprintNode}}
             <p><em class="m-r-md"> {{t "components.preprint-form-header.location"}}: </em> {{get-ancestor-descriptor preprintNode}} {{preprintNode.title}}</p>
         {{/if}}
@@ -34,7 +34,7 @@
 {{/if}}
 
 {{#if (not isOpen)}}
-    <div class="m-t-md preprint-header-preview">
+    <div class="m-t-md registries-header-preview">
         {{#if (or isValidationActive editMode)}}
             {{#if (eq name 'Basics')}}
                 <p><em class="m-r-md"> {{t "global.license"}}: </em> {{if license license.name (t "global.none")}} </p>

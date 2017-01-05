@@ -4,14 +4,10 @@
             <div class="col-xs-12">
                 {{!Title}}
                 <h4>
-                    {{#if osfID}}
-                        {{#link-to "content" osfID invokeAction=(action 'click' 'link' 'Preprints - Discover - Result Title')}}{{result.title}}{{/link-to}}
+                    {{#if hyperlink}}
+                        <a href='{{hyperlink}}' {{action 'click' 'link' 'Registries - Discover - Result Title' hyperlink}}>{{result.title}}</a>
                     {{else}}
-                        {{#if hyperlink}}
-                            <a href='{{hyperlink}}' {{action 'click' 'link' 'Preprints - Discover - Result Title' hyperlink}}>{{result.title}}</a>
-                        {{else}}
-                            <span>{{result.title}}</span>
-                        {{/if}}
+                        <span>{{result.title}}</span>
                     {{/if}}
                 </h4>
                 {{!Authors}}
@@ -24,17 +20,8 @@
                         {{/each}}
                     </ul>
                 </div>
-
-                {{#if result.subjects}}
-                    <div class="m-t-sm">
-                        {{#each result.subjects as |subject|}}
-                            <span class='subject-preview pointer' onclick={{action 'select' subject}}>{{subject.text}}</span>
-                        {{/each}}
-                    </div>
-                {{/if}}
-
-                {{!Abstract}}
-                {{#if result.abstract}}
+                {{!Description}}
+                {{#if result.description}}
                     <div class="text-muted m-t-sm">
                         {{#if showBody}}
                             {{result.description}}
@@ -52,8 +39,8 @@
                         {{/each}}
                     </span>
                     <span class="pull-right">
-                        {{#if result.dateModified}} {{! moment-format will use current time if null}}
-                            <span>{{moment-format result.dateModified "MMMM YYYY"}}</span>
+                        {{#if result.date_created}} {{! moment-format will use current time if null}}
+                            <span>{{moment-format result.date_created "MMMM YYYY"}}</span>
                         {{/if}}
                     </span>
                 </div>

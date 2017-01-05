@@ -25,13 +25,9 @@ Router.map(function() {
     this.route('page-not-found', {path: '/*bad_url'});
     this.route('index', {path: 'registries'});
     this.route('page-not-found', {path: 'registries/page-not-found'});
-    this.route('submit', {path: 'registries/submit'});
     this.route('discover', {path: 'registries/discover'});
-    this.route('content', {path: '/:preprint_id' });
     this.route('provider', {path: 'registries/:slug'}, function() {
-        this.route('content', {path: '/:preprint_id'});
         this.route('discover');
-        this.route('submit');
         this.route('page-not-found');
     });
     this.route('forbidden');

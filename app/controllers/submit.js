@@ -411,7 +411,7 @@ export default Ember.Controller.extend(Analytics, BasicsValidations, NodeActions
             // Open next panel
             if (currentPanelName === 'Upload' || currentPanelName === 'Basics') {
                 Ember.run.scheduleOnce('afterRender', this, function() {
-                    MathJax.Hub.Queue(['Typeset', MathJax.Hub, Ember.$(currentPanelName === 'Upload' ? '.preprint-header-preview' : '.abstract')[0]]);  // jshint ignore:line
+                    MathJax.Hub.Queue(['Typeset', MathJax.Hub, Ember.$(currentPanelName === 'Upload' ? '.registries-header-preview' : '.abstract')[0]]);  // jshint ignore:line
                 });
             }
             if (currentPanelName === 'Authors') {

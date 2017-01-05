@@ -19,10 +19,10 @@ export default {
         preprints,
         brand,
         brand_name: 'OSF',
-        provider_brand: `{{name}} ${preprints}`,
+        provider_brand: `{{name}} ${registries}`,
         add_preprint: `Add a preprint`,
         title: `Title`,
-        search_preprints: `Search preprints...`,
+        search_registries: `Search registries...`,
         added_on: `Added on`,
         add: `Add`,
         restart: `Restart`,
@@ -74,6 +74,7 @@ export default {
             },
             refine: `Refine your search by`,
             providers: `Providers`,
+            type: 'OSF Registration Type',
             subject: `Subject`,
             box: {
                 paragraph: `Do you want to add your own research as a preprint?`,
@@ -333,7 +334,7 @@ export default {
             file_choose_existing: `Choose a file from an existing OSF project`,
             choose_file: `Choose file`
         },
-        'search-preprints': {
+        'search-registries': {
             // Nothing to translate
         },
         'search-result': {
