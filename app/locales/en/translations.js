@@ -22,7 +22,7 @@ export default {
         provider_brand: `{{name}} ${registries}`,
         add_preprint: `Add a preprint`,
         title: `Title`,
-        search_registries: `Search registries...`,
+        search_registries: `Search registrations...`,
         added_on: `Added on`,
         add: `Add`,
         restart: `Restart`,
