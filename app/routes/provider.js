@@ -4,7 +4,7 @@ import config from 'ember-get-config';
 export default Ember.Route.extend({
     theme: Ember.inject.service(),
 
-    providerIds: config.PREPRINTS.providers
+    providerIds: config.REGISTRIES.providers
         .slice(1)
         .map(provider => provider.id),
 
@@ -23,7 +23,7 @@ export default Ember.Route.extend({
 
             this.set('theme.id', slug);
         } else {
-            this.set('theme.id', config.PREPRINTS.defaultProvider);
+            this.set('theme.id', config.REGISTRIES.defaultProvider);
 
             if (slug.length === 5) {
                 this.transitionTo('content', slug);

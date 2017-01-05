@@ -31,7 +31,7 @@ module.exports = function(environment) {
         moment: {
             outputFormat: 'YYYY-MM-DD hh:mm a'
         },
-        PREPRINTS: {
+        REGISTRIES: {
             defaultProvider: 'osf',
 
             // Logos are needed for open graph sharing meta tags (Facebook, LinkedIn, etc) and must be at least 200x200
@@ -43,33 +43,6 @@ module.exports = function(environment) {
                         type: 'image/png',
                         width: 363,
                         height: 242
-                    }
-                },
-                {
-                    id: 'engrxiv',
-                    logoSharing: {
-                        path: '/assets/img/provider_logos/engrxiv-sharing.png',
-                        type: 'image/png',
-                        width: 1200,
-                        height: 488
-                    }
-                },
-                {
-                    id: 'psyarxiv',
-                    logoSharing: {
-                        path: '/assets/img/provider_logos/psyarxiv-sharing.png',
-                        type: 'image/png',
-                        width: 1200,
-                        height: 488
-                    }
-                },
-                {
-                    id: 'socarxiv',
-                    logoSharing: {
-                        path: '/assets/img/provider_logos/socarxiv-sharing.png',
-                        type: 'image/png',
-                        width: 1200,
-                        height: 488
                     }
                 }
             ],
@@ -124,7 +97,7 @@ module.exports = function(environment) {
     }
 
     if (ENV.ASSET_SUFFIX) {
-        ENV.PREPRINTS.providers = ENV.PREPRINTS.providers.map(provider => {
+        ENV.REGISTRIES.providers = ENV.REGISTRIES.providers.map(provider => {
             provider.logoSharing.path = provider.logoSharing.path
                 .replace(/\..*$/, match => `-${ENV.ASSET_SUFFIX}${match}`);
 

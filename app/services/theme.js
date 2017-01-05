@@ -5,7 +5,7 @@ export default Ember.Service.extend({
     store: Ember.inject.service(),
     session: Ember.inject.service(),
 
-    id: config.PREPRINTS.defaultProvider,
+    id: config.REGISTRIES.defaultProvider,
 
     provider: Ember.computed('id', function() {
         const id = this.get('id');
@@ -15,7 +15,7 @@ export default Ember.Service.extend({
 
         return this
             .get('store')
-            .findRecord('preprint-provider', id);
+            .findRecord('registries-provider', id);
     }),
 
     isProvider: Ember.computed('id', function() {
@@ -30,24 +30,24 @@ export default Ember.Service.extend({
             return;
 
         const suffix = config.ASSET_SUFFIX ? `-${config.ASSET_SUFFIX}` : '';
-        return `/preprints/assets/css/${id}${suffix}.css`;
+        return `/registries/assets/css/${id}${suffix}.css`;
     }),
 
     logoSharing: Ember.computed('id', function() {
         const id = this.get('id');
 
-        const logo = config.PREPRINTS.providers
+        const logo = config.REGISTRIES.providers
             .find(provider => provider.id === id)
             .logoSharing;
 
-        logo.path = `/preprints${logo.path}`;
+        logo.path = `/registries${logo.path}`;
 
         return logo;
     }),
 
     signupUrl: Ember.computed('id', function() {
         const query = Ember.$.param({
-            campaign: `${this.get('id')}-preprints`,
+            campaign: `${this.get('id')}-registries`,
             next: window.location.href
         });
 
