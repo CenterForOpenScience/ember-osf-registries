@@ -80,9 +80,7 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
             crossDomain: true,
         }).then(results => {
             const hits = results.aggregations.sources.buckets;
-            const whiteList = this.get('whiteListedProviders');
             const providers = hits;
-                // .filter(hit => whiteList.includes(hit.key.toLowerCase()));
 
             providers.push(
                 ...this.get('osfProviders')
@@ -160,8 +158,6 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
             this.set('numberOfResults', json.hits.total);
 
             let results = json.hits.hits.map(hit => {
-                debugger;
-
                 // HACK: Make share data look like apiv2 preprints data
                 let result = Ember.merge(hit._source, {
                     id: hit._id,

@@ -37,16 +37,35 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
-                    <span><h2>{{t "index.recent.title"}}</h2> {{link-to (t 'index.recent.more') 'discover'}}</span>
+                    <h2>{{t "index.recent.title"}}   <span style='font-size: 16px'>{{link-to (t 'index.recent.more') 'discover'}}</span></h2>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <ul>
                     {{#each recentRegistrations as |reg|}}
-                        <li> <a href='{{reg.url}}'>{{reg.title}}</a> </li>
+                        <div class="panel panel-default search-result">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <h4>
+                                            <a href='{{reg.url}}' {{action 'click' 'link' 'Registries - Index - Result Title' hyperlink}}>{{reg.title}}</a>
+                                        </h4>
+                                    </div>
+                                </div>
+                                <div class='row'>
+                                    <div class='col-xs-12'>
+                                        <ul class="comma-list">
+                                            {{#each reg.contributors as |contributor index|}}
+                                                {{#if contributor.users.bibliographic}}
+                                                    {{author-link contributor=contributor}}
+                                                {{/if}}
+                                            {{/each}}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     {{/each}}
-                    </ul>
                 </div>
             </div>
         </div>

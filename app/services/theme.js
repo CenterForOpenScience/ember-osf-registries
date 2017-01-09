@@ -15,7 +15,7 @@ export default Ember.Service.extend({
 
         return this
             .get('store')
-            .findRecord('registries-provider', id);
+            .findRecord('preprint-provider', id);
     }),
 
     isProvider: Ember.computed('id', function() {

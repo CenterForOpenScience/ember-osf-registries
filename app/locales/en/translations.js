@@ -1,4 +1,4 @@
-const registries = `Registries`
+const registries = `Registries`;
 const brand = `OSF ${registries}`;
 
 export default {

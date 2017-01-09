@@ -10,12 +10,12 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
         this._super(...arguments);
         const filter = [
             {
-                "term": {
-                    "types.raw": "registration"
+                term: {
+                    'types.raw': 'registration'
                 }
             },
             {
-                'term': {
+                term: {
                     'sources.raw': this.get('theme.isProvider') ? this.get('theme.id') : 'OSF'
                 }
             }
@@ -42,11 +42,18 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
             contentType: 'application/json',
             crossDomain: true,
         })
-        .then(results =>
+        .then(results => {
             this.set('recentRegistrations', results.hits.hits.map(each => ({
                 title: each._source.title,
-                url: each._source.identifiers[2]
-            })))
-        );
+                url: each._source.identifiers[2],
+                contributors: each._source.lists.contributors.sort((b, a) => (b.order_cited || -1) - (a.order_cited || -1)).map(contributor => ({
+                    users: Object.keys(contributor)
+                    .reduce(
+                        (acc, key) => Ember.merge(acc, {[key.camelize()]: contributor[key]}),
+                        {bibliographic: contributor.relation !== 'contributor'}
+                    )
+                }))
+            })));
+        });
     },
 });

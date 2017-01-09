@@ -22,15 +22,15 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('page-not-found', {path: '/*bad_url'});
-  this.route('index', {path: 'registries'});
-  this.route('page-not-found', {path: 'registries/page-not-found'});
-  this.route('discover', {path: 'registries/discover'});
-  this.route('provider', {path: 'registries/:slug'}, function() {
-      this.route('discover');
-      this.route('page-not-found');
-  });
-  this.route('forbidden');
+    this.route('page-not-found', {path: '/*bad_url'});
+    this.route('index', {path: 'registries'});
+    this.route('page-not-found', {path: 'registries/page-not-found'});
+    this.route('discover', {path: 'registries/discover'});
+    this.route('provider', {path: 'registries/:slug'}, function() {
+        this.route('discover');
+        this.route('page-not-found');
+    });
+    this.route('forbidden');
 });
 
 export default Router;

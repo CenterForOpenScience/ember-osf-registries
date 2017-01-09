@@ -1,81 +1,38 @@
 {{title 'Search'}}
 
-<!-- <div class="preprint-search-header">
-    <div class="container">
-        <div class="row m-v-md ">
-            <div class="col-xs-12 text-center">
-                {{#if theme.isProvider}}
-                    <div class="col-xs-6 text-right">
-                        <div class="registries-brand" style="height: 140px; background-position-x: right;"></div>
-                    </div>
-                {{/if}}
-                <div class={{if theme.isProvider 'col-xs-6 text-left'}}>
-                    <h1>{{t "discover.search.heading"}}</h1>
-                    <p class="lead">{{t "discover.search.paragraph"}} <a href="https://share.osf.io/" class="share-logo" title="SHARE" onclick={{action 'click' 'link' 'Preprints - Discover - Share Logo'}}></a></p>
-                </div>
+<div class="registries-header"> {{!HEADER}}
+    <div class="container"> {{!CONTAINER}}
+        <div class="row">{{!HEADER ROW}}
+            {{!TITLE}}
+            <div class="text-center m-t-lg col-xs-12">
+                <div class="registries-brand"></div>
+                <p class="lead">
+                    <span>{{if theme.isProvider theme.provider.description (t "index.header.title.paragraph")}}</span>
+                    {{#if theme.isProvider}}
+                        <br>
+                        <small>
+                            <a href="https://osf.io/registries/" onbeforeclick={{action "click" "link" "Index - Powered By"}}>{{t "index.header.powered_by"}}</a>
+                        </small>
+                    {{/if}}
+                </p>
             </div>
-        </div>
-        <div class="row m-t-md m-b-lg">
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+            {{!SEARCH}}
+            <div class="preprint-search col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 m-v-lg" >
                 <div class="input-group input-group-lg">
                     {{input id="searchBox" value=(mut queryString) class="form-control" key-up='search' placeholder=(t "discover.search.placeholder")}}
                     <span class="input-group-btn">
                         <button class="btn btn-default" type="button" {{action "search" this}}>{{t "global.search"}}</button>
                     </span>
                 </div>
-            </div>
-        </div>
-        <div class="row m-v-md">
-            <div class="col-xs-8 col-xs-offset-2" style="text-align: center;">
-                {{#if (not theme.isProvider)}}
-                    <h3>{{t "discover.search.partner"}}</h3>
-                    <div class="row">
-                        {{#each model as |provider|}}
-                            <a href="/preprints/{{provider.id}}/discover"
-                               title={{provider.name}}
-                               onclick={{action 'click' 'link' (concat 'Preprints - Discover - Index ' provider.name)}}
-                            >
-                                <div class="discover-provider-logo col-xs-4 provider-{{provider.id}}-dark"></div>
-                            </a>
-                        {{/each}}
-                    </div>
+
+                {{#if sharePreprintsTotal}}
+                    <p class="p-l-md">
+                        <span class="f-w-lg">{{t "index.header.search" count=(number-format sharePreprintsTotal)}}</span>
+                        <span>{{t "index.header.as_of"}} {{moment-format currentDate "MMMM DD, YYYY"}}</span>
+                    </p>
                 {{/if}}
             </div>
-        </div> -->
-        <div class="registries-header"> {{!HEADER}}
-            <div class="container"> {{!CONTAINER}}
-                <div class="row">{{!HEADER ROW}}
-                    {{!TITLE}}
-                    <div class="text-center m-t-lg col-xs-12">
-                        <div class="registries-brand"></div>
-                        <p class="lead">
-                            <span>{{if theme.isProvider theme.provider.description (t "index.header.title.paragraph")}}</span>
-                            {{#if theme.isProvider}}
-                                <br>
-                                <small>
-                                    <a href="https://osf.io/registries/" onbeforeclick={{action "click" "link" "Index - Powered By"}}>{{t "index.header.powered_by"}}</a>
-                                </small>
-                            {{/if}}
-                        </p>
-                    </div>
-                    {{!SEARCH}}
-                    <div class="preprint-search col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 m-v-lg" >
-                        <div class="input-group input-group-lg">
-                            {{input id="searchBox" value=(mut queryString) class="form-control" key-up='search' placeholder=(t "discover.search.placeholder")}}
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button" {{action "search" this}}>{{t "global.search"}}</button>
-                            </span>
-                        </div>
-
-                        {{#if sharePreprintsTotal}}
-                            <p class="p-l-md">
-                                <span class="f-w-lg">{{t "index.header.search" count=(number-format sharePreprintsTotal)}}</span>
-                                <span>{{t "index.header.as_of"}} {{moment-format currentDate "MMMM DD, YYYY"}}</span>
-                            </p>
-                        {{/if}}
-                    </div>
-                </div> {{!END ROW}}
-
+        </div> {{!END ROW}}
 
         <div class="row m-v-md">
             <div class="col-xs-6 col-xs-offset-6">
@@ -147,11 +104,14 @@
                         {{/if}}
                     </ul>
                 </div>
+                {{!
                 <div class="m-t-lg">
-                    <h4 class="filter-heading p-sm">{{t "discover.main.type"}}</h4>
+                    <h4 class="filter-heading p-sm">{{t "discover.main.type"}}{{!</h4>
                     ALL SUBJECTS GET SELECTED HERE!
-                    <!-- {{taxonomy-tree select=(action 'updateFilters' 'subjects') subjects=treeSubjects}} -->
+                    No subject filter yet.
                 </div>
+                }}
+
             </div>
 
             <div class="col-sm-8" id="searchResults">
