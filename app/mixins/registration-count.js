@@ -41,7 +41,7 @@ export default Ember.Mixin.create({
             contentType: 'application/json',
             crossDomain: true,
         })
-        .then(results => this.set('sharePreprintsTotal', results.hits.total));
+        .then(results => this.set('shareRegistriesTotal', results.hits.total));
 
         this.set('currentDate', new Date());
     }

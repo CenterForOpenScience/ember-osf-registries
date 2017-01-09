@@ -25,9 +25,9 @@
                     </span>
                 </div>
 
-                {{#if sharePreprintsTotal}}
+                {{#if shareRegistriesTotal}}
                     <p class="p-l-md">
-                        <span class="f-w-lg">{{t "index.header.search" count=(number-format sharePreprintsTotal)}}</span>
+                        <span class="f-w-lg">{{t "index.header.search" count=(number-format shareRegistriesTotal)}}</span>
                         <span>{{t "index.header.as_of"}} {{moment-format currentDate "MMMM DD, YYYY"}}</span>
                     </p>
                 {{/if}}
