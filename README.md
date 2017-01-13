@@ -1,8 +1,8 @@
 # ember-preprints
 
-`master` Build Status: [![Build Status](https://travis-ci.org/CenterForOpenScience/ember-osf-registries.svg?branch=master)](https://travis-ci.org/CenterForOpenScience/ember-preprints)
+`master` Build Status: [![Build Status](https://travis-ci.org/CenterForOpenScience/ember-osf-registries.svg?branch=master)](https://travis-ci.org/CenterForOpenScience/ember-osf-registries)
 
-`develop` Build Status: [![Build Status](https://travis-ci.org/CenterForOpenScience/ember-osf-registries.svg?branch=develop)](https://travis-ci.org/CenterForOpenScience/ember-preprints)
+`develop` Build Status: [![Build Status](https://travis-ci.org/CenterForOpenScience/ember-osf-registries.svg?branch=develop)](https://travis-ci.org/CenterForOpenScience/ember-osf-registries)
 
 This is the codebase for OSF preprints.
 This guide will help you get started if you're interested.
