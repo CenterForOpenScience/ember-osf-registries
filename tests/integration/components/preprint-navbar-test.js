@@ -11,5 +11,5 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{preprint-navbar}}`);
 
-  assert.equal(this.$().find('.navbar-brand').text().trim(), 'OSF Preprints');
+  assert.equal(this.$().find('.navbar-brand').text().trim(), 'OSF Registries');
 });

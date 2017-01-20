@@ -1,4 +1,4 @@
-import { ifFilter } from 'preprint-service/helpers/if-filter';
+import { ifFilter } from 'registries-service/helpers/if-filter';
 import { module, test } from 'qunit';
 
 module('Unit | Helper | if filter');

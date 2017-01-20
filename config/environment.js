@@ -4,7 +4,7 @@ module.exports = function(environment) {
     var authorizationType = 'cookie';
 
     var ENV = {
-        modulePrefix: 'preprint-service',
+        modulePrefix: 'registries-service',
         environment: environment,
         rootURL: '/',
         locationType: 'auto',

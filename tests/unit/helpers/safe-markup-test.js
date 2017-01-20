@@ -1,4 +1,4 @@
-import { safeMarkup } from 'preprint-service/helpers/safe-markup';
+import { safeMarkup } from 'registries-service/helpers/safe-markup';
 import { module, test } from 'qunit';
 
 module('Unit | Helper | safe markup');

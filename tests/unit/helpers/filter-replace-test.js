@@ -1,4 +1,4 @@
-import { filterReplace } from 'preprint-service/helpers/filter-replace';
+import { filterReplace } from 'registries-service/helpers/filter-replace';
 import { module, test } from 'qunit';
 
 module('Unit | Helper | filter replace');

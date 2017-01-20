@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import RegistrationCountMixin from 'preprint-service/mixins/registration-count';
+import RegistrationCountMixin from 'registries-service/mixins/registration-count';
 import { module, test } from 'qunit';
 
 module('Unit | Mixin | registration count');
