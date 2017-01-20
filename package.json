@@ -1,5 +1,5 @@
 {
-  "name": "registries-service",
+  "name": "preprint-service",
   "version": "0.103.0",
   "description": "Center for Open Science Registries Service",
   "private": true,
