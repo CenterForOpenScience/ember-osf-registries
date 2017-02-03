@@ -37,6 +37,7 @@
                         {{#each result.providers as |provider index|}}
                             {{if index '| '}}{{filter-replace provider.name}}
                         {{/each}}
+                        | {{result.registrationType}}
                     </span>
                     <span class="pull-right">
                         {{#if result.date_created}} {{! moment-format will use current time if null}}

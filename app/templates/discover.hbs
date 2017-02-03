@@ -104,14 +104,20 @@
                         {{/if}}
                     </ul>
                 </div>
-                {{!
-                <div class="m-t-lg">
-                    <h4 class="filter-heading p-sm">{{t "discover.main.type"}}{{!</h4>
-                    ALL SUBJECTS GET SELECTED HERE!
-                    No subject filter yet.
-                </div>
-                }}
 
+                <div class="m-t-lg">
+                    <h4 class="filter-heading p-sm">{{t "discover.main.type"}}
+                    <ul>
+                        {{#each registrationTypes as |type|}}
+                            <li>
+                                <label>
+                                    <input type="checkbox" checked="{{if (if-filter item activeFilters.types) 'checked'}}" onclick={{action 'updateFilters' 'types' item}}>
+                                    {{item}}
+                                </label>
+                            </li>
+                        {{/each}}
+                    </ul>
+                </div>
             </div>
 
             <div class="col-sm-8" id="searchResults">

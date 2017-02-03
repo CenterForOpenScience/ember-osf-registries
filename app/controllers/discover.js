@@ -40,6 +40,17 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
 
     whiteListedProviders: [].map(item => item.toLowerCase()),
 
+    registrationTypes: [
+        'Prereg Challenge', 
+        'Open-Ended Registration',
+        'AsPredicted Preregistration',
+        'OSF-Standard Pre-Data Collection Registration',
+        'Replication Recipe (Brandt et al., 2013): Pre-Registration',
+        'Replication Recipe (Brandt et al., 2013): Post-Completion',
+        'Pre-Registration in Social Psychology (van \'t Veer & Giner-Sorolla, 2016): Pre-Registration',
+        'Election Research Preacceptance Competition'
+    ],
+
     page: 1,
     size: 10,
     numberOfResults: 0,
