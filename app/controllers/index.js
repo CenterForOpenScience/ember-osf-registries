@@ -1,9 +1,9 @@
 import Ember from 'ember';
 import config from 'ember-get-config';
-import Analytics from '../mixins/analytics';
+import KeenAndGoogleAnalytics from '../mixins/keen-and-google-analytics';
 import RegistrationCount from '../mixins/registration-count';
 
-export default Ember.Controller.extend(Analytics, RegistrationCount, {
+export default Ember.Controller.extend(KeenAndGoogleAnalytics, RegistrationCount, {
     theme: Ember.inject.service(),
     recentRegistrations: Ember.A(),
     init() {
