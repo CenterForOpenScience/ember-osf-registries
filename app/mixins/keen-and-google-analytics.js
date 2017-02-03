@@ -22,8 +22,8 @@ export default Ember.Mixin.create(Analytics, KeenTracker, {
             },
         // Sends event to both GA and Keen
         dualTrack(category, action, label, node) {
-            this.send('track', category, label, node);
-            this.send('keenTrack', category, label, node);
+            this.send('track', category, action, label, node);
+            this.send('keenTrack', category, action, label, node);
         }
     }
 
