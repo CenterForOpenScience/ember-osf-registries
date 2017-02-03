@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import config from 'ember-get-config';
-import Analytics from '../mixins/analytics';
+import KeenAndGoogleAnalytics from '../mixins/keen-and-google-analytics';
 import RegistrationCount from '../mixins/registration-count';
 
 import { elasticEscape } from '../utils/elastic-query';
@@ -12,7 +12,7 @@ const filterMap = {
     types: 'subjects' //TODO ?????
 };
 
-export default Ember.Controller.extend(Analytics, RegistrationCount, {
+export default Ember.Controller.extend(KeenAndGoogleAnalytics, RegistrationCount, {
     theme: Ember.inject.service(), // jshint ignore:line
     // TODO: either remove or add functionality to info icon on "Refine your search panel"
 
@@ -41,7 +41,7 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
     whiteListedProviders: [].map(item => item.toLowerCase()),
 
     registrationTypes: [
-        'Prereg Challenge', 
+        'Prereg Challenge',
         'Open-Ended Registration',
         'AsPredicted Preregistration',
         'OSF-Standard Pre-Data Collection Registration',
@@ -304,12 +304,11 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
             this.set('page', 1);
             this.loadPage();
 
-            Ember.get(this, 'metrics')
-                .trackEvent({
-                    category: `${event && event.type === 'keyup' ? 'input' : 'button'}`,
-                    action: `${event && event.type === 'keyup' ? 'onkeyup' : 'click'}`,
-                    label: 'Preprints - Discover - Search'
-                });
+            const category = `${event && event.type === 'keyup' ? 'input' : 'button'}`;
+            const action = `${event && event.type === 'keyup' ? 'onkeyup' : 'click'}`;
+            const label = 'Registries - Discover - Search';
+
+            this.send('dualTrack', category, action, label);
         },
 
         previous() {
@@ -332,12 +331,7 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
                 types: []
             });
 
-            Ember.get(this, 'metrics')
-                .trackEvent({
-                    category: 'button',
-                    action: 'click',
-                    label: 'Preprints - Discover - Clear Filters'
-                });
+            this.send('dualTrack', 'button', 'click', 'Registries - Discover - Clear Filters');
         },
 
         sortBySelect(index) {
@@ -350,12 +344,7 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
             this.set('page', 1);
             this.loadPage();
 
-            Ember.get(this, 'metrics')
-                .trackEvent({
-                    category: 'dropdown',
-                    action: 'select',
-                    label: `Preprints - Discover - Sort by: ${copy[index]}`
-                });
+            this.send('dualTrack', 'dropdown', 'select', `Registries - Discover - Sort by: ${copy[index]}`);
         },
 
         updateFilters(filterType, item) {
@@ -366,12 +355,11 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
             filters[`${action}Object`](item);
             this.notifyPropertyChange('activeFilters');
 
-            Ember.get(this, 'metrics')
-                .trackEvent({
-                    category: 'filter',
-                    action: hasItem ? 'remove' : 'add',
-                    label: `Preprints - Discover - ${filterType} ${item}`
-                });
+            const category = 'filter';
+            const act = hasItem ? 'remove' : 'add';
+            const label = `Registries - Discover - ${filterType} ${item}`;
+
+            this.send('dualTrack', category, act, label);
         },
     },
 });

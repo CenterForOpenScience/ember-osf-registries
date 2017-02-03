@@ -1,7 +1,7 @@
 import Ember from 'ember';
-import Analytics from '../mixins/analytics';
+import KeenAndGoogleAnalytics from '../mixins/keen-and-google-analytics';
 
-export default Ember.Component.extend(Analytics, {
+export default Ember.Component.extend(KeenAndGoogleAnalytics, {
     providerUrlRegex: {
         OSF: /https?:\/\/((?!api).)*osf.io/ // Doesn't match api.osf urls
     },
@@ -46,12 +46,11 @@ export default Ember.Component.extend(Analytics, {
         toggleShowBody() {
             this.set('showBody', !this.showBody);
 
-            Ember.get(this, 'metrics')
-                .trackEvent({
-                    category: 'result',
-                    action: !this.showBody ? 'contract' : 'expand',
-                    label: `Preprints - Discover - ${this.result.title}`
-                });
+            const category = 'result';
+            const action = !this.showBody ? 'contract' : 'expand';
+            const label = `Registries - Discover - ${this.result.title}`;
+
+            this.send('dualTrack', category, action, label);
         }
     }
 

@@ -5,7 +5,7 @@
                 {{!Title}}
                 <h4>
                     {{#if hyperlink}}
-                        <a href='{{hyperlink}}' {{action 'click' 'link' 'Registries - Discover - Result Title' hyperlink}}>{{result.title}}</a>
+                        <a href='{{hyperlink}}' {{action 'dualTrackClick' 'link' 'Registries - Discover - Result Title'}}>{{result.title}}</a>
                     {{else}}
                         <span>{{result.title}}</span>
                     {{/if}}
@@ -52,7 +52,7 @@
                     {{#if result.hyperLinks}}
                         <ul class="preprints-block-list m-t-sm">
                             {{#each result.hyperLinks as |link|}}
-                                <li><a href='{{link.url}}' {{action 'click' 'link' 'Preprints - Discover - Result Hyperlink' link.url}}>{{link.url}}</a></li>
+                                <li><a href='{{link.url}}' {{action 'dualTrackClick' 'link' 'Registries - Discover - Result Hyperlink'}}>{{link.url}}</a></li>
                             {{/each}}
                         </ul>
                     {{/if}}
