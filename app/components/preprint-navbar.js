@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import Analytics from '../mixins/analytics';
+import KeenAndGoogleAnalytics from '../mixins/keen-and-google-analytics';
 
-export default Ember.Component.extend(Analytics, {
+export default Ember.Component.extend(KeenAndGoogleAnalytics, {
 });
