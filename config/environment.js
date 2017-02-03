@@ -60,6 +60,16 @@ module.exports = function(environment) {
             }
         ],
         FB_APP_ID: process.env.FB_APP_ID,
+        KEEN: {
+            private: {
+                projectId: 'process.env.REGISTRIES_PRIVATE_PROJECT_ID',
+                writeKey: 'process.env.REGISTRIES_PRIVATE_WRITE_KEY'
+            },
+            public: {
+                projectId: 'process.env.REGISTRIES_PUBLIC_PROJECT_ID',
+                writeKey: 'process.env.REGISTRIES_PUBLIC_WRITE_KEY'
+            }
+        },
     };
 
     if (environment === 'development') {
