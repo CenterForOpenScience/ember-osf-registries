@@ -5,7 +5,7 @@
                 {{!Title}}
                 <h4>
                     {{#if hyperlink}}
-                        <a href='{{hyperlink}}' {{action 'dualTrackClick' 'link' 'Registries - Discover - Result Title' hyperlink}}>{{result.title}}</a>
+                        <a href='{{hyperlink}}' {{action 'dualTrackClick' 'link' (concat 'Registries - Discover - Result Title: ' result.title) hyperlink}}>{{result.title}}</a>
                     {{else}}
                         <span>{{result.title}}</span>
                     {{/if}}
