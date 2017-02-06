@@ -11,12 +11,12 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
         const filter = [
             {
                 terms: {
-                    'type': ['registration']
+                    type: ['registration']
                 }
             },
             {
                 terms: {
-                    'sources': this.get('theme.isProvider') ? this.get('theme.id') : 'OSF'
+                    sources: this.get('theme.isProvider') ? this.get('theme.id') : 'OSF'
                 }
             }
         ];

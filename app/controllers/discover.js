@@ -41,7 +41,7 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
     whiteListedProviders: [].map(item => item.toLowerCase()),
 
     registrationTypes: [
-        'Prereg Challenge', 
+        'Prereg Challenge',
         'Open-Ended Registration',
         'AsPredicted Preregistration',
         'OSF-Standard Pre-Data Collection Registration',
@@ -183,7 +183,7 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
                         }
                     ],
                     infoLinks: [], // Links that are not hyperlinks  hit._source.lists.links
-                    registrationType: hit._source['registration_type']
+                    registrationType: hit._source.registration_type
                 });
 
                 hit._source.identifiers.forEach(function(identifier) {
@@ -231,7 +231,7 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
         const filter = [
             {
                 terms: {
-                    'type': [
+                    type: [
                         'registration'
                     ]
                 }
@@ -256,7 +256,7 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
         if (this.get('theme.isProvider')) {
             filter.push({
                 terms: {
-                    'sources': [this.get('theme.provider.name')]
+                    sources: [this.get('theme.provider.name')]
                 }
             });
         }

@@ -8,7 +8,7 @@ export default Ember.Mixin.create({
         const filter = [
             {
                 terms: {
-                    'type': ['registration']
+                    type: ['registration']
                 }
             }
         ];
