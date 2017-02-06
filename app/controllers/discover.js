@@ -353,7 +353,7 @@ export default Ember.Controller.extend(KeenAndGoogleAnalytics, RegistrationCount
             this.set('page', 1);
             this.loadPage();
 
-            this.send('dualTrack', 'dropdown', 'select', `Registries - Discover - Sort by: ${copy[index]}`);
+            this.send('dualTrack', 'dropdown', 'select', `Registries - Discover - Sort by: ${copy[0]}`);
         },
 
         updateFilters(filterType, item) {
