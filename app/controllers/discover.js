@@ -5,10 +5,10 @@ import RegistrationCount from '../mixins/registration-count';
 
 import { elasticEscape } from '../utils/elastic-query';
 
-var getProvidersPayload = '{"from": 0,"query": {"bool": {"must": {"query_string": {"query": "*"}}, "filter": [{"term": {"types.raw": "registration"}}]}},"aggregations": {"sources": {"terms": {"field": "sources.raw","size": 200}}}}';
+var getProvidersPayload = '{"from": 0,"query": {"bool": {"must": {"query_string": {"query": "*"}}, "filter": [{"term": {"types": "registration"}}]}},"aggregations": {"sources": {"terms": {"field": "sources","size": 200}}}}';
 
 const filterMap = {
-    providers: 'sources.raw',
+    providers: 'sources',
     types: 'subjects' //TODO ?????
 };
 
@@ -230,7 +230,7 @@ export default Ember.Controller.extend(KeenAndGoogleAnalytics, RegistrationCount
         const filter = [
             {
                 terms: {
-                    'type.raw': [
+                    'type': [
                         'registration'
                     ]
                 }
@@ -255,7 +255,7 @@ export default Ember.Controller.extend(KeenAndGoogleAnalytics, RegistrationCount
         if (this.get('theme.isProvider')) {
             filter.push({
                 terms: {
-                    'sources.raw': [this.get('theme.provider.name')]
+                    'sources': [this.get('theme.provider.name')]
                 }
             });
         }
