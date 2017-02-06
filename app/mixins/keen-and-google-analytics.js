@@ -16,9 +16,9 @@ import KeenTracker from 'ember-osf/mixins/keen-tracker';
 export default Ember.Mixin.create(Analytics, KeenTracker, {
     actions: {
         // Sends click event to both GA and Keen
-        dualTrackClick(category, label, node) {
-            this.send('click', category, label, node);
-            this.send('keenClick', category, label, node);
+        dualTrackClick(category, label, url) {
+            this.send('click', category, label, url);
+            this.send('keenClick', category, label, url);
         },
         // Sends event to both GA and Keen
         dualTrack(category, action, label, node) {
