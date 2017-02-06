@@ -230,7 +230,7 @@ export default Ember.Controller.extend(KeenAndGoogleAnalytics, RegistrationCount
         const filter = [
             {
                 terms: {
-                    'type': [
+                    type: [
                         'registration'
                     ]
                 }
@@ -255,7 +255,7 @@ export default Ember.Controller.extend(KeenAndGoogleAnalytics, RegistrationCount
         if (this.get('theme.isProvider')) {
             filter.push({
                 terms: {
-                    'sources': [this.get('theme.provider.name')]
+                    sources: [this.get('theme.provider.name')]
                 }
             });
         }

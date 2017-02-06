@@ -11,12 +11,12 @@ export default Ember.Controller.extend(KeenAndGoogleAnalytics, RegistrationCount
         const filter = [
             {
                 term: {
-                    'types': 'registration'
+                    types: 'registration'
                 }
             },
             {
                 term: {
-                    'sources': this.get('theme.isProvider') ? this.get('theme.id') : 'OSF'
+                    sources: this.get('theme.isProvider') ? this.get('theme.id') : 'OSF'
                 }
             }
         ];
