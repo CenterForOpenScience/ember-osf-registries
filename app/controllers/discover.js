@@ -292,6 +292,7 @@ export default Ember.Controller.extend(KeenAndGoogleAnalytics, RegistrationCount
     otherProviders: [],
     actions: {
         search(val, event) {
+            const _this = this;
             if (event &&
                 (
                     event.keyCode < 49 ||
@@ -308,12 +309,12 @@ export default Ember.Controller.extend(KeenAndGoogleAnalytics, RegistrationCount
             const action = `${event && event.type === 'keyup' ? 'onkeyup' : 'click'}`;
             const label = 'Registries - Discover - Search';
 
-            function trackSearch() {
-                this.send('dualTrack', category, action, label);
-            }
+            const trackSearch = function() {
+                _this.send('dualTrack', category, action, label);
+            };
 
             if (event && event.type === 'keyup') {
-                Ember.run.debounce(this, trackSearch, 500);
+                return Ember.run.debounce(this, trackSearch, 5000, false);
             } else {
                 trackSearch();
             }
