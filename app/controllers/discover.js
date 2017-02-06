@@ -308,7 +308,15 @@ export default Ember.Controller.extend(KeenAndGoogleAnalytics, RegistrationCount
             const action = `${event && event.type === 'keyup' ? 'onkeyup' : 'click'}`;
             const label = 'Registries - Discover - Search';
 
-            this.send('dualTrack', category, action, label);
+            function trackSearch() {
+                this.send('dualTrack', category, action, label);
+            }
+
+            if (event && event.type === 'keyup') {
+                Ember.run.debounce(this, trackSearch, 500);
+            } else {
+                trackSearch();
+            }
         },
 
         previous() {
