@@ -19,7 +19,7 @@
             {{!SEARCH}}
             <div class="preprint-search col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 m-v-lg" >
                 <div class="input-group input-group-lg">
-                    {{input id="searchBox" value=(mut queryString) class="form-control" key-up='search' placeholder=(t "discover.search.placeholder")}}
+                    {{input id="searchBox" value=(mut queryString) class="form-control" key-up='search' key-press='trackSearch' placeholder=(t "discover.search.placeholder")}}
                     <span class="input-group-btn">
                         <button class="btn btn-default" type="button" {{action "search" this}}>{{t "global.search"}}</button>
                     </span>

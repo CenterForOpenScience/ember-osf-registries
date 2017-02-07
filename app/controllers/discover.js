@@ -154,6 +154,13 @@ export default Ember.Controller.extend(KeenAndGoogleAnalytics, RegistrationCount
         this.set('loading', true);
         Ember.run.debounce(this, this._loadPage, 500);
     },
+    trackDebouncedSearch() {
+        // For use in tracking debounced search of registries in Keen and GA
+        const category = 'input';
+        const action = 'onkeyup';
+        const label = 'Registries - Discover - Search';
+        this.send('dualTrack', category, action, label);
+    },
     _loadPage() {
         let queryBody = JSON.stringify(this.getQueryBody());
 
@@ -291,8 +298,11 @@ export default Ember.Controller.extend(KeenAndGoogleAnalytics, RegistrationCount
     }),
     otherProviders: [],
     actions: {
+        trackSearch() {
+            // Tracks search on keypress, debounced
+            Ember.run.debounce(this, this.trackDebouncedSearch, 3000);
+        },
         search(val, event) {
-            const _this = this;
             if (event &&
                 (
                     event.keyCode < 49 ||
@@ -309,14 +319,9 @@ export default Ember.Controller.extend(KeenAndGoogleAnalytics, RegistrationCount
             const action = `${event && event.type === 'keyup' ? 'onkeyup' : 'click'}`;
             const label = 'Registries - Discover - Search';
 
-            const trackSearch = function() {
-                _this.send('dualTrack', category, action, label);
-            };
-
-            if (event && event.type === 'keyup') {
-                return Ember.run.debounce(this, trackSearch, 5000, false);
-            } else {
-                trackSearch();
+            if (action === 'click') {
+                // Only want to track search here when button clicked. Keypress search tracking is debounced in trackSearch
+                this.send('dualTrack', category, action, label);
             }
         },
 
