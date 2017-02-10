@@ -5,11 +5,11 @@ import RegistrationCount from '../mixins/registration-count';
 
 import { elasticEscape } from '../utils/elastic-query';
 
-var getProvidersPayload = '{"from": 0,"query": {"bool": {"must": {"query_string": {"query": "*"}}, "filter": [{"term": {"types.raw": "registration"}}]}},"aggregations": {"sources": {"terms": {"field": "sources.raw","size": 200}}}}';
+var getProvidersPayload = '{"from": 0,"query": {"bool": {"must": {"query_string": {"query": "*"}}, "filter": [{"term": {"types": "registration"}}]}},"aggregations": {"sources": {"terms": {"field": "sources","size": 200}}}}';
 
 const filterMap = {
-    providers: 'sources.raw',
-    types: 'subjects' //TODO ?????
+    providers: 'sources',
+    types: 'registration_type'
 };
 
 export default Ember.Controller.extend(Analytics, RegistrationCount, {
@@ -41,7 +41,7 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
     whiteListedProviders: [].map(item => item.toLowerCase()),
 
     registrationTypes: [
-        'Prereg Challenge', 
+        'Prereg Challenge',
         'Open-Ended Registration',
         'AsPredicted Preregistration',
         'OSF-Standard Pre-Data Collection Registration',
@@ -182,7 +182,8 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
                             url: config.SHARE.baseUrl + 'preprint/' + hit._id
                         }
                     ],
-                    infoLinks: [] // Links that are not hyperlinks  hit._source.lists.links
+                    infoLinks: [], // Links that are not hyperlinks  hit._source.lists.links
+                    registrationType: hit._source.registration_type
                 });
 
                 hit._source.identifiers.forEach(function(identifier) {
@@ -230,7 +231,7 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
         const filter = [
             {
                 terms: {
-                    'type.raw': [
+                    type: [
                         'registration'
                     ]
                 }
@@ -255,7 +256,7 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
         if (this.get('theme.isProvider')) {
             filter.push({
                 terms: {
-                    'sources.raw': [this.get('theme.provider.name')]
+                    sources: [this.get('theme.provider.name')]
                 }
             });
         }
