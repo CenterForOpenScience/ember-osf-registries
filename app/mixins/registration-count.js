@@ -7,8 +7,8 @@ export default Ember.Mixin.create({
         // This is considered to be a one-time fetch, and therefore is run in controller init.
         const filter = [
             {
-                term: {
-                    'types.raw': 'registration'
+                terms: {
+                    type: ['registration']
                 }
             }
         ];
@@ -28,7 +28,7 @@ export default Ember.Mixin.create({
         };
         if (this.get('theme.isProvider')) {
             filter.push({
-                term: {
+                terms: {
                     // TODO filter by name and use sources.raw (potential conflicts later), Needs API name to match SHARE source
                     sources: this.get('theme.id')
                 }

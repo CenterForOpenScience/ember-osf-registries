@@ -9,7 +9,7 @@ var getProvidersPayload = '{"from": 0,"query": {"bool": {"must": {"query_string"
 
 const filterMap = {
     providers: 'sources',
-    types: 'subjects' //TODO ?????
+    types: 'registration_type'
 };
 
 export default Ember.Controller.extend(KeenAndGoogleAnalytics, RegistrationCount, {
@@ -189,7 +189,8 @@ export default Ember.Controller.extend(KeenAndGoogleAnalytics, RegistrationCount
                             url: config.SHARE.baseUrl + 'preprint/' + hit._id
                         }
                     ],
-                    infoLinks: [] // Links that are not hyperlinks  hit._source.lists.links
+                    infoLinks: [], // Links that are not hyperlinks  hit._source.lists.links
+                    registrationType: hit._source.registration_type
                 });
 
                 hit._source.identifiers.forEach(function(identifier) {
