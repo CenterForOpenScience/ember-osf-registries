@@ -38,8 +38,6 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
         'RIDIE'
     ],
 
-    whiteListedProviders: [].map(item => item.toLowerCase()),
-
     registrationTypes: [
         'Prereg Challenge',
         'Open-Ended Registration',
@@ -196,7 +194,7 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
                     }
                 });
 
-                result.contributors = result.lists.contributors
+                result.contributors = result.lists.contributors ? result.lists.contributors
                   .sort((b, a) => (b.order_cited || -1) - (a.order_cited || -1))
                   .map(contributor => ({
                         users: Object.keys(contributor)
@@ -204,7 +202,7 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
                               (acc, key) => Ember.merge(acc, {[key.camelize()]: contributor[key]}),
                               {bibliographic: contributor.relation !== 'contributor'}
                           )
-                    }));
+                    })) : [];
 
                 // Temporary fix to handle half way migrated SHARE ES
                 // Only false will result in a false here.
