@@ -50,7 +50,7 @@ export default Ember.Component.extend(KeenAndGoogleAnalytics, {
             const action = !this.showBody ? 'contract' : 'expand';
             const label = `Registries - Discover - ${this.result.title}`;
 
-            this.send('dualTrack', category, action, label);
+            this.send('dualTrack', category, action, label, this.result.id);
         }
     }
 
