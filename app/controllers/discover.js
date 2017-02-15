@@ -159,7 +159,7 @@ export default Ember.Controller.extend(KeenAndGoogleAnalytics, RegistrationCount
         const category = 'input';
         const action = 'onkeyup';
         const label = 'Registries - Discover - Search';
-        this.send('dualTrack', category, action, label);
+        this.send('dualTrack', category, action, label, this.get('queryString'));
     },
     _loadPage() {
         let queryBody = JSON.stringify(this.getQueryBody());
@@ -322,7 +322,7 @@ export default Ember.Controller.extend(KeenAndGoogleAnalytics, RegistrationCount
 
             if (action === 'click') {
                 // Only want to track search here when button clicked. Keypress search tracking is debounced in trackSearch
-                this.send('dualTrack', category, action, label);
+                this.send('dualTrack', category, action, label, this.get('queryString'));
             }
         },
 

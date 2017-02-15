@@ -6,7 +6,7 @@ export default Ember.Component.extend(KeenAndGoogleAnalytics, {
         search() {
             let query = Ember.$.trim(this.$('#searchBox').val());
             this.sendAction('search', query);
-            this.send('dualTrackClick', 'button', 'Registries - Index - Search');
+            this.send('dualTrackClick', 'button', 'Registries - Index - Search', query);
         }
     },
 
