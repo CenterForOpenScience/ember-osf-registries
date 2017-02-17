@@ -3,7 +3,8 @@ import Analytics from '../mixins/analytics';
 
 export default Ember.Component.extend(Analytics, {
     providerUrlRegex: {
-        OSF: /https?:\/\/((?!api).)*osf.io/ // Doesn't match api.osf urls
+        OSF: /https?:\/\/((?!api).)*osf.io/, // Doesn't match api.osf urls
+        'ClinicalTrials.gov': /http:\/\/clinicaltrials.gov/,
     },
     didRender() {
         MathJax.Hub.Queue(['Typeset', MathJax.Hub, this.$()[0]]);  // jshint ignore:line
@@ -50,7 +51,7 @@ export default Ember.Component.extend(Analytics, {
                 .trackEvent({
                     category: 'result',
                     action: !this.showBody ? 'contract' : 'expand',
-                    label: `Preprints - Discover - ${this.result.title}`
+                    label: `Registries -  Discover - ${this.result.title}`
                 });
         }
     }

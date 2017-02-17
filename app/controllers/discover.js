@@ -307,7 +307,7 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
                 .trackEvent({
                     category: `${event && event.type === 'keyup' ? 'input' : 'button'}`,
                     action: `${event && event.type === 'keyup' ? 'onkeyup' : 'click'}`,
-                    label: 'Preprints - Discover - Search'
+                    label: 'Registries -  Discover - Search'
                 });
         },
 
@@ -335,7 +335,7 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
                 .trackEvent({
                     category: 'button',
                     action: 'click',
-                    label: 'Preprints - Discover - Clear Filters'
+                    label: 'Registries -  Discover - Clear Filters'
                 });
         },
 
@@ -353,7 +353,7 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
                 .trackEvent({
                     category: 'dropdown',
                     action: 'select',
-                    label: `Preprints - Discover - Sort by: ${copy[index]}`
+                    label: `Registries -  Discover - Sort by: ${copy[index]}`
                 });
         },
 
@@ -369,7 +369,7 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
                 .trackEvent({
                     category: 'filter',
                     action: hasItem ? 'remove' : 'add',
-                    label: `Preprints - Discover - ${filterType} ${item}`
+                    label: `Registries -  Discover - ${filterType} ${item}`
                 });
         },
     },
