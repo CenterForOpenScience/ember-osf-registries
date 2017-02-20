@@ -105,13 +105,13 @@
                     </ul>
                 </div>
 
-                <div class="m-v-md">
+                <div class="m-v-md registration-type-selector">
                     <h4 class="filter-heading p-sm">{{t "discover.main.type"}}</h4>
                     <ul>
                         {{#each registrationTypes as |item|}}
                             <li>
                                 <label>
-                                    <input type="checkbox" checked="{{if (if-filter item activeFilters.types) 'checked'}}" onclick={{action 'updateFilters' 'types' item}}>
+                                    <input class='type-checkbox' type="checkbox" checked="{{if (if-filter item activeFilters.types) 'checked'}}" onclick={{action 'updateFilters' 'types' item}}>
                                     {{item}}
                                 </label>
                             </li>

@@ -56,6 +56,7 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
     typeFilter: null,
     queryBody: {},
     providersPassed: false,
+    useOSFFilters: true,
 
     sortByOptions: ['Relevance', 'Upload date (oldest to newest)', 'Upload date (newest to oldest)'],
 
@@ -131,6 +132,9 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
         Ember.run.once(() => {
             let filter = this.get('typeFilter');
             if (!filter || filter === 'true') return;
+            if (this.get('providerFilter') ===  '') {
+                this.set('providerFilter', 'OSF');
+            }
             this.set('activeFilters.types', filter.split('AND'));
             this.notifyPropertyChange('activeFilters');
             this.loadPage();
@@ -141,11 +145,35 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
             Ember.run.once(() => {
                 let filter = this.get('providerFilter');
                 if (!filter || filter === 'true') return;
+                if (filter === 'OSF' || filter === '') {
+                    this.set('useOSFFilters', true);
+                } else {
+                    this.set('useOSFFilters', false);
+                }
                 this.set('activeFilters.providers', filter.split('AND'));
                 this.notifyPropertyChange('activeFilters');
                 this.set('providersPassed', true);
                 this.loadPage();
             });
+        }
+    }),
+    registrationTypeCache: null,
+    setVisibilityOfOSFFilters: Ember.observer('useOSFFilters', function() {
+        if (this.get('useOSFFilters')) {
+            if (this.get('registrationTypeCache')) {
+                this.set('typeFilter', this.get('registrationTypeCache'));
+                this.set('registrationTypeCache', null);
+            }
+            Ember.$('.type-checkbox').removeAttr('disabled');
+            Ember.$('.registration-type-selector').fadeTo(0, 1);
+        } else {
+            if (this.get('typeFilter')) {
+                this.set('registrationTypeCache', this.get('typeFilter'));
+                this.set('typeFilter', '');
+                this.notifyPropertyChange('typeFilter');
+            }
+            Ember.$('.type-checkbox').attr('disabled', 'disabled');
+            Ember.$('.registration-type-selector').fadeTo(0, 0.5);
         }
     }),
     loadPage() {
