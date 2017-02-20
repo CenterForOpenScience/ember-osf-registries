@@ -28,14 +28,14 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
 
     osfProviders: [
         'OSF',
-        'AEA Registry', //These need to be added to the language filter once on SHARE (OSF -> OSF Registries)
-        'ANZCTR',
-        'Clinicaltrials.gov',
-        'EGAP',
-        'EU Clinical Trials',
-        'ISRCTN',
-        'Research Registry',
-        'RIDIE'
+        // 'AEA Registry', //These need to be added to the language filter once on SHARE (OSF -> OSF Registries)
+        // 'ANZCTR',
+        // 'Clinicaltrials.gov',
+        // 'EGAP',
+        // 'EU Clinical Trials',
+        // 'ISRCTN',
+        // 'Research Registry',
+        // 'RIDIE'
     ],
 
     registrationTypes: [
