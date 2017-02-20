@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import config from 'ember-get-config';
-import KeenAndGoogleAnalytics from '../mixins/keen-and-google-analytics';
+import Analytics from '../mixins/analytics';
 import RegistrationCount from '../mixins/registration-count';
 
 import { elasticEscape } from '../utils/elastic-query';
@@ -12,7 +12,7 @@ const filterMap = {
     types: 'registration_type'
 };
 
-export default Ember.Controller.extend(KeenAndGoogleAnalytics, RegistrationCount, {
+export default Ember.Controller.extend(Analytics, RegistrationCount, {
     theme: Ember.inject.service(), // jshint ignore:line
     // TODO: either remove or add functionality to info icon on "Refine your search panel"
 
@@ -37,8 +37,6 @@ export default Ember.Controller.extend(KeenAndGoogleAnalytics, RegistrationCount
         'Research Registry',
         'RIDIE'
     ],
-
-    whiteListedProviders: [].map(item => item.toLowerCase()),
 
     registrationTypes: [
         'Prereg Challenge',
@@ -203,7 +201,7 @@ export default Ember.Controller.extend(KeenAndGoogleAnalytics, RegistrationCount
                     }
                 });
 
-                result.contributors = result.lists.contributors
+                result.contributors = result.lists.contributors ? result.lists.contributors
                   .sort((b, a) => (b.order_cited || -1) - (a.order_cited || -1))
                   .map(contributor => ({
                         users: Object.keys(contributor)
@@ -211,7 +209,7 @@ export default Ember.Controller.extend(KeenAndGoogleAnalytics, RegistrationCount
                               (acc, key) => Ember.merge(acc, {[key.camelize()]: contributor[key]}),
                               {bibliographic: contributor.relation !== 'contributor'}
                           )
-                    }));
+                    })) : [];
 
                 // Temporary fix to handle half way migrated SHARE ES
                 // Only false will result in a false here.
@@ -322,7 +320,14 @@ export default Ember.Controller.extend(KeenAndGoogleAnalytics, RegistrationCount
 
             if (action === 'click') {
                 // Only want to track search here when button clicked. Keypress search tracking is debounced in trackSearch
-                this.send('dualTrack', category, action, label, this.get('queryString'));
+                 Ember.get(this, 'metrics')
+                .trackEvent({
+                    category: category,
+                    action: action,
+                    label: label,
+                    extra: this.get('queryString')
+
+                });
             }
         },
 
@@ -346,7 +351,12 @@ export default Ember.Controller.extend(KeenAndGoogleAnalytics, RegistrationCount
                 types: []
             });
 
-            this.send('dualTrack', 'button', 'click', 'Registries - Discover - Clear Filters');
+            Ember.get(this, 'metrics')
+                .trackEvent({
+                    category: 'button',
+                    action: 'click',
+                    label: 'Registries -  Discover - Clear Filters'
+                });
         },
 
         sortBySelect(index) {
@@ -359,7 +369,12 @@ export default Ember.Controller.extend(KeenAndGoogleAnalytics, RegistrationCount
             this.set('page', 1);
             this.loadPage();
 
-            this.send('dualTrack', 'dropdown', 'select', `Registries - Discover - Sort by: ${copy[0]}`);
+            Ember.get(this, 'metrics')
+                .trackEvent({
+                    category: 'dropdown',
+                    action: 'select',
+                    label: `Registries -  Discover - Sort by: ${copy[0]}`
+                });
         },
 
         updateFilters(filterType, item) {
@@ -370,11 +385,12 @@ export default Ember.Controller.extend(KeenAndGoogleAnalytics, RegistrationCount
             filters[`${action}Object`](item);
             this.notifyPropertyChange('activeFilters');
 
-            const category = 'filter';
-            const act = hasItem ? 'remove' : 'add';
-            const label = `Registries - Discover - ${filterType} ${item}`;
-
-            this.send('dualTrack', category, act, label);
+            Ember.get(this, 'metrics')
+                .trackEvent({
+                    category: 'filter',
+                    action: hasItem ? 'remove' : 'add',
+                    label: `Registries -  Discover - ${filterType} ${item}`
+                });
         },
     },
 });

@@ -3,7 +3,8 @@ import KeenAndGoogleAnalytics from '../mixins/keen-and-google-analytics';
 
 export default Ember.Component.extend(KeenAndGoogleAnalytics, {
     providerUrlRegex: {
-        OSF: /https?:\/\/((?!api).)*osf.io/ // Doesn't match api.osf urls
+        OSF: /https?:\/\/((?!api).)*osf.io/, // Doesn't match api.osf urls
+        'ClinicalTrials.gov': /http:\/\/clinicaltrials.gov/,
     },
     didRender() {
         MathJax.Hub.Queue(['Typeset', MathJax.Hub, this.$()[0]]);  // jshint ignore:line
@@ -46,11 +47,12 @@ export default Ember.Component.extend(KeenAndGoogleAnalytics, {
         toggleShowBody() {
             this.set('showBody', !this.showBody);
 
-            const category = 'result';
-            const action = !this.showBody ? 'contract' : 'expand';
-            const label = `Registries - Discover - ${this.result.title}`;
-
-            this.send('dualTrack', category, action, label, this.result.id);
+            Ember.get(this, 'metrics')
+                .trackEvent({
+                    category: 'result',
+                    action: !this.showBody ? 'contract' : 'expand',
+                    label: `Registries -  Discover - ${this.result.title}`
+                });
         }
     }
 

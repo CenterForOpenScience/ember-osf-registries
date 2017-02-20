@@ -37,7 +37,9 @@
                         {{#each result.providers as |provider index|}}
                             {{if index '| '}}{{filter-replace provider.name}}
                         {{/each}}
-                        | {{result.registrationType}}
+                        {{#if result.registrationType}}
+                            | {{result.registrationType}}
+                        {{/if}}
                     </span>
                     <span class="pull-right">
                         {{#if result.date_created}} {{! moment-format will use current time if null}}
@@ -52,7 +54,7 @@
                     {{#if result.hyperLinks}}
                         <ul class="preprints-block-list m-t-sm">
                             {{#each result.hyperLinks as |link|}}
-                                <li><a href='{{link.url}}' {{action 'dualTrackClick' 'link' (concat 'Registries - Discover - Result Hyperlink: ' link.url) result.id}}>{{link.url}}</a></li>
+                                <li><a href='{{link.url}}' {{action 'click' 'link' 'Registries -  Discover - Result Hyperlink' link.url}}>{{link.url}}</a></li>
                             {{/each}}
                         </ul>
                     {{/if}}
