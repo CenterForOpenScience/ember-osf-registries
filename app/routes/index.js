@@ -1,9 +1,8 @@
 import Ember from 'ember';
-import KeenTracker from 'ember-osf/mixins/keen-tracker';
 import ResetScrollMixin from '../mixins/reset-scroll';
 import Analytics from 'ember-osf/mixins/analytics';
 
-export default Ember.Route.extend(Analytics, ResetScrollMixin, KeenTracker,  {
+export default Ember.Route.extend(Analytics, ResetScrollMixin,  {
     // store: Ember.inject.service(),
     theme: Ember.inject.service(),
     model() {

@@ -60,7 +60,7 @@
     "ember-link-action": "0.0.35",
     "ember-load-initializers": "^0.5.1",
     "ember-metrics": "0.6.3",
-    "ember-osf": "git+https://github.com/pattisdr/ember-osf.git#8bc670ef8f9e5f59ffda1917010f8e82e5e92020",
+    "ember-osf": "git+https://github.com/pattisdr/ember-osf.git#2e18a05e87a6bc61f694e469fcb34720c50a3e84",
     "ember-page-title": "3.0.6",
     "ember-power-select": "1.0.0-beta.7",
     "ember-read-more": "0.0.13",
