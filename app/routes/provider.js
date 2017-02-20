@@ -1,8 +1,8 @@
 import Ember from 'ember';
 import config from 'ember-get-config';
-import KeenTracker from 'ember-osf/mixins/keen-tracker';
+import Analytics from 'ember-osf/mixins/analytics';
 
-export default Ember.Route.extend(KeenTracker, {
+export default Ember.Route.extend(Analytics, {
     theme: Ember.inject.service(),
 
     providerIds: config.REGISTRIES.providers

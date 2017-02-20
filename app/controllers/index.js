@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import config from 'ember-get-config';
-import KeenAndGoogleAnalytics from '../mixins/keen-and-google-analytics';
+import Analytics from 'ember-osf/mixins/analytics';
 import RegistrationCount from '../mixins/registration-count';
 
 const PLACEHOLDER_DATA = [
@@ -26,7 +26,7 @@ const PLACEHOLDER_DATA = [
     },
 ];
 
-export default Ember.Controller.extend(KeenAndGoogleAnalytics, RegistrationCount, {
+export default Ember.Controller.extend(Analytics, RegistrationCount, {
     theme: Ember.inject.service(),
     recentRegistrations: Ember.A(),
     init() {

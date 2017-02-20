@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import config from 'ember-get-config';
-import Analytics from '../mixins/analytics';
+import Analytics from 'ember-osf/mixins/analytics';
 import RegistrationCount from '../mixins/registration-count';
 
 import { elasticEscape } from '../utils/elastic-query';
@@ -154,10 +154,14 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
     },
     trackDebouncedSearch() {
         // For use in tracking debounced search of registries in Keen and GA
-        const category = 'input';
-        const action = 'onkeyup';
-        const label = 'Registries - Discover - Search';
-        this.send('dualTrack', category, action, label, this.get('queryString'));
+        Ember.get(this, 'metrics')
+            .trackEvent({
+                category: 'input',
+                action: 'onkeyup',
+                label: 'Registries - Discover - Search',
+                extra: this.get('queryString')
+
+            });
     },
     _loadPage() {
         let queryBody = JSON.stringify(this.getQueryBody());

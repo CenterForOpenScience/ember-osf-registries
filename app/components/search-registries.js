@@ -1,12 +1,19 @@
 import Ember from 'ember';
-import KeenAndGoogleAnalytics from '../mixins/keen-and-google-analytics';
+import Analytics from 'ember-osf/mixins/analytics';
 
-export default Ember.Component.extend(KeenAndGoogleAnalytics, {
+export default Ember.Component.extend(Analytics, {
+    metrics: Ember.inject.service(),
     actions: {
         search() {
             let query = Ember.$.trim(this.$('#searchBox').val());
             this.sendAction('search', query);
-            this.send('dualTrackClick', 'button', 'Registries - Index - Search', query);
+            Ember.get(this, 'metrics')
+                .trackEvent({
+                    category: 'button',
+                    action: 'click',
+                    label: 'Registries - Index - Search',
+                    extra: query
+                });
         }
     },
 

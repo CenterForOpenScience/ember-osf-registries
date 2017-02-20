@@ -1,7 +1,7 @@
 import Ember from 'ember';
-import KeenAndGoogleAnalytics from '../mixins/keen-and-google-analytics';
+import Analytics from 'ember-osf/mixins/analytics';
 
-export default Ember.Component.extend(KeenAndGoogleAnalytics, {
+export default Ember.Component.extend(Analytics, {
     providerUrlRegex: {
         OSF: /https?:\/\/((?!api).)*osf.io/, // Doesn't match api.osf urls
         'ClinicalTrials.gov': /http:\/\/clinicaltrials.gov/,
@@ -51,7 +51,8 @@ export default Ember.Component.extend(KeenAndGoogleAnalytics, {
                 .trackEvent({
                     category: 'result',
                     action: !this.showBody ? 'contract' : 'expand',
-                    label: `Registries -  Discover - ${this.result.title}`
+                    label: `Registries -  Discover - ${this.result.title}`,
+                    extra: this.result.id
                 });
         }
     }
