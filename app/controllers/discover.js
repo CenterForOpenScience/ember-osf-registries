@@ -324,14 +324,14 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
 
             if (action === 'click') {
                 // Only want to track search here when button clicked. Keypress search tracking is debounced in trackSearch
-                 Ember.get(this, 'metrics')
-                .trackEvent({
-                    category: category,
-                    action: action,
-                    label: label,
-                    extra: this.get('queryString')
+                Ember.get(this, 'metrics')
+                    .trackEvent({
+                        category: category,
+                        action: action,
+                        label: label,
+                        extra: this.get('queryString')
 
-                });
+                    });
             }
         },
 
