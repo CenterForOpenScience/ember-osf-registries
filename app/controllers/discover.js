@@ -152,11 +152,11 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
         if (show) {
             Ember.$('.type-selector-warning').hide();
             Ember.$('.type-checkbox').removeAttr('disabled');
-            Ember.$('.registration-type-selector').fadeTo(0, 1);
+            Ember.$('.registration-type-selector').fadeTo('slow', 1);
         } else {
             Ember.$('.type-selector-warning').show();
             Ember.$('.type-checkbox').attr('disabled', 'disabled');
-            Ember.$('.registration-type-selector').fadeTo(0, 0.5);
+            Ember.$('.registration-type-selector').fadeTo('slow', 0.5);
         }
     },
     typeChanged: Ember.observer('typeFilter', function() {
