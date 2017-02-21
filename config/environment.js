@@ -58,19 +58,23 @@ module.exports = function(environment) {
                 config: {
                     id: process.env.GOOGLE_ANALYTICS_ID
                 }
+            },
+            {
+                name: 'Keen',
+                environments: ['all'],
+                config: {
+                    private: {
+                        projectId: process.env.KEEN_PRIVATE_PROJECT_ID,
+                        writeKey: process.env.KEEN_PRIVATE_WRITE_KEY
+                    },
+                    public: {
+                        projectId: process.env.KEEN_PUBLIC_PROJECT_ID,
+                        writeKey: process.env.KEEN_PUBLIC_WRITE_KEY
+                    }
+                }
             }
         ],
         FB_APP_ID: process.env.FB_APP_ID,
-        KEEN: {
-            private: {
-                projectId: 'process.env.REGISTRIES_PRIVATE_PROJECT_ID',
-                writeKey: 'process.env.REGISTRIES_PRIVATE_WRITE_KEY'
-            },
-            public: {
-                projectId: 'process.env.REGISTRIES_PUBLIC_PROJECT_ID',
-                writeKey: 'process.env.REGISTRIES_PUBLIC_WRITE_KEY'
-            }
-        },
     };
 
     if (environment === 'development') {
