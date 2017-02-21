@@ -46,7 +46,6 @@ const PLACEHOLDER_DATA = [
     },
 ];
 
-
 export default Ember.Controller.extend(Analytics, RegistrationCount, {
     theme: Ember.inject.service(),
     recentRegistrations: Ember.A(),
