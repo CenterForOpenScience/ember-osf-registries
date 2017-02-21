@@ -20,7 +20,7 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
     queryParams: {
         page: 'page',
         queryString: 'q',
-        registrationType: 'type',
+        typeFilter: 'type',
         providerFilter: 'provider',
     },
 
@@ -28,14 +28,14 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
 
     osfProviders: [
         'OSF',
-        'AEA Registry', //These need to be added to the language filter once on SHARE (OSF -> OSF Registries)
-        'ANZCTR',
-        'Clinicaltrials.gov',
-        'EGAP',
-        'EU Clinical Trials',
-        'ISRCTN',
-        'Research Registry',
-        'RIDIE'
+        // 'AEA Registry', //These need to be added to the language filter once on SHARE (OSF -> OSF Registries)
+        // 'ANZCTR',
+        // 'Clinicaltrials.gov',
+        // 'EGAP',
+        // 'EU Clinical Trials',
+        // 'ISRCTN',
+        // 'Research Registry',
+        // 'RIDIE'
     ],
 
     registrationTypes: [
@@ -53,15 +53,11 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
     size: 10,
     numberOfResults: 0,
     queryString: '',
-    typeFilter: null,
     queryBody: {},
     providersPassed: false,
 
     sortByOptions: ['Relevance', 'Upload date (oldest to newest)', 'Upload date (newest to oldest)'],
 
-    treeSubjects: Ember.computed('activeFilters', function() {
-        return this.get('activeFilters.subjects').slice();
-    }),
     // chosenOption is always the first element in the list
     chosenSortByOption: Ember.computed('sortByOptions', function() {
         return this.get('sortByOptions')[0];
@@ -124,8 +120,44 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
 
             this.notifyPropertyChange('otherProviders');
         });
-
         this.loadPage();
+        Ember.run.schedule('afterRender', () => {
+            let providers = this.get('activeFilters.providers');
+            if (providers.length === 1 && providers[0] === 'OSF') {
+                return;
+            }
+            this.toggleTypeCSS(false);
+        });
+    },
+    registrationTypeCache: null,
+    setVisibilityOfOSFFilters: Ember.observer('providerFilter', function() {
+        if (this.get('providerFilter') === 'OSF') {
+            if (this.get('registrationTypeCache')) {
+                this.set('typeFilter', this.get('registrationTypeCache'));
+                this.set('registrationTypeCache', null);
+            }
+            this.toggleTypeCSS(true);
+        } else {
+            if (this.get('typeFilter')) {
+                this.set('registrationTypeCache', this.get('typeFilter'));
+                this.set('typeFilter', '');
+                this.set('activeFilters.types', []);
+                this.notifyPropertyChange('activeFilters');
+                this.loadPage();
+            }
+            this.toggleTypeCSS(false);
+        }
+    }),
+    toggleTypeCSS(show) {
+        if (show) {
+            Ember.$('.type-selector-warning').hide();
+            Ember.$('.type-checkbox').removeAttr('disabled');
+            Ember.$('.registration-type-selector').fadeTo('slow', 1);
+        } else {
+            Ember.$('.type-selector-warning').show();
+            Ember.$('.type-checkbox').attr('disabled', 'disabled');
+            Ember.$('.registration-type-selector').fadeTo('slow', 0.5);
+        }
     },
     typeChanged: Ember.observer('typeFilter', function() {
         Ember.run.once(() => {

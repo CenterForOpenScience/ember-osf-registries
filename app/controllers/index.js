@@ -6,23 +6,43 @@ import RegistrationCount from '../mixins/registration-count';
 const PLACEHOLDER_DATA = [
     {
         title: 'Local conditions explain variation in plant phenology within species',
-        url: 'https://osf.io/6tsnj/'
+        url: 'https://osf.io/6tsnj/register/565fb3678c5e4a66b5582f67',
+        contributors: [
+            {users: {name: 'Margaret Kosmala', bibliographic: true}}
+        ]
     },
     {
         title: 'The Role of Framing Effects, the Dark Triad and Empathy in Predicting Behavior in a One-shot Prisoner\'s Dilemma',
-        url: 'https://osf.io/aurjt/'
+        url: 'https://osf.io/aurjt/register/565fb3678c5e4a66b5582f67',
+        contributors: [
+            {users: {name: 'Paul Michael Deutchman', bibliographic: true}},
+            {users: {name: 'Jess Sullivan', bibliographic: true}}
+        ]
     },
     {
         title: 'Promoting School Belongingness and Academic Performance: A Multisite Effectiveness Trial of a Scalable Student Mindset Intervention',
-        url: 'https://osf.io/e94t8/'
+        url: 'https://osf.io/e94t8/register/565fb3678c5e4a66b5582f67',
+        contributors: [
+            {users: {name: 'Geoffrey Borman', bibliographic: true}},
+            {users: {name: 'Jon Baron', bibliographic: true}}
+        ]
     },
     {
         title: 'Does Practicing Cognitive Reappraisal Enhance Impulse Inhibition during Subsequent Risk Taking?',
-        url: 'https://osf.io/2tpy9/'
+        url: 'https://osf.io/2tpy9/register/565fb3678c5e4a66b5582f67',
+        contributors: [
+            {users: {name: 'Joao F. Guassi Moreira', bibliographic: true}},
+            {users: {name: 'Emilia Ninova', bibliographic: true}},
+            {users: {name: 'Jennifer Silvers', bibliographic: true}}
+        ]
     },
     {
         title: 'On the role of lower- and upper-bounded contexts in realizing scalar inferences',
-        url: 'https://osf.io/2ds52/'
+        url: 'https://osf.io/2ds52/register/565fb3678c5e4a66b5582f67',
+        contributors: [
+            {users: {name: 'Stephen Politzer-Ahles', bibliographic: true}},
+            {users: {name: 'Edward Matthew Husband', bibliographic: true}}
+        ]
     },
 ];
 
