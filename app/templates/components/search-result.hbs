@@ -7,7 +7,10 @@
                     {{#if hyperlink}}
                         <a href='{{hyperlink}}' onclick={{action 'click' 'link' (concat 'Registries - Discover - Result Title: ' hyperlink) result.id}}>{{result.title}}</a>
                     {{else}}
-                        <span>{{result.title}}</span>
+                        <span>{{result.title}} </span>
+                    {{/if}}
+                    {{#if result.withdrawn}}
+                        <span class='label label-default'> Withdrawn </span>
                     {{/if}}
                 </h4>
                 {{!Authors}}
@@ -42,8 +45,8 @@
                         {{/if}}
                     </span>
                     <span class="pull-right">
-                        {{#if result.date_created}} {{! moment-format will use current time if null}}
-                            <span>{{moment-format result.date_created "MMMM YYYY"}}</span>
+                        {{#if result.date_published}} {{! moment-format will use current time if null}}
+                            <span>{{moment-format result.date_published "MMMM YYYY"}}</span>
                         {{/if}}
                     </span>
                 </div>

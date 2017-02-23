@@ -39,14 +39,14 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
     ],
 
     registrationTypes: [
-        'Prereg Challenge',
-        'Open-Ended Registration',
         'AsPredicted Preregistration',
+        'Election Research Preacceptance Competition',
+        'Open-Ended Registration',
         'OSF-Standard Pre-Data Collection Registration',
-        'Replication Recipe (Brandt et al., 2013): Pre-Registration',
-        'Replication Recipe (Brandt et al., 2013): Post-Completion',
+        'Prereg Challenge',
         'Pre-Registration in Social Psychology (van \'t Veer & Giner-Sorolla, 2016): Pre-Registration',
-        'Election Research Preacceptance Competition'
+        'Replication Recipe (Brandt et al., 2013): Post-Completion',
+        'Replication Recipe (Brandt et al., 2013): Pre-Registration',
     ],
 
     page: 1,
@@ -306,9 +306,9 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
         const sort = {};
 
         if (sortByOption === 'Upload date (oldest to newest)') {
-            sort.date_updated = 'asc';
+            sort.date_published = 'asc';
         } else if (sortByOption === 'Upload date (newest to oldest)') {
-            sort.date_updated = 'desc';
+            sort.date_published = 'desc';
         }
 
         return this.set('queryBody', {
