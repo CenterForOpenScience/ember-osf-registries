@@ -38,6 +38,12 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
         // 'RIDIE'
     ],
 
+    whiteListedProviders: [
+        'OSF',
+        'ClinicalTrials.gov',
+        'Research Registry'
+    ].map(item => item.toLowerCase()),
+
     registrationTypes: [
         'AsPredicted Preregistration',
         'Election Research Preacceptance Competition',
@@ -85,7 +91,9 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
             crossDomain: true,
         }).then(results => {
             const hits = results.aggregations.sources.buckets;
-            const providers = hits;
+            const whiteList = this.get('whiteListedProviders');
+            const providers = hits
+                .filter(hit => whiteList.includes(hit.key.toLowerCase()));
 
             providers.push(
                 ...this.get('osfProviders')
