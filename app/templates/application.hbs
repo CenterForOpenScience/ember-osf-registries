@@ -8,8 +8,7 @@
     {{preprint-navbar-branded model=theme.provider}}
 {{else}}
     {{title 'OSF Registries' separator=' | '}}
-    {{osf-navbar signupUrl=theme.signupUrl loginAction=(action 'login') hideSearch=true}}
-    {{preprint-navbar}}
+    {{osf-navbar signupUrl=theme.signupUrl loginAction=(action 'login') currentService='REGISTRIES'}}
 {{/if}}
 
 {{outlet}}
