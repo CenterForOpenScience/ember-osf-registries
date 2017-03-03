@@ -106,8 +106,9 @@
                 </div>
 
                 <div class="m-v-md registration-type-selector">
-                    <i class='type-selector-warning' style='color: red; display: none'>Only available with OSF Registries</i>
-                    <h4 class="filter-heading p-sm">{{t "discover.main.type"}}</h4>
+                    <h4 class="filter-heading p-sm">
+                        {{t "discover.main.type"}} <span>{{popover-message title=(t "discover.main.popover.registries.title") data-content=(t "discover.main.popover.registries.body") data-placement="bottom" id="registries-popover"}}</span>
+                    </h4>
                     <ul>
                         {{#each registrationTypes as |item|}}
                             <li>
