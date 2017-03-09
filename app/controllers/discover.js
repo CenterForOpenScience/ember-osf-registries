@@ -56,6 +56,7 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
     queryBody: {},
     providersPassed: false,
 
+    staticSortOptions: ['Relevance', 'Upload date (oldest to newest)', 'Upload date (newest to oldest)'],
     sortByOptions: ['Relevance', 'Upload date (oldest to newest)', 'Upload date (newest to oldest)'],
 
     // chosenOption is always the first element in the list
@@ -373,7 +374,7 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
 
         sortBySelect(index) {
             // Selecting an option just swaps it with whichever option is first
-            let copy = this.get('sortByOptions').slice(0);
+            let copy = this.get('staticSortOptions').slice(0);
             let temp = copy[0];
             copy[0] = copy[index];
             copy[index] = temp;
@@ -385,7 +386,7 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
                 .trackEvent({
                     category: 'dropdown',
                     action: 'select',
-                    label: `Registries -  Discover - Sort by: ${copy[index]}`
+                    label: `Registries -  Discover - Sort by: ${this.get('staticSortOptions')[index]}`
                 });
         },
 
