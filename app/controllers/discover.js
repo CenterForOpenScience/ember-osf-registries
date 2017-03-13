@@ -66,17 +66,17 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
         });
     },
     registrationTypeCache: null,
-    setVisibilityOfOSFFilters: Ember.observer('providerFilter', function() {
-        if (this.get('providerFilter') === 'OSF') {
+    setVisibilityOfOSFFilters: Ember.observer('provider', function() {
+        if (this.get('provider') === 'OSF') {
             if (this.get('registrationTypeCache')) {
-                this.set('typeFilter', this.get('registrationTypeCache'));
+                this.set('type', this.get('registrationTypeCache'));
                 this.set('registrationTypeCache', null);
             }
             this.toggleTypeCSS(true);
         } else {
-            if (this.get('typeFilter')) {
-                this.set('registrationTypeCache', this.get('typeFilter'));
-                this.set('typeFilter', '');
+            if (this.get('type')) {
+                this.set('registrationTypeCache', this.get('type'));
+                this.set('type', '');
                 this.set('activeFilters.types', []);
                 this.notifyPropertyChange('activeFilters');
                 this.loadPage();
