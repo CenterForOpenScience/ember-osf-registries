@@ -61,18 +61,6 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
         // 'RIDIE'
     ],
 
-    registrationTypes: [
-        'AsPredicted Preregistration',
-        'Election Research Preacceptance Competition',
-        'Open-Ended Registration',
-        'OSF-Standard Pre-Data Collection Registration',
-        'Prereg Challenge',
-        'Pre-Registration in Social Psychology (van \'t Veer & Giner-Sorolla, 2016): Pre-Registration',
-        'Replication Recipe (Brandt et al., 2013): Post-Completion',
-        'Replication Recipe (Brandt et al., 2013): Pre-Registration',
-    ],
-
-
     size: 10,
     numberOfResults: 0,
     queryString: '',
@@ -100,49 +88,6 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
         this._super(...arguments);
         this.set('facetFilters', Ember.Object.create());
 
-        Ember.$.ajax({
-            type: 'POST',
-            url: this.get('searchUrl'),
-            data: getProvidersPayload,
-            contentType: 'application/json',
-            crossDomain: true,
-        }).then(results => {
-            const hits = results.aggregations.sources.buckets;
-            const providers = hits;
-
-            providers.push(
-                ...this.get('osfProviders')
-                .filter(key => !providers
-                    .find(hit => hit.key.toLowerCase() === key.toLowerCase())
-                )
-                .map(key => ({
-                    key,
-                    doc_count: 0
-                }))
-            );
-
-            providers
-                .sort((a, b) => a.key.toLowerCase() < b.key.toLowerCase() ? -1 : 1)
-                .unshift(
-                    ...providers.splice(
-                        providers.findIndex(item => item.key === 'OSF'),
-                        1
-                    )
-                );
-
-            if (!this.get('theme.isProvider')) {
-                this.set('otherProviders', providers);
-            } else {
-                const filtered = providers.filter(
-                    item => item.key.toLowerCase() === this.get('theme.id').toLowerCase()
-                );
-
-                this.set('otherProviders', filtered);
-                this.get('activeFilters.providers').pushObject(filtered[0].key);
-            }
-
-            this.notifyPropertyChange('otherProviders');
-        });
         this.loadPage();
         Ember.run.schedule('afterRender', () => {
             let providers = this.get('activeFilters.providers');
@@ -182,27 +127,6 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
             Ember.$('.registration-type-selector').fadeTo('slow', 0.5);
         }
     },
-    typeChanged: Ember.observer('typeFilter', function() {
-        Ember.run.once(() => {
-            let filter = this.get('typeFilter');
-            if (!filter || filter === 'true') return;
-            this.set('activeFilters.types', filter.split('AND'));
-            this.notifyPropertyChange('activeFilters');
-            this.loadPage();
-        });
-    }),
-    providerChanged: Ember.observer('providerFilter', function() {
-        if (!this.get('theme.isProvider')) {
-            Ember.run.once(() => {
-                let filter = this.get('providerFilter');
-                if (!filter || filter === 'true') return;
-                this.set('activeFilters.providers', filter.split('AND'));
-                this.notifyPropertyChange('activeFilters');
-                this.set('providersPassed', true);
-                this.loadPage();
-            });
-        }
-    }),
     loadPage() {
         this.set('loading', true);
         Ember.run.debounce(this, this._loadPage, 500);

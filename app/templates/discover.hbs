@@ -92,19 +92,8 @@
                     {{search-facet-provider updateFilters=(action 'updateFilters') activeFilters=activeFilters}}
                 </div>
 
-                <div class="m-v-md registration-type-selector">
-                    <i class='type-selector-warning' style='color: red; display: none'>Only available with OSF Registries</i>
-                    <h4 class="filter-heading p-sm">{{t "discover.main.type"}}</h4>
-                    <ul>
-                        {{#each registrationTypes as |item|}}
-                            <li>
-                                <label>
-                                    <input class='type-checkbox' type="checkbox" checked="{{if (if-filter item activeFilters.types) 'checked'}}" onclick={{action 'updateFilters' 'types' item}}>
-                                    {{item}}
-                                </label>
-                            </li>
-                        {{/each}}
-                    </ul>
+                <div class="m-v-md">
+                    {{search-facet-registration-type updateFilters=(action 'updateFilters') activeFilters=activeFilters}}
                 </div>
             </div>
 
