@@ -88,21 +88,8 @@
                 {{/if}}
                 <h4>{{t "discover.main.refine"}}</h4>
                 <div class='m-v-md'>
-                    <h4 class="filter-heading p-sm">{{t "discover.main.providers"}}</h4>
-                    <ul>
-                        {{#each otherProviders as |item|}}
-                            <li>
-                                <label>
-                                    <input type="checkbox" checked="{{if (if-filter item.key activeFilters.providers) 'checked'}}" onclick={{action 'updateFilters' 'providers' item.key}} disabled={{theme.isProvider}}>
-                                    {{filter-replace item.key}}
-                                    <small>({{number-format item.doc_count}})</small>
-                                </label>
-                            </li>
-                        {{/each}}
-                        {{#if theme.isProvider}}
-                            <a href="/preprints/discover" onbeforeclick={{action 'click' 'link' 'Discover - Other Preprint Repositories'}}>{{t "discover.main.otherRepositories"}}</a>
-                        {{/if}}
-                    </ul>
+                    <h4 class="filter-heading p-sm">Providers</h4>
+                    {{search-facet-provider updateFilters=(action 'updateFilters') activeFilters=activeFilters}}
                 </div>
 
                 <div class="m-v-md registration-type-selector">
