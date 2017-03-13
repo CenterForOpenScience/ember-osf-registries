@@ -47,9 +47,10 @@ export default {
             refine: `Refine your search by`,
             providers: `Providers`,
             type: 'OSF Registration Type',
+            osf_registraton_filter: 'List of eight OSF registration types',
             popover: {
                 registries: {
-                    body: "Filtering by Registration Type only available with OSF Registries",
+                    body: "Filtering by Registration type is only available with OSF Registries",
                     title: "OSF Registration Type Information"
                 }
 
