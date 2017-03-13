@@ -9,7 +9,6 @@ const filterMap = {
     providers: 'sources',
     types: 'registration_type'
 };
-var getProvidersPayload = '{"from": 0,"query": {"bool": {"must": {"query_string": {"query": "*"}}, "filter": [{"term": {"types": "registration"}}]}},"aggregations": {"sources": {"terms": {"field": "sources","size": 200}}}}';
 
 export default Ember.Controller.extend(Analytics, RegistrationCount, {
     i18n: Ember.inject.service(),
@@ -40,12 +39,33 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
     },
     lockedParams: {types: 'registration'}, // Parameter names which cannot be changed
     page: 1,
+    provider: '',
+    q: '',
+    // queryParams: ['page', 'q', 'provider', 'type'],
     queryParams: {
         page: 'page',
         queryString: 'q',
         typeFilter: 'type',
         providerFilter: 'provider',
     },
+    searchButton: Ember.computed('i18n', function() { // Search button text
+        return this.get('i18n').t('global.search');
+    }),
+    searchPlaceholder: Ember.computed('i18n', function() { // Search bar placeholder
+        return this.get('i18n').t('discover.search.placeholder');
+    }),
+    showActiveFilters: true, //should always have a provider, don't want to mix osfProviders and non-osf
+    sortOptions: [{ // Sort options for preprints
+        display: 'Relevance',
+        sortBy: ''
+    }, {
+        display: 'Upload date (newest to oldest)',
+        sortBy: '-date_updated'
+    }, {
+        display: 'Upload date (oldest to newest)',
+        sortBy: 'date_updated'
+    }],
+    type: '',
 
 
 
@@ -74,7 +94,6 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
         return this.get('sortByOptions')[0];
     }),
 
-    showActiveFilters: true, //should always have a provider, don't want to mix osfProviders and non-osf
     showPrev: Ember.computed.gt('page', 1),
     showNext: Ember.computed('page', 'size', 'numberOfResults', function() {
         return this.get('page') * this.get('size') < this.get('numberOfResults');
