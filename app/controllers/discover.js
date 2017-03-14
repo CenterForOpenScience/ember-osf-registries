@@ -79,7 +79,6 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
                 this.set('type', '');
                 this.set('activeFilters.types', []);
                 this.notifyPropertyChange('activeFilters');
-                this.loadPage();
             }
             this.toggleTypeCSS(false);
         }
