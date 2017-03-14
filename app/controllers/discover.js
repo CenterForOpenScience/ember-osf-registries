@@ -151,10 +151,10 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
     toggleTypeCSS(show) {
         if (show) {
             Ember.$('.type-checkbox').removeAttr('disabled');
-            Ember.$('.registration-type-selector').fadeTo('slow', 1);
+            Ember.$('.registration-list-items').fadeTo('slow', 1);
         } else {
             Ember.$('.type-checkbox').attr('disabled', 'disabled');
-            Ember.$('.registration-type-selector').fadeTo('slow', 0.6);
+            Ember.$('.registration-list-items').fadeTo('slow', 0.6);
         }
     },
     typeChanged: Ember.observer('typeFilter', function() {
