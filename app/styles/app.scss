@@ -108,7 +108,10 @@ ul.comma-list {
     }
     a:not(.btn) {
         color: #80c2f7;
-        text-decoration: underline;
+        text-decoration: none;
+        .dropdown-menu {
+            color: white;
+        }
     }
     .btn-info {
         color: #fff
