@@ -1143,3 +1143,28 @@ nav.branded-navbar {
         text-decoration: none;
     }
 }
+
+// Override search-facet styling in ember-osf on discover page
+.discover-page {
+    .panel-default {
+        border: 0 solid transparent;
+        box-shadow: none;
+        > .panel-heading {
+              text-align: left;
+              border: 0 solid transparent;
+              padding: 7px 10px;
+              background-color: #EFEFEF;
+              justify-content: flex-start;
+
+        }
+    }
+    .panel-body.individual-facet {
+        padding: 10px 0;
+        background-color: #FBFBFB !important;
+    }
+    .search-sidebar {
+        background-color: transparent !important;
+    }
+}
+
+
