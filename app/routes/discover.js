@@ -18,6 +18,7 @@ export default Ember.Route.extend(Analytics, ResetScrollMixin, {
         willTransition() {
             let controller = this.controllerFor('discover');
             controller._clearFilters();
+            controller._clearQueryString();
         }
     }
 });
