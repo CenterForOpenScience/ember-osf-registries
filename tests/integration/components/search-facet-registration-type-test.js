@@ -10,16 +10,20 @@ test('it renders', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
 
-  this.render(hbs`{{search-facet-registration-type}}`);
+    this.set('facet',  { key: 'registration_type', title: 'OSF Registration Type', component: 'search-facet-registration-type' });
+    this.set('key', 'registration_type');
+    let noop = () => {};
+    this.set('noop', noop);
+    this.set('activeFilters', { providers: [], types: [] });
+    this.set('filterReplace',  {'Open Science Framework': 'OSF'});
 
-  assert.equal(this.$().text().trim(), '');
+    this.render(hbs`{{search-facet-registration-type
+        key=key
+        options=facet
+        updateFilters=(action noop)
+        activeFilters=activeFilters
+        filterReplace=filterReplace
+    }}`);
 
-  // Template block usage:
-  this.render(hbs`
-    {{#search-facet-registration-type}}
-      template block text
-    {{/search-facet-registration-type}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$('ul > li')[0].innerText.trim(), "AsPredicted Preregistration");
 });

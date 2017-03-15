@@ -3,6 +3,26 @@ import config from 'ember-get-config';
 
 var getProvidersPayload = '{"from": 0,"query": {"bool": {"must": {"query_string": {"query": "*"}}, "filter": [{"term": {"types": "registration"}}]}},"aggregations": {"sources": {"terms": {"field": "sources","size": 200}}}}';
 
+/**
+ * @module ember-osf-registries
+ * @submodule components
+ */
+
+/**
+ * Builds registry's provider facet for discover page - to be used with Ember-OSF's discover-page component and faceted-search component.
+ *
+ * Sample usage:
+ * ```handlebars
+ * {{search-facet-provider
+ *      updateFilters=(action 'updateFilters')
+ *      activeFilters=activeFilters
+ *      options=facet
+ *      filterReplace=filterReplace
+ *      key=key
+ * }}
+ * ```
+ * @class search-facet-provider
+ */
 export default Ember.Component.extend({
     store: Ember.inject.service(),
     theme: Ember.inject.service(),

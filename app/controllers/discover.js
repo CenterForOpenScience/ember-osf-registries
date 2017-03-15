@@ -2,6 +2,18 @@ import Ember from 'ember';
 import Analytics from '../mixins/analytics';
 import RegistrationCount from '../mixins/registration-count';
 
+/**
+ * @module ember-osf-registries
+ * @submodule controllers
+ */
+
+/**
+ * @class Discover Controller
+ *
+ * Most of the discover page is built using the discover-page component in ember-osf. The component is largely based on
+ * SHARE's discover interface (https://github.com/CenterForOpenScience/ember-share/blob/develop/app/controllers/discover.js) and
+ * the existing preprints/registries interfaces
+ */
 export default Ember.Controller.extend(Analytics, RegistrationCount, {
     i18n: Ember.inject.service(),
     theme: Ember.inject.service(), // jshint ignore:line
@@ -17,7 +29,7 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
     discoverHeader: Ember.computed('i18n', function() { // Header for registries discover page
         return this.get('i18n').t('index.header.title.paragraph');
     }),
-    facets: [ // List of facets available for registries
+    facets: [// List of facets available for registries
         { key: 'sources', title: 'Providers', component: 'search-facet-provider' },
         { key: 'registration_type', title: 'OSF Registration Type', component: 'search-facet-registration-type' }
     ],
@@ -32,9 +44,9 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
         'Research Papers in Economics': 'RePEc'
     },
     lockedParams: {types: 'registration'}, // Parameter names which cannot be changed
-    page: 1,
-    provider: '',
-    q: '',
+    page: 1, // Query param
+    provider: '', // Query param
+    q: '', // Query param
     queryParams: ['page', 'q', 'provider', 'type'],
     searchButton: Ember.computed('i18n', function() { // Search button text
         return this.get('i18n').t('global.search');
@@ -43,17 +55,17 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
         return this.get('i18n').t('discover.search.placeholder');
     }),
     showActiveFilters: true, //should always have a provider, don't want to mix osfProviders and non-osf
-    sortOptions: [{ // Sort options for preprints
+    sortOptions: [{ // Sort options for registries
         display: 'Relevance',
         sortBy: ''
     }, {
         display: 'Upload date (oldest to newest)',
         sortBy: 'date_updated'
-    },{
+    }, {
         display: 'Upload date (newest to oldest)',
         sortBy: '-date_updated'
-    }, ],
-    type: '',
+    }],
+    type: '', // Query param
 
     init() {
         this._super(...arguments);
@@ -83,6 +95,7 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
             this.toggleTypeCSS(false);
         }
     }),
+    // Disables search-facet-registration-type
     toggleTypeCSS(show) {
         if (show) {
             Ember.$('.type-selector-warning').hide();
