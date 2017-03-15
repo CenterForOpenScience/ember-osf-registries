@@ -55,16 +55,19 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
         return this.get('i18n').t('discover.search.placeholder');
     }),
     showActiveFilters: true, //should always have a provider, don't want to mix osfProviders and non-osf
-    sortOptions: [{ // Sort options for registries
-        display: 'Relevance',
-        sortBy: ''
-    }, {
-        display: 'Upload date (oldest to newest)',
-        sortBy: 'date_updated'
-    }, {
-        display: 'Upload date (newest to oldest)',
-        sortBy: '-date_updated'
-    }],
+    sortOptions: Ember.computed('i18n.locale', function() { // Sort options for registries
+        const i18n = this.get('i18n');
+        return [{
+            display: i18n.t('discover.relevance'),
+            sortBy: ''
+        }, {
+            display: i18n.t('discover.sort_oldest_newest'),
+            sortBy: 'date_updated'
+        }, {
+            display: i18n.t('discover.sort_newest_oldest'),
+            sortBy: '-date_updated'
+        }];
+    }),
     type: '', // Query param
 
     init() {
