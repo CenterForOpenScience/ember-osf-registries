@@ -19,6 +19,12 @@ export default Ember.Component.extend({
         // 'Research Registry',
         // 'RIDIE'
     ],
+    whiteListedProviders: [
+        'OSF',
+         'ClinicalTrials.gov',
+         'Research Registry'
+    ].map(item => item.toLowerCase()),
+
     init() {
         this._super(...arguments);
 
@@ -30,7 +36,9 @@ export default Ember.Component.extend({
             crossDomain: true,
         }).then(results => {
             const hits = results.aggregations.sources.buckets;
-            const providers = hits;
+            const whiteList = this.get('whiteListedProviders');
+            const providers = hits
+                .filter(hit => whiteList.includes(hit.key.toLowerCase()));
 
             providers.push(
                 ...this.get('osfProviders')
