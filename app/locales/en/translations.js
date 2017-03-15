@@ -61,7 +61,6 @@ export default {
                 paragraph: `The <span class="f-w-lg">open</span> registries network`
             },
             powered_by: `Powered by ${brand}`,
-            search: `{{count}} searchable registrations`,
             shareTotalText: `searchable registrations`,
             as_of: `as of`,
             example: `See an example`
