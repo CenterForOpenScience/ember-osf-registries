@@ -47,12 +47,12 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
         display: 'Relevance',
         sortBy: ''
     }, {
-        display: 'Upload date (newest to oldest)',
-        sortBy: '-date_updated'
-    }, {
         display: 'Upload date (oldest to newest)',
         sortBy: 'date_updated'
-    }],
+    },{
+        display: 'Upload date (newest to oldest)',
+        sortBy: '-date_updated'
+    }, ],
     type: '',
 
     init() {
