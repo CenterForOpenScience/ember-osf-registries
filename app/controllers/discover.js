@@ -106,5 +106,12 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
             Ember.$('.type-checkbox').attr('disabled', 'disabled');
             Ember.$('.registration-type-selector').fadeTo('slow', 0.5);
         }
+    },
+     // TODO _clearFilters has been moved to the Ember-OSF discover-page component.  Better way than duplicating this here?
+    _clearFilters() {
+        this.set('activeFilters', {
+            providers: this.get('theme.isProvider') ? this.get('activeFilters.providers') : [],
+            types: []
+        });
     }
 });
