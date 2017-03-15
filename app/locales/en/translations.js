@@ -51,7 +51,6 @@ export default {
             popover: {
                 registries: {
                     body: "Filtering by Registration type is only available with OSF Registries",
-                    title: "OSF Registration Type Information"
                 }
 
             },
