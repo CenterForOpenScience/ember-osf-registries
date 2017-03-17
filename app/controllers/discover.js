@@ -2,6 +2,15 @@ import Ember from 'ember';
 import Analytics from '../mixins/analytics';
 import RegistrationCount from '../mixins/registration-count';
 
+// Split query params on 'AND'
+function splitQueryParams(param) {
+    if (param && typeof(param) === 'string') {
+        return param.split('AND');
+    } else {
+        return [];
+    }
+}
+
 /**
  * @module ember-osf-registries
  * @submodule controllers
@@ -21,7 +30,11 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
 
     // Many pieces taken from: https://github.com/CenterForOpenScience/ember-share/blob/develop/app/controllers/discover.js
 
-    activeFilters: { providers: [], types: [] }, // Active filters for registries service
+    activeFilters: Ember.computed('provider', 'subject', function() { // Active filters for registries service
+        const providerFilter = splitQueryParams(this.get('provider'));
+        const typeFilter = splitQueryParams(this.get('type'));
+        return { providers: providerFilter, types: typeFilter};
+    }),
     clearFiltersButton: Ember.computed('i18n', function() { // Text of clear filters button
         return this.get('i18n').t('discover.main.active_filters.button');
     }),
