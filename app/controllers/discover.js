@@ -83,46 +83,6 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
     }),
     type: '', // Query param
 
-    init() {
-        this._super(...arguments);
-        Ember.run.schedule('afterRender', () => {
-            let providers = this.get('activeFilters.providers');
-            if (providers.length === 1 && providers[0] === 'OSF') {
-                return;
-            }
-            this.toggleTypeCSS(false);
-        });
-    },
-    registrationTypeCache: null,
-    setVisibilityOfOSFFilters: Ember.observer('provider', function() {
-        if (this.get('provider') === 'OSF') {
-            if (this.get('registrationTypeCache')) {
-                this.set('type', this.get('registrationTypeCache'));
-                this.set('registrationTypeCache', null);
-            }
-            this.toggleTypeCSS(true);
-        } else {
-            if (this.get('type')) {
-                this.set('registrationTypeCache', this.get('type'));
-                this.set('type', '');
-                this.set('activeFilters.types', []);
-                this.notifyPropertyChange('activeFilters');
-            }
-            this.toggleTypeCSS(false);
-        }
-    }),
-    // Disables search-facet-registration-type
-    toggleTypeCSS(show) {
-        if (show) {
-            Ember.$('.type-selector-warning').hide();
-            Ember.$('.type-checkbox').removeAttr('disabled');
-            Ember.$('.registration-type-selector').fadeTo('slow', 1);
-        } else {
-            Ember.$('.type-selector-warning').show();
-            Ember.$('.type-checkbox').attr('disabled', 'disabled');
-            Ember.$('.registration-type-selector').fadeTo('slow', 0.5);
-        }
-    },
     // TODO _clearFilters has been moved to the Ember-OSF discover-page component.
     // Call this in willDestroyElement hook or similar of component?
     _clearFilters() {

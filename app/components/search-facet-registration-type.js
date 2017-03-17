@@ -31,4 +31,48 @@ export default Ember.Component.extend({
         'Replication Recipe (Brandt et al., 2013): Post-Completion',
         'Replication Recipe (Brandt et al., 2013): Pre-Registration',
     ],
+
+    init() {
+        this._super(...arguments);
+        Ember.run.schedule('afterRender', () => {
+            if (this.OSFIsSoleProvider()) {
+                return;
+            }
+            this.toggleTypeCSS(false);
+        });
+    },
+    registrationTypeCache: null,
+    setVisibilityOfOSFFilters: Ember.observer('activeFilters.providers', function() {
+        if (this.OSFIsSoleProvider()) {
+            if (this.get('registrationTypeCache')) {
+                this.set('activeFilters.types', Ember.$.extend(true, [], this.get('registrationTypeCache')));
+                this.set('registrationTypeCache', null);
+            }
+            this.toggleTypeCSS(true);
+        } else {
+            this.set('registrationTypeCache', Ember.$.extend(true, [], this.get('activeFilters.types')));
+            this.set('activeFilters.types', []);
+            this.toggleTypeCSS(false);
+        }
+    }),
+    // Disables search-facet-registration-type
+    toggleTypeCSS(show) {
+        if (show) {
+            Ember.$('.type-selector-warning').hide();
+            Ember.$('.type-checkbox').removeAttr('disabled');
+            Ember.$('.registration-type-selector').fadeTo('slow', 1);
+        } else {
+            Ember.$('.type-selector-warning').show();
+            Ember.$('.type-checkbox').attr('disabled', 'disabled');
+            Ember.$('.registration-type-selector').fadeTo('slow', 0.5);
+        }
+    },
+    OSFIsSoleProvider() {
+        let soleProvider = false;
+        const providers = this.get('activeFilters.providers');
+            if (providers.length === 1 && providers[0] === 'OSF') {
+                soleProvider = true;
+            }
+        return soleProvider;
+    }
 });
