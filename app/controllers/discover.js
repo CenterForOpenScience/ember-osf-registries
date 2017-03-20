@@ -150,13 +150,11 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
     }),
     toggleTypeCSS(show) {
         if (show) {
-            Ember.$('.type-selector-warning').hide();
             Ember.$('.type-checkbox').removeAttr('disabled');
-            Ember.$('.registration-type-selector').fadeTo('slow', 1);
+            Ember.$('.registration-list-items').fadeTo('slow', 1);
         } else {
-            Ember.$('.type-selector-warning').show();
             Ember.$('.type-checkbox').attr('disabled', 'disabled');
-            Ember.$('.registration-type-selector').fadeTo('slow', 0.5);
+            Ember.$('.registration-list-items').fadeTo('slow', 0.6);
         }
     },
     typeChanged: Ember.observer('typeFilter', function() {

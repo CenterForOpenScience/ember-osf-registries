@@ -228,6 +228,9 @@ $logo-dir: 'img/provider_logos/';
     .filter-heading {
         background-color: #efefef;
     }
+    .filter-heading span {
+        display: inline-block;
+    }
     label {
         font-weight: normal;
     }
