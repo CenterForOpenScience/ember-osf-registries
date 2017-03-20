@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import config from 'ember-get-config';
-import Analytics from '../mixins/analytics';
+import Analytics from 'ember-osf/mixins/analytics';
 import RegistrationCount from '../mixins/registration-count';
 
 import { elasticEscape } from '../utils/elastic-query';
@@ -184,6 +184,17 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
         this.set('loading', true);
         Ember.run.debounce(this, this._loadPage, 500);
     },
+    trackDebouncedSearch() {
+        // For use in tracking debounced search of registries in Keen and GA
+        Ember.get(this, 'metrics')
+            .trackEvent({
+                category: 'input',
+                action: 'onkeyup',
+                label: 'Registries - Discover - Search',
+                extra: this.get('queryString')
+
+            });
+    },
     _loadPage() {
         let queryBody = JSON.stringify(this.getQueryBody());
 
@@ -322,6 +333,10 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
     }),
     otherProviders: [],
     actions: {
+        trackSearch() {
+            // Tracks search on keypress, debounced
+            Ember.run.debounce(this, this.trackDebouncedSearch, 3000);
+        },
         search(val, event) {
             if (event &&
                 (
@@ -335,12 +350,21 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
             this.set('page', 1);
             this.loadPage();
 
-            Ember.get(this, 'metrics')
-                .trackEvent({
-                    category: `${event && event.type === 'keyup' ? 'input' : 'button'}`,
-                    action: `${event && event.type === 'keyup' ? 'onkeyup' : 'click'}`,
-                    label: 'Registries -  Discover - Search'
-                });
+            const category = `${event && event.type === 'keyup' ? 'input' : 'button'}`;
+            const action = `${event && event.type === 'keyup' ? 'onkeyup' : 'click'}`;
+            const label = 'Registries - Discover - Search';
+
+            if (action === 'click') {
+                // Only want to track search here when button clicked. Keypress search tracking is debounced in trackSearch
+                Ember.get(this, 'metrics')
+                    .trackEvent({
+                        category: category,
+                        action: action,
+                        label: label,
+                        extra: this.get('queryString')
+
+                    });
+            }
         },
 
         previous() {
@@ -385,7 +409,7 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
                 .trackEvent({
                     category: 'dropdown',
                     action: 'select',
-                    label: `Registries -  Discover - Sort by: ${copy[index]}`
+                    label: `Registries -  Discover - Sort by: ${copy[0]}`
                 });
         },
 

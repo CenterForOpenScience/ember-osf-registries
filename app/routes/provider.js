@@ -1,7 +1,8 @@
 import Ember from 'ember';
 import config from 'ember-get-config';
+import Analytics from 'ember-osf/mixins/analytics';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(Analytics, {
     theme: Ember.inject.service(),
 
     providerIds: config.REGISTRIES.providers
