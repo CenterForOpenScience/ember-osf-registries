@@ -55,7 +55,7 @@ module.exports = function(environment) {
         metricsAdapters: [
             {
                 name: 'GoogleAnalytics',
-                environments: ['all'],
+                environments: ['production'],
                 config: {
                     id: process.env.GOOGLE_ANALYTICS_ID
                 }

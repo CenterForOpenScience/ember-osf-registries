@@ -70,9 +70,9 @@ export default Ember.Component.extend({
     OSFIsSoleProvider() {
         let soleProvider = false;
         const providers = this.get('activeFilters.providers');
-            if (providers.length === 1 && providers[0] === 'OSF') {
-                soleProvider = true;
-            }
+        if (providers.length === 1 && providers[0] === 'OSF') {
+            soleProvider = true;
+        }
         return soleProvider;
     }
 });

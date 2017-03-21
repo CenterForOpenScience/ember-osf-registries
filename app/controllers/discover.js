@@ -1,10 +1,9 @@
 import Ember from 'ember';
 import Analytics from '../mixins/analytics';
-import RegistrationCount from '../mixins/registration-count';
 
 // Split query params on 'AND'
 function splitQueryParams(param) {
-    if (param && typeof(param) === 'string') {
+    if (param && typeof param === 'string') {
         return param.split('AND');
     } else {
         return [];
@@ -23,7 +22,7 @@ function splitQueryParams(param) {
  * SHARE's discover interface (https://github.com/CenterForOpenScience/ember-share/blob/develop/app/controllers/discover.js) and
  * the existing preprints/registries interfaces
  */
-export default Ember.Controller.extend(Analytics, RegistrationCount, {
+export default Ember.Controller.extend(Analytics, {
     i18n: Ember.inject.service(),
     theme: Ember.inject.service(), // jshint ignore:line
     // TODO: either remove or add functionality to info icon on "Refine your search panel"

@@ -1,7 +1,6 @@
 import Ember from 'ember';
 import config from 'ember-get-config';
 import Analytics from '../mixins/analytics';
-import RegistrationCount from '../mixins/registration-count';
 
 const PLACEHOLDER_DATA = [
     {
@@ -46,7 +45,7 @@ const PLACEHOLDER_DATA = [
     },
 ];
 
-export default Ember.Controller.extend(Analytics, RegistrationCount, {
+export default Ember.Controller.extend(Analytics, {
     theme: Ember.inject.service(),
     recentRegistrations: Ember.A(),
     init() {
