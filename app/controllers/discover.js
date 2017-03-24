@@ -1,15 +1,6 @@
 import Ember from 'ember';
 import Analytics from '../mixins/analytics';
 
-// Split query params on 'AND'
-function splitQueryParams(param) {
-    if (param && typeof param === 'string') {
-        return param.split('AND');
-    } else {
-        return [];
-    }
-}
-
 /**
  * @module ember-osf-registries
  * @submodule controllers
@@ -28,19 +19,11 @@ export default Ember.Controller.extend(Analytics, {
     // TODO: either remove or add functionality to info icon on "Refine your search panel"
 
     // Many pieces taken from: https://github.com/CenterForOpenScience/ember-share/blob/develop/app/controllers/discover.js
-
-    activeFilters: Ember.computed('provider', 'subject', function() { // Active filters for registries service
-        const providerFilter = splitQueryParams(this.get('provider'));
-        const typeFilter = splitQueryParams(this.get('type'));
-        return { providers: providerFilter, types: typeFilter};
-    }),
+    activeFilters:  { providers: [], types: []},
     clearFiltersButton: Ember.computed('i18n', function() { // Text of clear filters button
         return this.get('i18n').t('discover.main.active_filters.button');
     }),
     consumingService: 'registries', // Consuming service - registries here
-    discoverHeader: Ember.computed('i18n', function() { // Header for registries discover page
-        return this.get('i18n').t('index.header.title.paragraph');
-    }),
     facets: [// List of facets available for registries
         { key: 'sources', title: 'Providers', component: 'search-facet-provider' },
         { key: 'registration_type', title: 'OSF Registration Type', component: 'search-facet-registration-type' }
@@ -89,6 +72,8 @@ export default Ember.Controller.extend(Analytics, {
             providers: this.get('theme.isProvider') ? this.get('activeFilters.providers') : [],
             types: []
         });
+        this.set('type', '');
+        this.set('provider', '');
     },
     _clearQueryString() {
         this.set('q', '');
