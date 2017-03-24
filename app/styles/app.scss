@@ -217,6 +217,15 @@ $logo-dir: 'img/provider_logos/';
         vertical-align: middle;
     }
 }
+
+#share-logo.share-logo {
+    width: 69px;
+    height: 33px;
+    background: url('img/share-logo-white.png') no-repeat;
+    display: inline-block;
+    background-size: contain;
+    vertical-align: middle;
+}
 .search-main {
     background-color: #fbfbfb;
     border-bottom: 1px solid #dedede;
