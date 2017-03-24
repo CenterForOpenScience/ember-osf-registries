@@ -12,7 +12,7 @@
                         {{#if theme.isProvider}}
                             <br>
                             <small>
-                                <a href="https://osf.io/registries/" onbeforeclick={{action "click" "link" "Index - Powered By"}}>{{t "index.header.powered_by"}}</a>
+                                <a href="https://osf.io/registries/" onbeforeclick={{action "click" "link" "Registries - Index - Powered By"}}>{{t "index.header.powered_by"}}</a>
                             </small>
                         {{/if}}
                     </p>
@@ -25,7 +25,7 @@
                 </div>
                 <div class="row">
                     <div class="text-center col-xs-12">
-                        <div class="m-t-md"><a href="https://osf.io/jsznk/register/565fb3678c5e4a66b5582f67">{{t "index.header.example"}}</a></div>
+                        <div class="m-t-md"><a href="https://osf.io/jsznk/register/565fb3678c5e4a66b5582f67" onclick={{action "click" "link" "Registries - Index - See Example"}}>{{t "index.header.example"}}</a></div>
                     </div>
                 </div>
             </div> {{!END ROW}}
@@ -37,7 +37,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
-                    <h2>{{t "index.recent.title"}}   <span style='font-size: 16px'>{{link-to (t 'index.recent.more') 'discover'}}</span></h2>
+                    <h2>{{t "index.recent.title"}} <span style='font-size: 16px'>{{link-to (t 'index.recent.more') 'discover'}}</span></h2>
                 </div>
             </div>
             <div class="row">
@@ -46,7 +46,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <h4>
-                                    <a href='{{reg.url}}'>{{reg.title}}</a>
+                                    <a href='{{reg.url}}' onclick={{action 'click' 'link' (concat 'Registries - Index - Browse Recent: ' reg.title) reg.url}}>{{reg.title}}</a>
                                 </h4>
                             </div>
                         </div>
@@ -104,18 +104,18 @@
                         <div class="p-t-sm">
                             {{t "index.services.bottom.div.line1"}}
                             <a class="source_code_link" href="https://github.com/CenterForOpenScience/ember-osf-registries"
-                                {{action "click" "link" "Registries -  Index - GitHub Repo" "https://github.com/CenterForOpenScience/ember-osf-registries"}}>
+                                onclick={{action "click" "link" "Registries -  Index - GitHub Repo" "https://github.com/CenterForOpenScience/ember-osf-registries"}}>
                                 {{t "index.services.bottom.div.linkText1"}}
                             </a>
                             {{t "index.services.bottom.div.line2"}}
                             <a class="source_code_link" href="https://docs.google.com/spreadsheets/d/1SocElbBjc_Nhme4-SJv2_zytBd1ys8R5aZDb3POe94c/edit#gid=331732182"
-                                {{action "click" "link" "Registries -  Index - Requirements and Roadmap" "https://docs.google.com/spreadsheets/d/1SocElbBjc_Nhme4-SJv2_zytBd1ys8R5aZDb3POe94c/edit#gid=331732182"}}>
+                                onclick={{action "click" "link" "Registries -  Index - Requirements and Roadmap" "https://docs.google.com/spreadsheets/d/1SocElbBjc_Nhme4-SJv2_zytBd1ys8R5aZDb3POe94c/edit#gid=331732182"}}>
                                 {{t "index.services.bottom.div.linkText2"}}
                             </a>
                             {{t "index.services.bottom.div.line3"}}
                         </div>
                     </p>
-                    <a href="mailto:contact@osf.io" class="btn btn-info btn-lg" onclick={{action "click" "link" "Registries -  Index - Contact"}}>{{t "index.services.bottom.contact"}}</a>
+                    <a href="mailto:contact@osf.io" class="btn btn-info btn-lg" onclick={{action "click" "link" "Registries - Index - Contact"}}>{{t "index.services.bottom.contact"}}</a>
                 </div>
             </div>
         </div>
