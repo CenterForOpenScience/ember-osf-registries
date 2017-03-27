@@ -54,9 +54,23 @@ module.exports = function(environment) {
         metricsAdapters: [
             {
                 name: 'GoogleAnalytics',
-                environments: ['all'],
+                environments: [process.env.KEEN_ENVIRONMENT] || ['production'],
                 config: {
                     id: process.env.GOOGLE_ANALYTICS_ID
+                }
+            },
+            {
+                name: 'Keen',
+                environments: [process.env.KEEN_ENVIRONMENT] || ['production'],
+                config: {
+                    private: {
+                        projectId: process.env.REGISTRIES_PRIVATE_PROJECT_ID,
+                        writeKey: process.env.REGISTRIES_PRIVATE_WRITE_KEY
+                    },
+                    public: {
+                        projectId: process.env.REGISTRIES_PUBLIC_PROJECT_ID,
+                        writeKey: process.env.REGISTRIES_PUBLIC_WRITE_KEY
+                    }
                 }
             }
         ],

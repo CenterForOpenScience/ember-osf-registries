@@ -5,7 +5,7 @@
                 {{!Title}}
                 <h4>
                     {{#if hyperlink}}
-                        <a href='{{hyperlink}}' {{action 'click' 'link' 'Registries - Discover - Result Title' hyperlink}}>{{result.title}}</a>
+                        <a href='{{hyperlink}}' onclick={{action 'click' 'link' (concat 'Registries - Discover - Result Title: ' hyperlink) result.id}}>{{result.title}}</a>
                     {{else}}
                         <span>{{result.title}} </span>
                     {{/if}}
@@ -57,7 +57,7 @@
                     {{#if result.hyperLinks}}
                         <ul class="preprints-block-list m-t-sm">
                             {{#each result.hyperLinks as |link|}}
-                                <li><a href='{{link.url}}' {{action 'click' 'link' 'Registries -  Discover - Result Hyperlink' link.url}}>{{link.url}}</a></li>
+                                <li><a href='{{link.url}}' onclick={{action 'click' 'link' (concat 'Registries - Discover - Result Hyperlink: ' link.url) result.id}}>{{link.url}}</a></li>
                             {{/each}}
                         </ul>
                     {{/if}}
@@ -76,7 +76,7 @@
                         </div>
                     {{/if}}
                     {{!Added on}}
-                    <div class="m-t-sm"> {{t "global.added_on"}}: {{moment-format result.date_created}} </div>
+                    <div class="m-t-sm"> {{t "global.added_on"}}: {{moment-format result.date_created "YYYY-MM-DD"}} </div>
                 {{/if}}
 
             </div>

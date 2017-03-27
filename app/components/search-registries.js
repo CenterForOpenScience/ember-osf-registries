@@ -1,17 +1,18 @@
 import Ember from 'ember';
+import Analytics from 'ember-osf/mixins/analytics';
 
-export default Ember.Component.extend({
+export default Ember.Component.extend(Analytics, {
     metrics: Ember.inject.service(),
     actions: {
         search() {
             let query = Ember.$.trim(this.$('#searchBox').val());
             this.sendAction('search', query);
-            Ember
-                .get(this, 'metrics')
+            Ember.get(this, 'metrics')
                 .trackEvent({
                     category: 'button',
                     action: 'click',
-                    label: 'Registries - Index - Search'
+                    label: 'Registries - Index - Search',
+                    extra: query
                 });
         }
     },
