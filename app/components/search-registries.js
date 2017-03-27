@@ -11,7 +11,7 @@ export default Ember.Component.extend(Analytics, {
                 .trackEvent({
                     category: 'button',
                     action: 'click',
-                    label: 'Registries - Index - Search',
+                    label: 'Index - Search',
                     extra: query
                 });
         }
