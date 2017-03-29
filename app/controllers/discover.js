@@ -20,9 +20,6 @@ export default Ember.Controller.extend(Analytics, {
 
     // Many pieces taken from: https://github.com/CenterForOpenScience/ember-share/blob/develop/app/controllers/discover.js
     activeFilters:  { providers: [], types: []},
-    clearFiltersButton: Ember.computed('i18n', function() { // Text of clear filters button
-        return this.get('i18n').t('discover.main.active_filters.button');
-    }),
     consumingService: 'registries', // Consuming service - registries here
     facets: [// List of facets available for registries
         { key: 'sources', title: 'Providers', component: 'search-facet-provider' },
@@ -43,9 +40,6 @@ export default Ember.Controller.extend(Analytics, {
     provider: '', // Query param
     q: '', // Query param
     queryParams: ['page', 'q', 'provider', 'type'],
-    searchButton: Ember.computed('i18n', function() { // Search button text
-        return this.get('i18n').t('global.search');
-    }),
     searchPlaceholder: Ember.computed('i18n', function() { // Search bar placeholder
         return this.get('i18n').t('discover.search.placeholder');
     }),
@@ -64,9 +58,6 @@ export default Ember.Controller.extend(Analytics, {
         }];
     }),
     type: '', // Query param
-
-    // TODO _clearFilters has been moved to the Ember-OSF discover-page component.
-    // Call this in willDestroyElement hook or similar of component?
     _clearFilters() {
         this.set('activeFilters', {
             providers: this.get('theme.isProvider') ? this.get('activeFilters.providers') : [],
