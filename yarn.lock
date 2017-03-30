@@ -2396,9 +2396,9 @@ ember-new-computed@^1.0.2:
   dependencies:
     ember-cli-babel "^5.1.5"
 
-"ember-osf@git+https://github.com/pattisdr/ember-osf.git#e7531c461abd34830eeda4e5ebe8128026579f30":
+"ember-osf@git+https://github.com/pattisdr/ember-osf.git#08789060ac590f27c77f48b27f8897edded92b52":
   version "0.3.0"
-  resolved "git+https://github.com/pattisdr/ember-osf.git#e7531c461abd34830eeda4e5ebe8128026579f30"
+  resolved "git+https://github.com/pattisdr/ember-osf.git#08789060ac590f27c77f48b27f8897edded92b52"
   dependencies:
     broccoli-funnel "^1.0.1"
     broccoli-merge-trees "^1.1.1"
