@@ -61,7 +61,7 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
 
     // chosenSortByOption is going to be the last selected element, or if it's a new page then it's the first in the list
     chosenSortByOption: Ember.computed('selectedSortByOption', function() {
-        return this.get('selectedSortByOption') === '' ? this.get('sortByOptions')[0] : this.get('selectedSortByOption');
+        return this.get('selectedSortByOption') || this.get('sortByOptions')[0];
     }),
 
     showActiveFilters: true, //should always have a provider, don't want to mix osfProviders and non-osf
@@ -293,10 +293,11 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
         }
 
         const sort = {};
+        const sortByOption = this.get('selectedSortByOption').toString();
 
-        if (this.get('selectedSortByOption') === 'Upload date (oldest to newest)') {
+        if (sortByOption === 'Upload date (oldest to newest)') {
             sort.date_published = 'asc';
-        } else if (this.get('selectedSortByOption') === 'Upload date (newest to oldest)') {
+        } else if (sortByOption === 'Upload date (newest to oldest)') {
             sort.date_published = 'desc';
         }
 
