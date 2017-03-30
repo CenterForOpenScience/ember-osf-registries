@@ -228,6 +228,9 @@ $logo-dir: 'img/provider_logos/';
     .filter-heading {
         background-color: #efefef;
     }
+    .filter-heading span {
+        display: inline-block;
+    }
     label {
         font-weight: normal;
     }
@@ -1150,4 +1153,9 @@ nav.branded-navbar {
     .social > a:hover {
         text-decoration: none;
     }
+}
+
+.alert-maintenance {
+    margin-top: 104px;
+    margin-bottom: 0;
 }
