@@ -27,7 +27,7 @@ export default Ember.Component.extend({
     store: Ember.inject.service(),
     theme: Ember.inject.service(),
     otherProviders: [],
-    searchUrl: config.SHARE.searchUrl,
+    searchUrl: config.OSF.shareSearchUrl,
     osfProviders: [
         'OSF',
         // 'AEA Registry', //These need to be added to the language filter once on SHARE (OSF -> OSF Registries)
