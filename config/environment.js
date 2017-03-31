@@ -102,6 +102,8 @@ module.exports = function(environment) {
         // TODO: Provide mocks for all components with manual AJAX calls in the future.
         ENV.SHARE.baseUrl = '/nowhere';
         ENV.SHARE.searchUrl = '/nowhere';
+        ENV.OSF = {};
+        ENV.OSF.shareSearchUrl = '/nowhere';
 
         ENV.metricsAdapters[0].config.cookieDomain = 'none'
     }
