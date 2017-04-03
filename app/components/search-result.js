@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import Analytics from '../mixins/analytics';
+import Analytics from 'ember-osf/mixins/analytics';
 
 export default Ember.Component.extend(Analytics, {
     providerUrlRegex: {
@@ -51,7 +51,8 @@ export default Ember.Component.extend(Analytics, {
                 .trackEvent({
                     category: 'result',
                     action: !this.showBody ? 'contract' : 'expand',
-                    label: `Registries -  Discover - ${this.result.title}`
+                    label: `Registries -  Discover - ${this.result.title}`,
+                    extra: this.result.id
                 });
         }
     }

@@ -9,7 +9,7 @@ This guide will help you get started if you're interested.
 
 ## Prerequisites
 
-You will need the following things properly installed on your computer.
+You will need the following dependencies properly installed on your computer.
 
 * [Git](http://git-scm.com/)
 * [Node.js](http://nodejs.org/) (preferably via [nvm](https://github.com/creationix/nvm#install-script))
