@@ -238,7 +238,7 @@ export default Ember.Controller.extend(Analytics, RegistrationCount, {
                         result.hyperLinks.push({url: identifier});
                     } else {
                         const spl = identifier.split('://');
-                        const [type, uri, ..._] = spl; // jshint ignore:line
+                        const [type, uri] = spl; // jshint ignore:line
                         result.infoLinks.push({type, uri});
                     }
                 });
