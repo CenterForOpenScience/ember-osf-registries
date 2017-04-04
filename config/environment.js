@@ -5,6 +5,7 @@ module.exports = function(environment) {
 
     var ENV = {
         modulePrefix: 'registries-service',
+        appName: 'Registries',
         environment: environment,
         rootURL: '/',
         locationType: 'auto',
