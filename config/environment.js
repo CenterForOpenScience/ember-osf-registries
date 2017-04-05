@@ -1,10 +1,11 @@
-/* jshint node: true */
+/* eslint-env node */
 
 module.exports = function(environment) {
     var authorizationType = 'cookie';
 
     var ENV = {
         modulePrefix: 'registries-service',
+        appName: 'Registries',
         environment: environment,
         rootURL: '/',
         locationType: 'auto',
