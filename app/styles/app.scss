@@ -1168,10 +1168,10 @@ nav.branded-navbar {
 
 .listOption.btn-link {
     cursor: pointer;
-    color: white;
+    color: black;
     text-decoration: none;
     &:hover{
-        color: rgba(255, 255, 255, 0.8) !important;
+        color: black;
         outline: none;
         text-decoration: none;
     }
