@@ -7,6 +7,8 @@ export default Ember.Service.extend({
 
     id: config.REGISTRIES.defaultProvider,
 
+    currentLocation: null,
+
     provider: Ember.computed('id', function() {
         const id = this.get('id');
 
@@ -45,16 +47,17 @@ export default Ember.Service.extend({
         return logo;
     }),
 
-    signupUrl: Ember.computed('id', function() {
+    signupUrl: Ember.computed('id', 'currentLocation', function() {
         const query = Ember.$.param({
-            campaign: `${this.get('id')}-registries`,
-            next: window.location.href
+            // TODO enable once a registries campaign is ready
+            // campaign: `${this.get('id')}-registries`,
+            next: this.get('currentLocation')
         });
 
         return `${config.OSF.url}register?${query}`;
     }),
 
-    redirectUrl: Ember.computed('isProvider', function() {
-        return this.get('isProvider') ? window.location.href : null;
+    redirectUrl: Ember.computed('currentLocation', function() {
+        return this.get('currentLocation');
     }),
 });

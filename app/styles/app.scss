@@ -280,6 +280,14 @@ ul.preprints-block-list {
     padding-left: 0;
 }
 
+.listOption {
+    color: white !important;
+    text-decoration: none !important;
+    cursor: pointer;
+    &:hover {
+        color: rgba(255, 255, 255, 0.8) !important;
+    }
+}
 
 /* VIEW page */
 
