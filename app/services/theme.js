@@ -49,8 +49,7 @@ export default Ember.Service.extend({
 
     signupUrl: Ember.computed('id', 'currentLocation', function() {
         const query = Ember.$.param({
-            // TODO enable once a registries campaign is ready
-            // campaign: `${this.get('id')}-registries`,
+            campaign: `${this.get('id')}-registries`,
             next: this.get('currentLocation')
         });
 
