@@ -21,10 +21,12 @@ export default Ember.Controller.extend(Analytics, {
     // Many pieces taken from: https://github.com/CenterForOpenScience/ember-share/blob/develop/app/controllers/discover.js
     activeFilters:  { providers: [], types: []},
     consumingService: 'registries', // Consuming service - registries here
-    facets: [// List of facets available for registries
-        { key: 'sources', title: 'Providers', component: 'search-facet-provider' },
-        { key: 'registration_type', title: 'OSF Registration Type', component: 'search-facet-registration-type' }
-    ],
+    facets: Ember.computed('i18n.locale', function() { // List of facets available for registries
+        return [
+            { key: 'sources', title: `${this.get('i18n').t('discover.main.providers')}`, component: 'search-facet-provider' },
+            { key: 'registration_type', title: `${this.get('i18n').t('discover.main.type')}`, component: 'search-facet-registration-type' }
+        ]
+    }),
     filterMap: { // Map active filters to facet names expected by SHARE
         providers: 'sources',
         types: 'registration_type'
