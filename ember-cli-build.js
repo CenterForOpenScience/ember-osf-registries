@@ -138,7 +138,11 @@ module.exports = function(defaults) {
 
     app.import(path.join(app.bowerDirectory, 'jquery.tagsinput/src/jquery.tagsinput.js'));
 
-     app.import({
+    app.import({
+        test: path.join(app.bowerDirectory, 'ember/ember-template-compiler.js')
+    });
+
+    app.import({
         development: path.join(app.bowerDirectory, 'hint.css/hint.css'),
         production: path.join(app.bowerDirectory, 'hint.css/hint.css')
     });
