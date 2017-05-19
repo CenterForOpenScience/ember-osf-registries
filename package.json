@@ -1,6 +1,6 @@
 {
   "name": "registries-service",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "description": "Center for Open Science Registries Service",
   "private": true,
   "directories": {
