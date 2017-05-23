@@ -47,14 +47,6 @@ ul.comma-list {
         content: "";
     }
 }
-.subject-preview {
-    display: inline-block;
-    background-color: #f8f8f8;
-    border-radius: 3px;
-    border: 1px solid #eee;
-    padding: 1px 7px;
-    margin-bottom: 4px;
-}
 
 .registries-brand {
     background: url('img/osfregistries_white.png') top center no-repeat;
@@ -104,7 +96,7 @@ ul.comma-list {
 
 
 /* Main header with search bar */
-.registries-header{
+.search-header{
     background:#214661 url('img/preprints-bg.jpg') top center ;
     padding-top: 150px;
     padding-bottom: 30px;
@@ -116,7 +108,10 @@ ul.comma-list {
     }
     a:not(.btn) {
         color: #80c2f7;
-        text-decoration: underline;
+        text-decoration: none;
+        .dropdown-menu {
+            color: white;
+        }
     }
     .btn-info {
         color: #fff
@@ -222,7 +217,16 @@ $logo-dir: 'img/provider_logos/';
         vertical-align: middle;
     }
 }
-.preprint-search-main {
+
+#share-logo.share-logo {
+    width: 69px;
+    height: 33px;
+    background: url('img/share-logo-white.png') no-repeat;
+    display: inline-block;
+    background-size: contain;
+    vertical-align: middle;
+}
+.search-main {
     background-color: #fbfbfb;
     border-bottom: 1px solid #dedede;
     .filter-heading {
@@ -234,7 +238,7 @@ $logo-dir: 'img/provider_logos/';
     label {
         font-weight: normal;
     }
-    .preprint-search-sidebar ul {
+    .search-sidebar ul {
         padding-left: 25px;
         li {
             list-style: none;
@@ -269,23 +273,6 @@ $logo-dir: 'img/provider_logos/';
     background-color: #d7e6e9;
     .fa {
         color: #777777;
-    }
-}
-.search-result-providers {
-    font-weight: bold;
-}
-ul.preprints-block-list {
-    display: block;
-    list-style: none;
-    padding-left: 0;
-}
-
-.listOption {
-    color: white !important;
-    text-decoration: none !important;
-    cursor: pointer;
-    &:hover {
-        color: rgba(255, 255, 255, 0.8) !important;
     }
 }
 
@@ -1151,6 +1138,45 @@ nav.branded-navbar {
     }
 
     .social > a:hover {
+        text-decoration: none;
+    }
+}
+
+// Override search-facet styling in ember-osf on discover page
+.discover-page {
+    .panel-default {
+        border: 0 solid transparent;
+        box-shadow: none;
+        > .panel-heading {
+              text-align: left;
+              border: 0 solid transparent;
+              padding: 7px 10px;
+              background-color: #EFEFEF;
+              justify-content: flex-start;
+
+        }
+    }
+    .panel-body.individual-facet {
+        padding: 10px 0;
+        background-color: #FBFBFB !important;
+    }
+    .search-sidebar {
+        background-color: transparent !important;
+    }
+}
+
+
+.listOption.btn-link {
+    cursor: pointer;
+    color: black;
+    text-decoration: none;
+    &:hover{
+        color: black;
+        outline: none;
+        text-decoration: none;
+    }
+    &:focus, :active {
+        outline: none;
         text-decoration: none;
     }
 }

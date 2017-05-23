@@ -39,6 +39,10 @@ export default {
             placeholder: `Search registrations...`
         },
         sort_by: `Sort by`,
+        sort_newest_oldest: `Modified Date (newest to oldest)`,
+        sort_oldest_newest: `Modified Date (oldest to newest)`,
+        modified_on: `Modified on`,
+        relevance: `Relevance`,
         main: {
             active_filters: {
                 heading: `Active Filters`,
@@ -68,7 +72,6 @@ export default {
                 paragraph: `The <span class="f-w-lg">open</span> registries network`
             },
             powered_by: `Powered by ${brand}`,
-            search: `{{count}} searchable registrations`,
             as_of: `as of`,
             example: `See an example`
         },
