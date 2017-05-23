@@ -62,7 +62,7 @@ export default Ember.Controller.extend(Analytics, {
     type: '', // Query param
     _clearFilters() {
         this.set('activeFilters', {
-            providers: this.get('theme.isProvider') ? this.get('activeFilters.providers') : [],
+            providers: [],
             types: []
         });
         this.set('type', '');
