@@ -10,7 +10,8 @@
     "build": "ember build",
     "start": "ember server",
     "test": "yarn run check-style && ember test",
-    "check-style": "eslint ."
+    "check-style": "eslint .",
+    "postinstall": "npm rebuild node-sass"
   },
   "repository": {
     "type": "git",
