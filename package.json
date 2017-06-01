@@ -60,7 +60,7 @@
     "ember-link-action": "0.0.35",
     "ember-load-initializers": "0.5.1",
     "ember-metrics": "0.6.3",
-    "ember-osf": "git+https://github.com/pattisdr/ember-osf.git#cfc0163e02028236e34f51071c8cea7617df488e",
+    "ember-osf": "git+https://github.com/CenterForOpenScience/ember-osf.git#1e719faf741aa45e1b4a23ee1deac1da759739b6",
     "ember-page-title": "3.0.6",
     "ember-power-select": "1.0.0-beta.7",
     "ember-read-more": "0.0.13",
@@ -72,6 +72,7 @@
     "eslint": "3.18.0",
     "liquid-fire": "0.24.1",
     "loader.js": "4.0.1",
+    "pagination-pager": "2.4.2",
     "phantomjs-prebuilt": "2.1.11",
     "postcss": "5.1.0"
   },

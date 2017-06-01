@@ -1,0 +1,13 @@
+<div class="registration-type-selector">
+    <i class='type-selector-warning'>Only available with OSF Registries</i>
+    <ul class="m-t-sm">
+        {{#each registrationTypes as |item|}}
+            <li>
+                <label>
+                    <input class='type-checkbox' type="checkbox" checked="{{if (if-filter item activeFilters.types) 'checked'}}" onclick={{action updateFilters 'types' item}}>
+                    {{item}}
+                </label>
+            </li>
+        {{/each}}
+    </ul>
+</div>
