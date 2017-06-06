@@ -1,6 +1,6 @@
 {
   "name": "registries-service",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Center for Open Science Registries Service",
   "private": true,
   "directories": {
@@ -10,7 +10,8 @@
     "build": "ember build",
     "start": "ember server",
     "test": "yarn run check-style && ember test",
-    "check-style": "eslint ."
+    "check-style": "eslint .",
+    "postinstall": "npm rebuild node-sass"
   },
   "repository": {
     "type": "git",
@@ -72,6 +73,7 @@
     "eslint": "3.18.0",
     "liquid-fire": "0.24.1",
     "loader.js": "4.0.1",
+    "pagination-pager": "2.4.2",
     "phantomjs-prebuilt": "2.1.11",
     "postcss": "5.1.0"
   },
