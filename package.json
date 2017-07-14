@@ -70,14 +70,16 @@
     "ember-toastr": "1.4.1",
     "ember-truth-helpers": "1.2.0",
     "ember-welcome-page": "1.0.1",
-    "eslint": "3.18.0",
+    "eslint": "^4.1.1",
     "liquid-fire": "0.24.1",
     "loader.js": "4.0.1",
     "pagination-pager": "2.4.2",
     "phantomjs-prebuilt": "2.1.11",
     "postcss": "5.1.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "eslint-config-cos-ember": "^0.5.0"
+  },
   "bugs": {
     "url": "https://github.com/CenterForOpenScience/ember-osf-registries/issues"
   },
