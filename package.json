@@ -11,7 +11,8 @@
     "start": "ember server",
     "test": "yarn run check-style && ember test",
     "check-style": "eslint .",
-    "postinstall": "npm rebuild node-sass"
+    "postinstall": "npm rebuild node-sass",
+    "use-ember-osf-develop": "yarn upgrade @centerforopenscience/ember-osf@https://github.com/CenterForOpenScience/ember-osf.git#develop#$(date -u +%FT%TZ)"
   },
   "repository": {
     "type": "git",
