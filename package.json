@@ -1,6 +1,6 @@
 {
   "name": "registries-service",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Center for Open Science Registries Service",
   "private": true,
   "directories": {
@@ -25,7 +25,7 @@
   "author": "",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@centerforopenscience/ember-osf": "https://github.com/CenterForOpenScience/ember-osf.git#develop#2017-07-20T13:42:04Z",
+    "@centerforopenscience/ember-osf": "https://github.com/CenterForOpenScience/ember-osf.git#develop#2017-08-07T19:26:04Z",
     "autoprefixer": "6.3.7",
     "broccoli-asset-rev": "2.4.2",
     "ember-ajax": "2.0.1",
