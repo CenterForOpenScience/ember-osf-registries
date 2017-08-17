@@ -42,9 +42,7 @@ export default Ember.Controller.extend(Analytics, {
     provider: '', // Query param
     q: '', // Query param
     queryParams: ['page', 'q', 'provider', 'type'],
-    searchPlaceholder: Ember.computed('i18n', function() { // Search bar placeholder
-        return this.get('i18n').t('discover.search.placeholder');
-    }),
+    searchPlaceholder: 'discover.search.placeholder',
     showActiveFilters: true, //should always have a provider, don't want to mix osfProviders and non-osf
     sortOptions: Ember.computed('i18n.locale', function() { // Sort options for registries
         const i18n = this.get('i18n');
