@@ -37,7 +37,7 @@ export default Ember.Controller.extend(Analytics, {
         OSF: 'OSF Registries',
         'Research Papers in Economics': 'RePEc'
     },
-    lockedParams: {types: 'registration'}, // Parameter names which cannot be changed
+    lockedParams: {types: ['registration']}, // Parameter names which cannot be changed
     page: 1, // Query param
     provider: '', // Query param
     q: '', // Query param
