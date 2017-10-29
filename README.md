@@ -16,12 +16,11 @@ You will need the following dependencies properly installed on your computer.
 * [Yarn](https://yarnpkg.com/)
 * [Bower](http://bower.io/)
 * [Ember CLI](http://ember-cli.com/)
-* [PhantomJS](http://phantomjs.org/)
 
 ## Installation
 
 * `git clone` this repository
-* `yarn install --pure-lockfile`
+* `yarn --frozen-lockfile`
 * `bower install`
 
 ## Running / Development
