@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
+- Remove phantomjs dependency and postinstall hook to rebuild node-sass
 - Use COS ember-base image and multi-stage build
   - Notify DevOps prior to merging into master to update Jenkins
 - Update README
