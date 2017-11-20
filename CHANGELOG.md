@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   - Notify DevOps prior to merging into master to update Jenkins
 - Update README
 - Format travis config
+- Remove footer styling in favor of adding it to ember-osf
 
 ## [0.6.7] - 2017-10-26
 ### Changed
