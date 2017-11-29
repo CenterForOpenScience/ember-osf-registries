@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Format travis config
 - Remove footer styling in favor of adding it to ember-osf
 
+## [0.6.10] - 2017-11-29
+### Changed
+- Update to @centerforopenscience/ember-osf@0.12.3
+
 ## [0.6.9] - 2017-11-29
 ### Changed
 - Update to @centerforopenscience/ember-osf@0.12.2
