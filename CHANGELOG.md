@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- `noscript` message if JavaScript is disabled
+
 ### Changed
 - Remove phantomjs dependency and postinstall hook to rebuild node-sass
 - Use COS ember-base image and multi-stage build
