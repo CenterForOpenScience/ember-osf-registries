@@ -12,7 +12,7 @@ COPY ./ ./
 ARG GIT_COMMIT=
 ENV GIT_COMMIT ${GIT_COMMIT}
 
-RUN yarn build --environemnt=production
+RUN yarn build --environment=production
 
 ### Dist
 FROM node:8-alpine AS dist
