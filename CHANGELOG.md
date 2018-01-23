@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Update README
 - Format travis config
 - Remove footer styling in favor of adding it to ember-osf
+- Update to latest ember-osf (TODO: change this to ember-osf release version before release)
+- Use model.queryHasMany in place of model.query
 
 ## [0.6.11] - 2017-12-04
 ### Changed
