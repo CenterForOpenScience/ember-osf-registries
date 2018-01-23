@@ -3,7 +3,6 @@
 'use strict';
 
 const fs = require('fs');
-var path = require('path');
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const Funnel = require('broccoli-funnel');
 const nonCdnEnvironments = ['development', 'test'];
@@ -54,9 +53,8 @@ module.exports = function(defaults) {
         sassOptions: {
             includePaths: [
                 'node_modules/@centerforopenscience/ember-osf/addon/styles',
-                'bower_components/bootstrap-sass/assets/stylesheets',
                 'node_modules/@centerforopenscience/osf-style/sass',
-                'bower_components/hint.css'
+                'node_modules/hint.css'
             ]
         },
         inlineContent: {
@@ -75,7 +73,7 @@ module.exports = function(defaults) {
                 enabled: useCdn,
                 content: `
                     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-                    <script src="//cdnjs.cloudflare.com/ajax/libs/ember.js/2.7.1/ember.prod.js"></script>
+                    <script src="//cdnjs.cloudflare.com/ajax/libs/ember.js/2.18.0/ember.prod.js"></script>
                 `.trim()
             },
         },
@@ -126,25 +124,7 @@ module.exports = function(defaults) {
     // along with the exports of each module as its value.
 
     // osf-style
-    app.import(path.join(app.bowerDirectory, 'loaders.css/loaders.min.css'));
-
-    // app.import('bower_components/dropzone/dist/dropzone.js');
-    app.import({
-        development: path.join(app.bowerDirectory, 'dropzone/dist/dropzone.css'),
-        production: path.join(app.bowerDirectory, 'dropzone/dist/min/dropzone.min.css')
-    });
-
-    app.import(path.join(app.bowerDirectory, 'jquery.tagsinput/src/jquery.tagsinput.js'));
-
-    app.import({
-        test: path.join(app.bowerDirectory, 'ember/ember-template-compiler.js')
-    });
-
-    app.import({
-        development: path.join(app.bowerDirectory, 'hint.css/hint.css'),
-        production: path.join(app.bowerDirectory, 'hint.css/hint.css')
-    });
-
+    
     // Import component styles from addon
     app.import('vendor/assets/ember-osf.css');
 

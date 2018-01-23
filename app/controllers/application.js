@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { inject } from '@ember/service';
 import OSFAgnosticAuthControllerMixin from 'ember-osf/mixins/osf-agnostic-auth-controller';
 
-export default Ember.Controller.extend(OSFAgnosticAuthControllerMixin, {
-    toast: Ember.inject.service(),
-    theme: Ember.inject.service(),
+export default Controller.extend(OSFAgnosticAuthControllerMixin, {
+    toast: inject(),
+    theme: inject(),
 });

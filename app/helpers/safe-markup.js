@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { htmlSafe } from '@ember/string';
+import { helper } from '@ember/component/helper';
 
 export function safeMarkup(params/*, hash*/) {
-    return Ember.String.htmlSafe(params.join(''));
+    return htmlSafe(params.join(''));
 }
 
-export default Ember.Helper.helper(safeMarkup);
+export default helper(safeMarkup);

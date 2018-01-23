@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import Analytics from 'ember-osf/mixins/analytics';
 
-export default Ember.Component.extend(Analytics, {
+export default Component.extend(Analytics, {
     classNames: ['branded-footer']
 });

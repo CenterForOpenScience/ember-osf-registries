@@ -1,4 +1,8 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { inject } from '@ember/service';
+import { A } from '@ember/array';
+import { merge } from '@ember/polyfills';
+import $ from 'jquery';
 import config from 'ember-get-config';
 import Analytics from 'ember-osf/mixins/analytics';
 
@@ -45,9 +49,9 @@ const PLACEHOLDER_DATA = [
     },
 ];
 
-export default Ember.Controller.extend(Analytics, {
-    theme: Ember.inject.service(),
-    recentRegistrations: Ember.A(),
+export default Controller.extend(Analytics, {
+    theme: inject(),
+    recentRegistrations: A(),
     init() {
         this._super(...arguments);
         if (config.useSHAREData) {
@@ -78,7 +82,7 @@ export default Ember.Controller.extend(Analytics, {
                 }
             };
 
-            Ember.$.ajax({
+            $.ajax({
                 type: 'POST',
                 url: config.SHARE.searchUrl,
                 data: JSON.stringify(getTotalPayload),
@@ -92,7 +96,7 @@ export default Ember.Controller.extend(Analytics, {
                     contributors: each._source.lists.contributors.sort((b, a) => (b.order_cited || -1) - (a.order_cited || -1)).map(contributor => ({
                         users: Object.keys(contributor)
                         .reduce(
-                            (acc, key) => Ember.merge(acc, {[key.camelize()]: contributor[key]}),
+                            (acc, key) => merge(acc, {[key.camelize()]: contributor[key]}),
                             {bibliographic: contributor.relation !== 'contributor'}
                         )
                     }))
