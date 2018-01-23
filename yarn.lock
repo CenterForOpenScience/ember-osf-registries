@@ -749,7 +749,7 @@ babel-plugin-ember-modules-api-polyfill@^1.4.2:
   dependencies:
     ember-rfc176-data "^0.2.0"
 
-babel-plugin-ember-modules-api-polyfill@^2.3.0:
+babel-plugin-ember-modules-api-polyfill@^2.0.1, babel-plugin-ember-modules-api-polyfill@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-ember-modules-api-polyfill/-/babel-plugin-ember-modules-api-polyfill-2.3.0.tgz#0c01f359658cfb9c797f705af6b09f6220205ae0"
   dependencies:
@@ -2984,8 +2984,8 @@ ember-basic-dropdown@^0.34.0:
     ember-wormhole "^0.5.2"
 
 ember-bootstrap-datepicker@^2.0.3:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/ember-bootstrap-datepicker/-/ember-bootstrap-datepicker-2.0.5.tgz#ca4da911dfb39bde49bc209de487281193c713c3"
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/ember-bootstrap-datepicker/-/ember-bootstrap-datepicker-2.0.8.tgz#db9f009c9a5ee972adb89f8037eb5b5557a6ae20"
   dependencies:
     bootstrap-datepicker "^1.6.4"
     broccoli-funnel "^2.0.1"
