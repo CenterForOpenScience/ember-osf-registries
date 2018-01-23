@@ -9,7 +9,7 @@ export default Ember.Route.extend(Analytics, ResetScrollMixin,  {
         return Ember.RSVP.hash({
             taxonomies: this.get('theme.provider')
                 .then(provider => provider
-                    .query('taxonomies', {
+                    .queryHasMany('taxonomies', {
                         filter: {
                             parents: 'null'
                         },
