@@ -24,7 +24,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Update syntax in necessary files to match Ember 2.18 syntax
 
 ### Removed
-- All bower dependencies except `bootstrap` and `jquery`
+- All bower dependencies
 
 ## [0.6.11] - 2017-12-04
 ### Changed
