@@ -123,8 +123,8 @@
     ember-compatibility-helpers "^0.1.2"
 
 "@ember/test-helpers@^0.7.9":
-  version "0.7.13"
-  resolved "https://registry.yarnpkg.com/@ember/test-helpers/-/test-helpers-0.7.13.tgz#89523a101b5bd731e9dcaf7d0c57155b6386a4e3"
+  version "0.7.14"
+  resolved "https://registry.yarnpkg.com/@ember/test-helpers/-/test-helpers-0.7.14.tgz#e53b0a66f144a0a85579c4432e56960971a3f739"
   dependencies:
     broccoli-funnel "^2.0.1"
     ember-cli-babel "^6.10.0"
