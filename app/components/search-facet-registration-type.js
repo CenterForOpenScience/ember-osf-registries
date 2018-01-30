@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { schedule } from '@ember/runloop';
-import { observer } from '@ember/object';
+import { computed } from '@ember/object';
 import $ from 'jquery';
 
 /**
@@ -9,7 +9,8 @@ import $ from 'jquery';
  */
 
 /**
- * Builds registry's registration type facet for discover page - to be used with Ember-OSF's discover-page component and faceted-search component.
+ * Builds registry's registration type facet for discover page
+ * To be used with Ember-OSF's discover-page component and faceted-search component.
  *
  * Sample usage:
  * ```handlebars
@@ -24,28 +25,8 @@ import $ from 'jquery';
  * @class search-facet-registration-type
  */
 export default Component.extend({
-    registrationTypes: [
-        'AsPredicted Preregistration',
-        'Election Research Preacceptance Competition',
-        'Open-Ended Registration',
-        'OSF-Standard Pre-Data Collection Registration',
-        'Prereg Challenge',
-        'Pre-Registration in Social Psychology (van \'t Veer & Giner-Sorolla, 2016): Pre-Registration',
-        'Replication Recipe (Brandt et al., 2013): Post-Completion',
-        'Replication Recipe (Brandt et al., 2013): Pre-Registration',
-    ],
-
-    init() {
-        this._super(...arguments);
-        schedule('afterRender', () => {
-            if (this.OSFIsSoleProvider()) {
-                return;
-            }
-            this.toggleTypeCSS(false);
-        });
-    },
     registrationTypeCache: null,
-    setVisibilityOfOSFFilters: observer('activeFilters.providers', function() {
+    setVisibilityOfOSFFilters: computed('activeFilters.providers', function() {
         if (this.OSFIsSoleProvider()) {
             if (this.get('registrationTypeCache')) {
                 this.set('activeFilters.types', $.extend(true, [], this.get('registrationTypeCache')));
@@ -58,6 +39,25 @@ export default Component.extend({
             this.toggleTypeCSS(false);
         }
     }),
+    init() {
+        this._super(...arguments);
+        this.registrationTypes = [
+            'AsPredicted Preregistration',
+            'Election Research Preacceptance Competition',
+            'Open-Ended Registration',
+            'OSF-Standard Pre-Data Collection Registration',
+            'Prereg Challenge',
+            'Pre-Registration in Social Psychology (van \'t Veer & Giner-Sorolla, 2016): Pre-Registration',
+            'Replication Recipe (Brandt et al., 2013): Post-Completion',
+            'Replication Recipe (Brandt et al., 2013): Pre-Registration',
+        ];
+        schedule('afterRender', () => {
+            if (this.OSFIsSoleProvider()) {
+                return;
+            }
+            this.toggleTypeCSS(false);
+        });
+    },
     // Disables search-facet-registration-type
     toggleTypeCSS(show) {
         if (show) {
@@ -77,5 +77,5 @@ export default Component.extend({
             soleProvider = true;
         }
         return soleProvider;
-    }
+    },
 });

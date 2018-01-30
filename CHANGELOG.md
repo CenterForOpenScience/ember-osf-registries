@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - `noscript` message if JavaScript is disabled
+- `ember-route-action-helper` for route closure actions
+- COS version of eslint
 
 ### Changed
 - Remove phantomjs dependency and postinstall hook to rebuild node-sass
@@ -23,6 +25,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Removed
 - All bower dependencies
+
+### Fixed
+- Syntax errors from updating to COS version of eslint
 
 ## [0.6.11] - 2017-12-04
 ### Changed

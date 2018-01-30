@@ -1,5 +1,4 @@
-import Service from '@ember/service';
-import { inject } from '@ember/service';
+import Service, { inject } from '@ember/service';
 import { computed } from '@ember/object';
 import $ from 'jquery';
 import config from 'ember-get-config';
@@ -15,8 +14,7 @@ export default Service.extend({
     provider: computed('id', function() {
         const id = this.get('id');
 
-        if (!id)
-            return;
+        if (!id) { return; }
 
         return this
             .get('store')
@@ -31,8 +29,7 @@ export default Service.extend({
     stylesheet: computed('id', function() {
         const id = this.get('id');
 
-        if (!id)
-            return;
+        if (!id) { return; }
 
         const suffix = config.ASSET_SUFFIX ? `-${config.ASSET_SUFFIX}` : '';
         return `/registries/assets/css/${id}${suffix}.css`;
@@ -53,7 +50,7 @@ export default Service.extend({
     signupUrl: computed('id', 'currentLocation', function() {
         const query = $.param({
             campaign: `${this.get('id')}-registries`,
-            next: this.get('currentLocation')
+            next: this.get('currentLocation'),
         });
 
         return `${config.OSF.url}register?${query}`;

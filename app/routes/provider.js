@@ -4,6 +4,8 @@ import { inject } from '@ember/service';
 import config from 'ember-get-config';
 import Analytics from 'ember-osf/mixins/analytics';
 
+const { onerror } = Ember;
+
 export default Route.extend(Analytics, {
     theme: inject(),
 
@@ -12,15 +14,15 @@ export default Route.extend(Analytics, {
         .map(provider => provider.id),
 
     beforeModel(transition) {
-        const {slug} = transition.params.provider;
+        const { slug } = transition.params.provider;
         const slugLower = (slug || '').toLowerCase();
 
         if (this.get('providerIds').includes(slugLower)) {
             if (slugLower !== slug) {
-                const {pathname} = window.location;
+                const { pathname } = window.location;
                 window.location.pathname = pathname.replace(
                     new RegExp(`^/preprints/${slug}`),
-                    `/preprints/${slugLower}`
+                    `/preprints/${slugLower}`,
                 );
             }
 
@@ -39,11 +41,10 @@ export default Route.extend(Analytics, {
     actions: {
         error(error) {
             // Manage your errors
-            Ember.onerror(error);
+            onerror(error);
 
             // substate implementation when returning `true`
             return true;
-
-        }
-    }
+        },
+    },
 });

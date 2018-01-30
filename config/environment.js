@@ -1,26 +1,26 @@
 /* eslint-env node */
 
 module.exports = function(environment) {
-    var authorizationType = 'cookie';
+    const authorizationType = 'cookie';
 
-    var ENV = {
+    const ENV = {
         modulePrefix: 'registries-service',
         appName: 'Registries',
-        environment: environment,
+        environment,
         rootURL: '/',
         locationType: 'auto',
-        authorizationType: authorizationType,
+        authorizationType,
         sentryDSN: 'http://test@localhost/80' || process.env.SENTRY_DSN,
         'ember-simple-auth': {
             authorizer: `authorizer:osf-${authorizationType}`,
-            authenticator: `authenticator:osf-${authorizationType}`
+            authenticator: `authenticator:osf-${authorizationType}`,
         },
         useSHAREData: !!process.env.USE_SHARE_DATA,
         EmberENV: {
             FEATURES: {
                 // Here you can enable experimental features on an ember canary build
                 // e.g. 'with-controller': true
-            }
+            },
         },
         APP: {
             // Here you can pass flags/options to your application instance
@@ -28,15 +28,16 @@ module.exports = function(environment) {
         },
         SHARE: {
             baseUrl: process.env.SHARE_BASE_URL || 'https://share.osf.io/',
-            searchUrl: process.env.SHARE_SEARCH_URL || 'https://share.osf.io/api/v2/search/creativeworks/_search'
+            searchUrl: process.env.SHARE_SEARCH_URL || 'https://share.osf.io/api/v2/search/creativeworks/_search',
         },
         moment: {
-            outputFormat: 'YYYY-MM-DD hh:mm a'
+            outputFormat: 'YYYY-MM-DD hh:mm a',
         },
         REGISTRIES: {
             defaultProvider: 'osf',
 
-            // Logos are needed for open graph sharing meta tags (Facebook, LinkedIn, etc) and must be at least 200x200
+            // Logos are needed for open graph sharing meta tags
+            // (Facebook, LinkedIn, etc) and must be at least 200x200
             providers: [
                 {
                     id: 'osf',
@@ -44,21 +45,21 @@ module.exports = function(environment) {
                         path: '/assets/img/provider_logos/osf-dark.png',
                         type: 'image/png',
                         width: 363,
-                        height: 242
-                    }
-                }
+                        height: 242,
+                    },
+                },
             ],
         },
         i18n: {
-            defaultLocale: 'en'
+            defaultLocale: 'en',
         },
         metricsAdapters: [
             {
                 name: 'GoogleAnalytics',
                 environments: [process.env.KEEN_ENVIRONMENT] || ['production'],
                 config: {
-                    id: process.env.GOOGLE_ANALYTICS_ID
-                }
+                    id: process.env.GOOGLE_ANALYTICS_ID,
+                },
             },
             {
                 name: 'Keen',
@@ -66,14 +67,14 @@ module.exports = function(environment) {
                 config: {
                     private: {
                         projectId: process.env.REGISTRIES_PRIVATE_PROJECT_ID,
-                        writeKey: process.env.REGISTRIES_PRIVATE_WRITE_KEY
+                        writeKey: process.env.REGISTRIES_PRIVATE_WRITE_KEY,
                     },
                     public: {
                         projectId: process.env.REGISTRIES_PUBLIC_PROJECT_ID,
-                        writeKey: process.env.REGISTRIES_PUBLIC_WRITE_KEY
-                    }
-                }
-            }
+                        writeKey: process.env.REGISTRIES_PUBLIC_WRITE_KEY,
+                    },
+                },
+            },
         ],
         FB_APP_ID: process.env.FB_APP_ID,
     };
@@ -85,7 +86,7 @@ module.exports = function(environment) {
         // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
         // ENV.APP.LOG_VIEW_LOOKUPS = true;
 
-        ENV.metricsAdapters[0].config.cookieDomain = 'none'
+        ENV.metricsAdapters[0].config.cookieDomain = 'none';
     }
 
     if (environment === 'test') {
@@ -106,7 +107,7 @@ module.exports = function(environment) {
         ENV.OSF = {};
         ENV.OSF.shareSearchUrl = '/nowhere';
 
-        ENV.metricsAdapters[0].config.cookieDomain = 'none'
+        ENV.metricsAdapters[0].config.cookieDomain = 'none';
     }
 
     if (environment === 'production') {
@@ -115,11 +116,11 @@ module.exports = function(environment) {
     }
 
     if (ENV.ASSET_SUFFIX) {
-        ENV.REGISTRIES.providers = ENV.REGISTRIES.providers.map(provider => {
-            provider.logoSharing.path = provider.logoSharing.path
+        ENV.REGISTRIES.providers = ENV.REGISTRIES.providers.map((provider) => {
+            const mappedProvider = provider;
+            mappedProvider.logoSharing.path = provider.logoSharing.path
                 .replace(/\..*$/, match => `-${ENV.ASSET_SUFFIX}${match}`);
-
-            return provider;
+            return mappedProvider;
         });
     }
 

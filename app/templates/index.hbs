@@ -25,7 +25,7 @@
                 </div>
                 {{!SEARCH}}
                 <div class="preprint-search col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 m-v-lg" >
-                    {{search-registries search="search"}}
+                    {{search-registries search=(route-action "search")}}
 
                     {{total-share-results}}
                 </div>

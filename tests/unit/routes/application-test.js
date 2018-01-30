@@ -1,16 +1,16 @@
 import { moduleFor, test } from 'ember-qunit';
 
 moduleFor('route:application', 'Unit | Route | application', {
-  // Specify the other units that are required for this test.
+    // Specify the other units that are required for this test.
     needs: [
         'service:i18n',
         'service:metrics',
         'service:session',
-        'service:theme'
-    ]
+        'service:theme',
+    ],
 });
 
 test('it exists', function(assert) {
-  let route = this.subject();
-  assert.ok(route);
+    const route = this.subject();
+    assert.ok(route);
 });
