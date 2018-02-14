@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.6.12] - 2017-02-14
 ### Added
 - `noscript` message if JavaScript is disabled
 
@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Update README
 - Format travis config
 - Remove footer styling in favor of adding it to ember-osf
-- Update to latest ember-osf (TODO: change this to ember-osf release version before release)
+- Update to @centerforopenscience/ember-osf@0.14.0
 - Use model.queryHasMany in place of model.query
 
 ## [0.6.11] - 2017-12-04
