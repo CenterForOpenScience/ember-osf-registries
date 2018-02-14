@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [0.6.12] - 2017-02-14
+### Added
+- `noscript` message if JavaScript is disabled
+
+### Changed
+- Remove phantomjs dependency and postinstall hook to rebuild node-sass
+- Use COS ember-base image and multi-stage build
+  - Notify DevOps prior to merging into master to update Jenkins
+- Update README
+- Format travis config
+- Remove footer styling in favor of adding it to ember-osf
+- Update to @centerforopenscience/ember-osf@0.14.0
+- Use model.queryHasMany in place of model.query
+
 ## [0.6.11] - 2017-12-04
 ### Changed
 - Update to @centerforopenscience/ember-osf@0.12.4

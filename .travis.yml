@@ -8,19 +8,19 @@ addons:
 
 env:
   global:
-  - SUPPRESS_NO_CONFIG_WARNING=true
+    - SUPPRESS_NO_CONFIG_WARNING=true
 
 cache:
   yarn: true
   directories:
-  - node_modules
-  - $HOME/.cache # includes bowers cache
+    - node_modules
+    - $HOME/.cache # includes bowers cache
 
 install:
-- curl -o- -L https://yarnpkg.com/install.sh | bash
-- export PATH=$HOME/.yarn/bin:$PATH
-- yarn --prefer-offline --pure-lockfile --ignore-engines
-- ./node_modules/bower/bin/bower install --config.interactive=false
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
+  - export PATH=$HOME/.yarn/bin:$PATH
+  - yarn --prefer-offline --frozen-lockfile --ignore-engines
+  - ./node_modules/.bin/bower install --config.interactive=false
 
 script:
-- yarn test
+  - yarn test
