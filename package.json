@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@centerforopenscience/ember-osf": "0.14.0",
-    "@centerforopenscience/osf-style": "1.5.1",
+    "@centerforopenscience/osf-style": "1.7.0",
     "broccoli-asset-rev": "^2.4.5",
     "ember-bootstrap": "^1.0.0-rc.1",
     "ember-browserify": "^1.2.0",
@@ -69,7 +69,6 @@
   },
   "homepage": "https://github.com/CenterForOpenScience/ember-osf-registries#readme",
   "dependencies": {
-    "@centerforopenscience/osf-style": "1.5.1",
     "autoprefixer": "^7.1.2",
     "bootstrap-sass": "^3.3.7",
     "font-awesome": "^4.7.0",
