@@ -1,13 +1,16 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { inject } from '@ember/service';
+import $ from 'jquery';
+import { get } from '@ember/object';
 import Analytics from 'ember-osf/mixins/analytics';
 
-export default Ember.Component.extend(Analytics, {
-    metrics: Ember.inject.service(),
+export default Component.extend(Analytics, {
+    metrics: inject(),
     actions: {
         search() {
-            let query = Ember.$.trim(this.$('#searchBox').val());
+            let query = $.trim(this.$('#searchBox').val());
             this.sendAction('search', query);
-            Ember.get(this, 'metrics')
+            get(this, 'metrics')
                 .trackEvent({
                     category: 'button',
                     action: 'click',

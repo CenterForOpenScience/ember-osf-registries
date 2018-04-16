@@ -1,4 +1,7 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { schedule } from '@ember/runloop';
+import { observer } from '@ember/object';
+import $ from 'jquery';
 
 /**
  * @module ember-osf-registries
@@ -20,7 +23,7 @@ import Ember from 'ember';
  * ```
  * @class search-facet-registration-type
  */
-export default Ember.Component.extend({
+export default Component.extend({
     registrationTypes: [
         'AsPredicted Preregistration',
         'Election Research Preacceptance Competition',
@@ -34,7 +37,7 @@ export default Ember.Component.extend({
 
     init() {
         this._super(...arguments);
-        Ember.run.schedule('afterRender', () => {
+        schedule('afterRender', () => {
             if (this.OSFIsSoleProvider()) {
                 return;
             }
@@ -42,15 +45,15 @@ export default Ember.Component.extend({
         });
     },
     registrationTypeCache: null,
-    setVisibilityOfOSFFilters: Ember.observer('activeFilters.providers', function() {
+    setVisibilityOfOSFFilters: observer('activeFilters.providers', function() {
         if (this.OSFIsSoleProvider()) {
             if (this.get('registrationTypeCache')) {
-                this.set('activeFilters.types', Ember.$.extend(true, [], this.get('registrationTypeCache')));
+                this.set('activeFilters.types', $.extend(true, [], this.get('registrationTypeCache')));
                 this.set('registrationTypeCache', null);
             }
             this.toggleTypeCSS(true);
         } else {
-            this.set('registrationTypeCache', Ember.$.extend(true, [], this.get('activeFilters.types')));
+            this.set('registrationTypeCache', $.extend(true, [], this.get('activeFilters.types')));
             this.set('activeFilters.types', []);
             this.toggleTypeCSS(false);
         }
@@ -58,13 +61,13 @@ export default Ember.Component.extend({
     // Disables search-facet-registration-type
     toggleTypeCSS(show) {
         if (show) {
-            Ember.$('.type-selector-warning').hide();
-            Ember.$('.type-checkbox').removeAttr('disabled');
-            Ember.$('.registration-type-selector').fadeTo('slow', 1);
+            $('.type-selector-warning').hide();
+            $('.type-checkbox').removeAttr('disabled');
+            $('.registration-type-selector').fadeTo('slow', 1);
         } else {
-            Ember.$('.type-selector-warning').show();
-            Ember.$('.type-checkbox').attr('disabled', 'disabled');
-            Ember.$('.registration-type-selector').fadeTo('slow', 0.5);
+            $('.type-selector-warning').show();
+            $('.type-checkbox').attr('disabled', 'disabled');
+            $('.registration-type-selector').fadeTo('slow', 0.5);
         }
     },
     OSFIsSoleProvider() {

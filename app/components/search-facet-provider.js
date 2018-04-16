@@ -1,4 +1,6 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { inject } from '@ember/service';
+import $ from 'jquery';
 import config from 'ember-get-config';
 
 var getProvidersPayload = '{"from": 0,"query": {"bool": {"must": {"query_string": {"query": "*"}}, "filter": [{"term": {"types": "registration"}}]}},"aggregations": {"sources": {"terms": {"field": "sources","size": 200}}}}';
@@ -23,9 +25,9 @@ var getProvidersPayload = '{"from": 0,"query": {"bool": {"must": {"query_string"
  * ```
  * @class search-facet-provider
  */
-export default Ember.Component.extend({
-    store: Ember.inject.service(),
-    theme: Ember.inject.service(),
+export default Component.extend({
+    store: inject(),
+    theme: inject(),
     otherProviders: [],
     searchUrl: config.OSF.shareSearchUrl,
     osfProviders: [
@@ -48,7 +50,7 @@ export default Ember.Component.extend({
     init() {
         this._super(...arguments);
 
-        Ember.$.ajax({
+        $.ajax({
             type: 'POST',
             url: this.get('searchUrl'),
             data: getProvidersPayload,

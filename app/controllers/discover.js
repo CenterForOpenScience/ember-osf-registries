@@ -1,4 +1,6 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { inject } from '@ember/service';
+import { computed } from '@ember/object';
 import Analytics from 'ember-osf/mixins/analytics';
 
 /**
@@ -13,15 +15,15 @@ import Analytics from 'ember-osf/mixins/analytics';
  * SHARE's discover interface (https://github.com/CenterForOpenScience/ember-share/blob/develop/app/controllers/discover.js) and
  * the existing preprints/registries interfaces
  */
-export default Ember.Controller.extend(Analytics, {
-    i18n: Ember.inject.service(),
-    theme: Ember.inject.service(), // jshint ignore:line
+export default Controller.extend(Analytics, {
+    i18n: inject(),
+    theme: inject(), // jshint ignore:line
     // TODO: either remove or add functionality to info icon on "Refine your search panel"
 
     // Many pieces taken from: https://github.com/CenterForOpenScience/ember-share/blob/develop/app/controllers/discover.js
     activeFilters:  { providers: [], types: []},
     consumingService: 'registries', // Consuming service - registries here
-    facets: Ember.computed('i18n.locale', function() { // List of facets available for registries
+    facets: computed('i18n.locale', function() { // List of facets available for registries
         return [
             { key: 'sources', title: `${this.get('i18n').t('discover.main.providers')}`, component: 'search-facet-provider' },
             { key: 'registration_type', title: `${this.get('i18n').t('discover.main.type')}`, component: 'search-facet-registration-type' }
@@ -44,7 +46,7 @@ export default Ember.Controller.extend(Analytics, {
     queryParams: ['page', 'q', 'provider', 'type'],
     searchPlaceholder: 'discover.search.placeholder',
     showActiveFilters: true, //should always have a provider, don't want to mix osfProviders and non-osf
-    sortOptions: Ember.computed('i18n.locale', function() { // Sort options for registries
+    sortOptions: computed('i18n.locale', function() { // Sort options for registries
         const i18n = this.get('i18n');
         return [{
             display: i18n.t('discover.relevance'),

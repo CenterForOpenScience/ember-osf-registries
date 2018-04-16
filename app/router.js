@@ -1,11 +1,14 @@
-import Ember from 'ember';
+import EmberRouter from '@ember/routing/router';
+import { inject } from '@ember/service';
+import { scheduleOnce } from '@ember/runloop';
+import { get } from '@ember/object';
 import config from 'ember-get-config';
 
-const Router = Ember.Router.extend({
+const Router = EmberRouter.extend({
     location: config.locationType,
     rootURL: config.rootURL,
-    metrics: Ember.inject.service(),
-    theme: Ember.inject.service(),
+    metrics: inject(),
+    theme: inject(),
 
     didTransition() {
         this._super(...arguments);
@@ -13,11 +16,11 @@ const Router = Ember.Router.extend({
     },
 
     _trackPage() {
-        Ember.run.scheduleOnce('afterRender', this, () => {
+        scheduleOnce('afterRender', this, () => {
             const page = document.location.pathname;
             const title = this.getWithDefault('currentRouteName', 'unknown');
 
-            Ember.get(this, 'metrics').trackPage({ page, title });
+            get(this, 'metrics').trackPage({ page, title });
             this.set('theme.currentLocation', window.location.href);
         });
     }

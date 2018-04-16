@@ -21,6 +21,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Remove footer styling in favor of adding it to ember-osf
 - Update to @centerforopenscience/ember-osf@0.14.0
 - Use model.queryHasMany in place of model.query
+- Update to use Ember 2.18
+- Update dependencies in package.json to be more up-to-date
+- Update syntax in necessary files to match Ember 2.18 syntax
+
+### Removed
+- All bower dependencies
 
 ## [0.6.11] - 2017-12-04
 ### Changed

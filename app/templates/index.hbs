@@ -1,11 +1,15 @@
 {{donate-banner}}
 
-<div class="preprints-page"> {{!INDEX}}
+<div class="preprints-page"> 
+    {{!INDEX}}
 
     {{!HEADER}}
-    <div class="search-header"> {{!HEADER}}
-        <div class="container"> {{!CONTAINER}}
-            <div class="row">{{!HEADER ROW}}
+    <div class="search-header"> 
+        {{!HEADER}}
+        <div class="container"> 
+            {{!CONTAINER}}
+            <div class="row">
+                {{!HEADER ROW}}
                 {{!TITLE}}
                 <div class="text-center m-t-lg col-xs-12">
                     <div class="registries-brand"></div>
@@ -55,7 +59,7 @@
                         <div class='row'>
                             <div class='col-xs-12'>
                                 <ul class="comma-list">
-                                    {{#each reg.contributors as |contributor index|}}
+                                    {{#each reg.contributors as |contributor|}}
                                         {{#if contributor.users.bibliographic}}
                                             {{author-link contributor=contributor}}
                                         {{/if}}
@@ -81,7 +85,8 @@
                     </div>
                 </div>
             </div>
-            <div class="row p-v-md">{{!BRANDED ROW}}
+            <div class="row p-v-md">
+                {{!BRANDED ROW}}
 
                 <div class="col-sm-4 text-center">
                     <a href='http://ridie.3ieimpact.org/'>
@@ -156,5 +161,5 @@
             </div>
         </div>
     </div>
-
-</div> {{!END INDEX}}
+    {{!END INDEX}}
+</div>
