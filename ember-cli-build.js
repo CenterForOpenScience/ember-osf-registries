@@ -43,6 +43,7 @@ module.exports = function(defaults) {
         },
         sassOptions: {
             includePaths: [
+                'node_modules/bootstrap-sass/assets/stylesheets',
                 'node_modules/@centerforopenscience/ember-osf/addon/styles',
                 'node_modules/@centerforopenscience/osf-style/sass'
             ]
