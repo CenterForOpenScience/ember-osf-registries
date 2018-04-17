@@ -7,5 +7,5 @@ export default Component.extend(OSFAgnosticAuthControllerMixin, Analytics, {
     session: inject(),
     theme: inject(),
     tagName: 'nav',
-    classNames: ['navbar', 'branded-navbar', 'preprint-navbar']
+    classNames: ['navbar', 'branded-navbar', 'preprint-navbar'],
 });

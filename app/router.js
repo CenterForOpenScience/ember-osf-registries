@@ -23,19 +23,23 @@ const Router = EmberRouter.extend({
             get(this, 'metrics').trackPage({ page, title });
             this.set('theme.currentLocation', window.location.href);
         });
-    }
+    },
 });
 
+/* eslint-disable array-callback-return */
+
 Router.map(function() {
-    this.route('page-not-found', {path: '/*bad_url'});
-    this.route('index', {path: 'registries'});
-    this.route('page-not-found', {path: 'registries/page-not-found'});
-    this.route('discover', {path: 'registries/discover'});
-    this.route('provider', {path: 'registries/:slug'}, function() {
+    this.route('page-not-found', { path: '/*bad_url' });
+    this.route('index', { path: 'registries' });
+    this.route('page-not-found', { path: 'registries/page-not-found' });
+    this.route('discover', { path: 'registries/discover' });
+    this.route('provider', { path: 'registries/:slug' }, function() {
         this.route('discover');
         this.route('page-not-found');
     });
     this.route('forbidden');
 });
+
+/* eslint-enable array-callback-return */
 
 export default Router;

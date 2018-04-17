@@ -15,13 +15,14 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server",
-    "test": "yarn run check-style && ember test",
     "check-style": "eslint .",
+    "test": "yarn run check-style && ember test",
     "use-ember-osf-develop": "yarn upgrade @centerforopenscience/ember-osf@https://github.com/CenterForOpenScience/ember-osf.git#develop#$(date -u +%FT%TZ)",
     "use-ember-osf-next-interfaces": "yarn upgrade @centerforopenscience/ember-osf@https://github.com/CenterForOpenScience/ember-osf.git#release/next-interfaces#$(date -u +%FT%TZ)"
   },
   "devDependencies": {
     "@centerforopenscience/ember-osf": "https://github.com/CenterForOpenScience/ember-osf.git#release/next-interfaces#2018-04-16T17:30:20Z",
+    "@centerforopenscience/eslint-config": "^2.0.0",
     "@centerforopenscience/osf-style": "1.7.0",
     "broccoli-asset-rev": "^2.4.5",
     "ember-bootstrap": "^1.0.0-rc.1",
@@ -55,9 +56,11 @@
     "ember-moment": "^7.4.1",
     "ember-page-title": "^3.2.2",
     "ember-resolver": "^4.0.0",
+    "ember-route-action-helper": "^2.0.6",
     "ember-source": "2.18.0",
     "ember-toastr": "^1.7.0",
     "eslint": "^4.4.1",
+    "hint.css": "^2.5.0",
     "loader.js": "^4.2.3",
     "postcss": "^5.1.0"
   },

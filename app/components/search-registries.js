@@ -8,16 +8,16 @@ export default Component.extend(Analytics, {
     metrics: inject(),
     actions: {
         search() {
-            let query = $.trim(this.$('#searchBox').val());
-            this.sendAction('search', query);
+            const query = $.trim(this.$('#searchBox').val());
+            this.search(query);
             get(this, 'metrics')
                 .trackEvent({
                     category: 'button',
                     action: 'click',
                     label: 'Index - Search',
-                    extra: query
+                    extra: query,
                 });
-        }
+        },
     },
 
     keyDown(event) {
@@ -25,5 +25,5 @@ export default Component.extend(Analytics, {
         if (event.keyCode === 13) {
             this.send('search');
         }
-    }
+    },
 });

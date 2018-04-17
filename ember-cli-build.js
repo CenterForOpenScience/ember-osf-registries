@@ -1,36 +1,36 @@
 /* eslint-env node */
-/* global require, module */
-'use strict';
 
 const fs = require('fs');
-var EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const Funnel = require('broccoli-funnel');
+const config = require('./config/environment')(process.env.EMBER_ENV);
+const autoprefixer = require('autoprefixer');
+const postcss = require('postcss');
+
 const nonCdnEnvironments = ['development', 'test'];
 
 module.exports = function(defaults) {
-    const config = require('./config/environment')(process.env.EMBER_ENV);
     const useCdn = (nonCdnEnvironments.indexOf(process.env.EMBER_ENV) === -1);
 
     const css = {
-        'app': '/assets/registries-service.css'
+        app: '/assets/registries-service.css',
     };
 
     const brands = fs.readdirSync('./app/styles/brands');
 
     for (let brand of brands) {
-        if (/^_/.test(brand))
-            continue;
+        if (/^_/.test(brand)) { continue; }
 
         brand = brand.replace(/\..*$/, '');
         css[`brands/${brand}`] = `/assets/css/${brand}.css`;
     }
 
     // Reference: https://github.com/travis-ci/travis-web/blob/master/ember-cli-build.js
-    var app = new EmberApp(defaults, {
+    const app = new EmberApp(defaults, {
         'ember-bootstrap': {
             bootstrapVersion: 3,
             importBootstrapFont: true,
-            importBootstrapCSS: false
+            importBootstrapCSS: false,
         },
         // Needed for branded themes
         fingerprint: {
@@ -38,19 +38,20 @@ module.exports = function(defaults) {
         },
         outputPaths: {
             app: {
-                css
-            }
+                css,
+            },
         },
         sassOptions: {
             includePaths: [
                 'node_modules/bootstrap-sass/assets/stylesheets',
                 'node_modules/@centerforopenscience/ember-osf/addon/styles',
-                'node_modules/@centerforopenscience/osf-style/sass'
-            ]
+                'node_modules/@centerforopenscience/osf-style/sass',
+                'node_modules/hint.css',
+            ],
         },
         sourcemaps: {
             enabled: true,
-            extensions: ['js']
+            extensions: ['js'],
         },
         inlineContent: {
             raven: {
@@ -71,38 +72,40 @@ module.exports = function(defaults) {
                 content: `
                     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
                     <script src="//cdnjs.cloudflare.com/ajax/libs/ember.js/2.18.0/ember.prod.js"></script>
-                `.trim()
+                `.trim(),
             },
         },
         postcssOptions: {
             compile: {
-                enabled: false
+                enabled: false,
             },
             filter: {
                 enabled: true,
                 plugins: [{
-                    module: require('autoprefixer'),
+                    module: autoprefixer,
                     options: {
                         browsers: ['last 4 versions'],
-                        cascade: false
-                    }
+                        cascade: false,
+                    },
                 }, {
                     // Wrap progid declarations with double-quotes
-                    module: require('postcss').plugin('progid-wrapper', () => {
+                    module: postcss.plugin('progid-wrapper', () => {
                         return css =>
-                            css.walkDecls(declaration => {
+                            css.walkDecls((declaration) => {
                                 if (declaration.value.startsWith('progid')) {
-                                    return declaration.value = `"${declaration.value}"`;
+                                    const newDeclaration = declaration;
+                                    newDeclaration.value = `"${declaration.value}"`;
+                                    return newDeclaration;
                                 }
                             });
-                    })
-                }]
-            }
+                    }),
+                }],
+            },
         },
         // bable options included to fix issue with testing discover controller
         // http://stackoverflow.com/questions/32231773/ember-tests-passing-in-chrome-not-in-phantomjs
-        "ember-cli-babel": {
-            includePolyfill: true
+        'ember-cli-babel': {
+            includePolyfill: true,
         },
     });
 
@@ -118,7 +121,6 @@ module.exports = function(defaults) {
     // modules that you would like to import into your application
     // please specify an object with the list of modules as keys
     // along with the exports of each module as its value.
-    
     // Import component styles from addon
     app.import('vendor/assets/ember-osf.css');
 
@@ -126,7 +128,7 @@ module.exports = function(defaults) {
         new Funnel('node_modules/@centerforopenscience/osf-style/img', {
             srcDir: '/',
             destDir: 'img',
-        })
+        }),
     ];
 
     return app.toTree(assets);
