@@ -53,10 +53,6 @@ module.exports = function(defaults) {
             enabled: true,
             extensions: ['js'],
         },
-        sourcemaps: {
-            enabled: true,
-            extensions: ['js']
-        },
         inlineContent: {
             raven: {
                 enabled: useCdn,
