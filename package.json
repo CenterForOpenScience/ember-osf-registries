@@ -1,6 +1,6 @@
 {
   "name": "registries-service",
-  "version": "0.6.11",
+  "version": "0.6.12",
   "description": "Center for Open Science Registries Service",
   "license": "Apache-2.0",
   "author": "",
@@ -17,12 +17,13 @@
     "start": "ember server",
     "check-style": "eslint .",
     "test": "yarn run check-style && ember test",
-    "use-ember-osf-develop": "yarn upgrade @centerforopenscience/ember-osf@https://github.com/CenterForOpenScience/ember-osf.git#develop#$(date -u +%FT%TZ)"
+    "use-ember-osf-develop": "yarn upgrade @centerforopenscience/ember-osf@https://github.com/CenterForOpenScience/ember-osf.git#develop#$(date -u +%FT%TZ)",
+    "use-ember-osf-next-interfaces": "yarn upgrade @centerforopenscience/ember-osf@https://github.com/CenterForOpenScience/ember-osf.git#release/next-interfaces#$(date -u +%FT%TZ)"
   },
   "devDependencies": {
-    "@centerforopenscience/ember-osf": "https://github.com/CenterForOpenScience/ember-osf.git#develop#2018-01-23T13:48:43Z",
+    "@centerforopenscience/ember-osf": "https://github.com/CenterForOpenScience/ember-osf.git#release/next-interfaces#2018-04-16T17:30:20Z",
     "@centerforopenscience/eslint-config": "^2.0.0",
-    "@centerforopenscience/osf-style": "1.5.1",
+    "@centerforopenscience/osf-style": "1.7.0",
     "broccoli-asset-rev": "^2.4.5",
     "ember-bootstrap": "^1.0.0-rc.1",
     "ember-browserify": "^1.2.0",
@@ -72,7 +73,6 @@
   },
   "homepage": "https://github.com/CenterForOpenScience/ember-osf-registries#readme",
   "dependencies": {
-    "@centerforopenscience/osf-style": "1.5.1",
     "autoprefixer": "^7.1.2",
     "bootstrap-sass": "^3.3.7",
     "font-awesome": "^4.7.0",
