@@ -43,6 +43,7 @@ module.exports = function(defaults) {
         },
         sassOptions: {
             includePaths: [
+                'node_modules/bootstrap-sass/assets/stylesheets',
                 'node_modules/@centerforopenscience/ember-osf/addon/styles',
                 'node_modules/@centerforopenscience/osf-style/sass',
                 'node_modules/hint.css',
@@ -56,11 +57,13 @@ module.exports = function(defaults) {
             raven: {
                 enabled: useCdn,
                 content: `
-                    <script src="https://cdn.ravenjs.com/3.5.1/ember/raven.min.js"></script>
+                    <script src="https://cdn.ravenjs.com/3.22.1/ember/raven.min.js"></script>
                     <script>
                         var encodedConfig = document.head.querySelector("meta[name$='/config/environment']").content;
                         var config = JSON.parse(unescape(encodedConfig));
-                        Raven.config(config.sentryDSN, {}).install();
+                        if (config.sentryDSN) {
+                            Raven.config(config.sentryDSN, config.sentryOptions || {}).install();
+                        }
                     </script>
                 `.trim(),
             },
@@ -118,7 +121,6 @@ module.exports = function(defaults) {
     // modules that you would like to import into your application
     // please specify an object with the list of modules as keys
     // along with the exports of each module as its value.
-
     // Import component styles from addon
     app.import('vendor/assets/ember-osf.css');
 

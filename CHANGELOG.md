@@ -5,6 +5,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Update `osf-style` to use the latest version with navbar changes
+
+### Fixed
+- Syntax errors from updating to COS version of eslint
+
+## [0.6.12] - 2017-02-14
 ### Added
 - `noscript` message if JavaScript is disabled
 - `ember-route-action-helper` for route closure actions
@@ -17,7 +24,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Update README
 - Format travis config
 - Remove footer styling in favor of adding it to ember-osf
-- Update to latest ember-osf (TODO: change this to ember-osf release version before release)
+- Update to @centerforopenscience/ember-osf@0.14.0
 - Use model.queryHasMany in place of model.query
 - Update to use Ember 2.18
 - Update dependencies in package.json to be more up-to-date
@@ -25,9 +32,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Removed
 - All bower dependencies
-
-### Fixed
-- Syntax errors from updating to COS version of eslint
 
 ## [0.6.11] - 2017-12-04
 ### Changed
