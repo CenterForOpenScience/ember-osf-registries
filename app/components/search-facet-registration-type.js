@@ -1,5 +1,4 @@
 import Component from '@ember/component';
-import { schedule } from '@ember/runloop';
 import { computed } from '@ember/object';
 import $ from 'jquery';
 
@@ -32,11 +31,14 @@ export default Component.extend({
                 this.set('activeFilters.types', $.extend(true, [], this.get('registrationTypeCache')));
                 this.set('registrationTypeCache', null);
             }
-            this.toggleTypeCSS(true);
+            $('.type-selector-warning').hide();
+            $('.registration-type-selector').fadeTo('slow', 1);
+            return false;
         } else {
             this.set('registrationTypeCache', $.extend(true, [], this.get('activeFilters.types')));
-            this.set('activeFilters.types', []);
-            this.toggleTypeCSS(false);
+            $('.type-selector-warning').show();
+            $('.registration-type-selector').fadeTo('slow', 0.5);
+            return true;
         }
     }),
     init() {
@@ -51,24 +53,6 @@ export default Component.extend({
             'Replication Recipe (Brandt et al., 2013): Post-Completion',
             'Replication Recipe (Brandt et al., 2013): Pre-Registration',
         ];
-        schedule('afterRender', () => {
-            if (this.OSFIsSoleProvider()) {
-                return;
-            }
-            this.toggleTypeCSS(false);
-        });
-    },
-    // Disables search-facet-registration-type
-    toggleTypeCSS(show) {
-        if (show) {
-            $('.type-selector-warning').hide();
-            $('.type-checkbox').removeAttr('disabled');
-            $('.registration-type-selector').fadeTo('slow', 1);
-        } else {
-            $('.type-selector-warning').show();
-            $('.type-checkbox').attr('disabled', 'disabled');
-            $('.registration-type-selector').fadeTo('slow', 0.5);
-        }
     },
     OSFIsSoleProvider() {
         let soleProvider = false;

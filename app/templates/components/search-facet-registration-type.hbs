@@ -4,7 +4,7 @@
         {{#each registrationTypes as |item|}}
             <li>
                 <label>
-                    <input class='type-checkbox' type="checkbox" checked="{{if (if-filter item activeFilters.types) 'checked'}}" onclick={{action updateFilters 'types' item}}>
+                    <input class='type-checkbox' type="checkbox" disabled={{setVisibilityOfOSFFilters}} checked="{{if (if-filter item activeFilters.types) 'checked'}}" onclick={{action updateFilters 'types' item}}>
                     {{item}}
                 </label>
             </li>
