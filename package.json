@@ -23,7 +23,7 @@
   "devDependencies": {
     "@centerforopenscience/ember-osf": "0.16.1",
     "@centerforopenscience/eslint-config": "^2.0.0",
-    "@centerforopenscience/osf-style": "1.7.0",
+    "@centerforopenscience/osf-style": "https://github.com/CenterForOpenScience/osf-style#b09451d759c8544d2fab4bd7dbd5ca8b6dc242b8",
     "broccoli-asset-rev": "^2.4.5",
     "ember-bootstrap": "^1.0.0-rc.1",
     "ember-browserify": "^1.2.0",
