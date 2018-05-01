@@ -1,24 +1,28 @@
 import Ember from 'ember';
+import Route from '@ember/routing/route';
+import { inject } from '@ember/service';
 import config from 'ember-get-config';
 import Analytics from 'ember-osf/mixins/analytics';
 
-export default Ember.Route.extend(Analytics, {
-    theme: Ember.inject.service(),
+const { onerror } = Ember;
+
+export default Route.extend(Analytics, {
+    theme: inject(),
 
     providerIds: config.REGISTRIES.providers
         .slice(1)
         .map(provider => provider.id),
 
     beforeModel(transition) {
-        const {slug} = transition.params.provider;
+        const { slug } = transition.params.provider;
         const slugLower = (slug || '').toLowerCase();
 
         if (this.get('providerIds').includes(slugLower)) {
             if (slugLower !== slug) {
-                const {pathname} = window.location;
+                const { pathname } = window.location;
                 window.location.pathname = pathname.replace(
                     new RegExp(`^/preprints/${slug}`),
-                    `/preprints/${slugLower}`
+                    `/preprints/${slugLower}`,
                 );
             }
 
@@ -37,11 +41,10 @@ export default Ember.Route.extend(Analytics, {
     actions: {
         error(error) {
             // Manage your errors
-            Ember.onerror(error);
+            onerror(error);
 
             // substate implementation when returning `true`
             return true;
-
-        }
-    }
+        },
+    },
 });

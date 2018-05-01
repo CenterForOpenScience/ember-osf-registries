@@ -1,20 +1,23 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { inject } from '@ember/service';
+import $ from 'jquery';
+import { get } from '@ember/object';
 import Analytics from 'ember-osf/mixins/analytics';
 
-export default Ember.Component.extend(Analytics, {
-    metrics: Ember.inject.service(),
+export default Component.extend(Analytics, {
+    metrics: inject(),
     actions: {
         search() {
-            let query = Ember.$.trim(this.$('#searchBox').val());
-            this.sendAction('search', query);
-            Ember.get(this, 'metrics')
+            const query = $.trim(this.$('#searchBox').val());
+            this.search(query);
+            get(this, 'metrics')
                 .trackEvent({
                     category: 'button',
                     action: 'click',
                     label: 'Index - Search',
-                    extra: query
+                    extra: query,
                 });
-        }
+        },
     },
 
     keyDown(event) {
@@ -22,5 +25,5 @@ export default Ember.Component.extend(Analytics, {
         if (event.keyCode === 13) {
             this.send('search');
         }
-    }
+    },
 });

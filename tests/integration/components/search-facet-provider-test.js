@@ -1,57 +1,58 @@
+import { A } from '@ember/array';
 import { moduleForComponent, test } from 'ember-qunit';
-import Ember from 'ember';
+import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('search-facet-provider', 'Integration | Component | search facet provider', {
     integration: true,
-    beforeEach: function() {
-        let osfProvider = {
+    beforeEach() {
+        const osfProvider = {
             doc_count: 99,
-            key: 'OSF'
+            key: 'OSF',
         };
-        let clinicalTrialsProvider = {
+        const clinicalTrialsProvider = {
             doc_count: 100,
-            key: 'ClinicalTrials.gov'
+            key: 'ClinicalTrials.gov',
         };
-        let otherProviders =  Ember.A([
+        const otherProviders = A([
             osfProvider,
-            clinicalTrialsProvider
+            clinicalTrialsProvider,
         ]);
 
         this.set('otherProviders', otherProviders);
         this.set('facet', { key: 'sources', title: 'Providers', component: 'search-facet-provider' });
         this.set('key', 'sources');
-        let noop = () => {};
+        const noop = () => {};
         this.set('noop', noop);
         this.set('activeFilters', { providers: [], subjects: [] });
-        this.set('filterReplace',  {'Open Science Framework': 'OSF'});
-    }
+        this.set('filterReplace', { 'Open Science Framework': 'OSF' });
+    },
 });
 
-function render(context, componentArgs) {
-    return context.render(Ember.HTMLBars.compile(`{{search-facet-provider
+test('preprint providers and counts are listed', function(assert) {
+    this.render(hbs`{{search-facet-provider
+        updateFilters=(action noop)
+        activeFilters=activeFilters
+        options=facet
+        filterReplace=filterReplace
+        otherProviders=otherProviders
+    }}`);
+    assert.equal(this.$('label')[0].innerText.trim(), 'OSF (99)');
+    assert.equal(this.$('label')[1].innerText.trim(), 'ClinicalTrials.gov (100)');
+});
+
+test('filterReplace looks up key in mapping', function(assert) {
+    const osfProvider = {
+        doc_count: 99,
+        key: 'Open Science Framework',
+    };
+    this.set('otherProviders', A([osfProvider]));
+    this.render(hbs`{{search-facet-provider
         key=key
         options=facet
         updateFilters=(action noop)
         activeFilters=activeFilters
         filterReplace=filterReplace
         otherProviders=otherProviders
-        ${componentArgs || ''}
-    }}`));
-}
-
-
-test('preprint providers and counts are listed', function(assert) {
-    render(this);
-    assert.equal(this.$('label')[0].innerText.trim(), 'OSF (99)');
-    assert.equal(this.$('label')[1].innerText.trim(), 'ClinicalTrials.gov (100)');
-});
-
-test('filterReplace looks up key in mapping', function(assert) {
-   let osfProvider = {
-        doc_count: 99,
-        key: 'Open Science Framework'
-    };
-    this.set('otherProviders', Ember.A([osfProvider]));
-    render(this, 'otherProviders=otherProviders');
+    }}`);
     assert.equal(this.$('label')[0].innerText.trim(), 'OSF (99)');
 });

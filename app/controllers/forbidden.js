@@ -1,6 +1,7 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { inject } from '@ember/service';
 import Analytics from 'ember-osf/mixins/analytics';
 
-export default Ember.Controller.extend(Analytics, {
-    theme: Ember.inject.service(),
+export default Controller.extend(Analytics, {
+    theme: inject(),
 });

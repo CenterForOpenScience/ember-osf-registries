@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [0.7.0] - 2018-05-01
+### Added
+- `ember-route-action-helper` for route closure actions
+- COS version of eslint
+
+### Changed
+- `osf-style` to use the latest version with navbar changes
+
+### Fixed
+- Syntax errors from updating to COS version of eslint
+
 ## [0.6.12] - 2017-02-14
 ### Added
 - `noscript` message if JavaScript is disabled
@@ -17,6 +28,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Remove footer styling in favor of adding it to ember-osf
 - Update to @centerforopenscience/ember-osf@0.14.0
 - Use model.queryHasMany in place of model.query
+- Update to use Ember 2.18
+- Update dependencies in package.json to be more up-to-date
+- Update syntax in necessary files to match Ember 2.18 syntax
+
+### Removed
+- All bower dependencies
 
 ## [0.6.11] - 2017-12-04
 ### Changed

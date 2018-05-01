@@ -2,14 +2,14 @@ import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('search-registries', 'Integration | Component | search preprints', {
-  integration: true
+    integration: true,
 });
 
 test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });
 
-  this.render(hbs`{{search-registries}}`);
+    this.render(hbs`{{search-registries}}`);
 
-  assert.equal(this.$('button').text(), 'Search');
+    assert.equal(this.$('button').text(), 'Search');
 });

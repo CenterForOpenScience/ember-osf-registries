@@ -1,41 +1,41 @@
-import Ember from 'ember';
+import Service, { inject } from '@ember/service';
+import { computed } from '@ember/object';
+import $ from 'jquery';
 import config from 'ember-get-config';
 
-export default Ember.Service.extend({
-    store: Ember.inject.service(),
-    session: Ember.inject.service(),
+export default Service.extend({
+    store: inject(),
+    session: inject(),
 
     id: config.REGISTRIES.defaultProvider,
 
     currentLocation: null,
 
-    provider: Ember.computed('id', function() {
+    provider: computed('id', function() {
         const id = this.get('id');
 
-        if (!id)
-            return;
+        if (!id) { return; }
 
         return this
             .get('store')
             .findRecord('preprint-provider', id);
     }),
 
-    isProvider: Ember.computed('id', function() {
+    isProvider: computed('id', function() {
         const id = this.get('id');
         return id && id !== 'osf';
     }),
 
-    stylesheet: Ember.computed('id', function() {
+    stylesheet: computed('id', function() {
         const id = this.get('id');
 
-        if (!id)
-            return;
+        if (!id) { return; }
 
         const suffix = config.ASSET_SUFFIX ? `-${config.ASSET_SUFFIX}` : '';
         return `/registries/assets/css/${id}${suffix}.css`;
     }),
 
-    logoSharing: Ember.computed('id', function() {
+    logoSharing: computed('id', function() {
         const id = this.get('id');
 
         const logo = config.REGISTRIES.providers
@@ -47,16 +47,16 @@ export default Ember.Service.extend({
         return logo;
     }),
 
-    signupUrl: Ember.computed('id', 'currentLocation', function() {
-        const query = Ember.$.param({
+    signupUrl: computed('id', 'currentLocation', function() {
+        const query = $.param({
             campaign: `${this.get('id')}-registries`,
-            next: this.get('currentLocation')
+            next: this.get('currentLocation'),
         });
 
         return `${config.OSF.url}register?${query}`;
     }),
 
-    redirectUrl: Ember.computed('currentLocation', function() {
+    redirectUrl: computed('currentLocation', function() {
         return this.get('currentLocation');
     }),
 });

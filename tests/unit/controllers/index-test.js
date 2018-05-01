@@ -5,12 +5,12 @@ moduleFor('controller:index', 'Unit | Controller | index', {
     needs: [
         'service:metrics',
         'service:theme',
-        'service:session'
-    ]
+        'service:session',
+    ],
 });
 
 // Replace this with your real tests.
 test('it exists', function(assert) {
-    let controller = this.subject();
+    const controller = this.subject();
     assert.ok(controller);
 });

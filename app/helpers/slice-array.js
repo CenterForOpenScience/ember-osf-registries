@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 /**
  * userIsContributor - takes in a user and the list of all preprint contributors.
@@ -9,9 +9,9 @@ import Ember from 'ember';
  * @param {Array} contributors List of all contributors on the preprint.
  * @return {Boolean} Is the user a current contributor on the preprint?
  */
-export function slice(params/*, hash*/) {
-    var [array, start, finish] = params;
+export function slice(params/* , hash */) {
+    const [array, start, finish] = params;
     return array.slice(start, finish);
 }
 
-export default Ember.Helper.helper(slice);
+export default helper(slice);

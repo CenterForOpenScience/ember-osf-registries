@@ -19,7 +19,7 @@ module.exports = {
             '--no-sandbox',
         ],
         Firefox: [
-            '-headless'
+            '-headless',
         ],
     },
 };
