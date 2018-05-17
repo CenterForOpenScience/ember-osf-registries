@@ -65,6 +65,7 @@ export default {
             },
             otherRepositories: 'Other registraation repositories',
         },
+        type_error: 'An error occurred getting registration types.  Please try again.',
     },
     index: {
         header: {

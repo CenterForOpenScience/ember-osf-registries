@@ -8,9 +8,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - `ember-route-action-helper` for route closure actions
 - COS version of eslint
+- Call to the store to get all registration types on discover page
 
 ### Changed
 - Update `osf-style` to use the latest version with navbar changes
+
+### Removed
+- Hard-coded list of search-facet-registration types
 
 ### Fixed
 - Syntax errors from updating to COS version of eslint

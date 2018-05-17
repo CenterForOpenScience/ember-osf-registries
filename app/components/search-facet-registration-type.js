@@ -1,5 +1,6 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
 import $ from 'jquery';
 
 /**
@@ -24,6 +25,10 @@ import $ from 'jquery';
  * @class search-facet-registration-type
  */
 export default Component.extend({
+    store: service(),
+    toast: service(),
+    i18n: service(),
+
     registrationTypeCache: null,
     setVisibilityOfOSFFilters: computed('activeFilters.providers', function() {
         if (this.OSFIsSoleProvider()) {
@@ -43,16 +48,22 @@ export default Component.extend({
     }),
     init() {
         this._super(...arguments);
-        this.registrationTypes = [
-            'AsPredicted Preregistration',
-            'Election Research Preacceptance Competition',
-            'Open-Ended Registration',
-            'OSF-Standard Pre-Data Collection Registration',
-            'Prereg Challenge',
-            'Pre-Registration in Social Psychology (van \'t Veer & Giner-Sorolla, 2016): Pre-Registration',
-            'Replication Recipe (Brandt et al., 2013): Post-Completion',
-            'Replication Recipe (Brandt et al., 2013): Pre-Registration',
-        ];
+        this.get('store')
+            .findAll('metaschema')
+            .then(this._returnResults.bind(this))
+            .catch(this._errorMessage.bind(this));
+    },
+    _returnResults(results) {
+        const typeArr = [];
+        results.forEach(function(result) {
+            typeArr.push(result.get('name'));
+        });
+        typeArr.push('Election Research Preacceptance Competition');
+        typeArr.sort();
+        this.set('registrationTypes', typeArr);
+    },
+    _errorMessage() {
+        this.get('toast').error(this.get('i18n').t('discover.type_error'));
     },
     OSFIsSoleProvider() {
         let soleProvider = false;
