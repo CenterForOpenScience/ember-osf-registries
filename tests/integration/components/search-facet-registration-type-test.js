@@ -9,8 +9,6 @@ moduleForComponent('search-facet-registration-type', 'Integration | Component | 
 });
 
 test('it renders', function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.on('myAction', function(val) { ... });
     this.set('registrationTypes', [
         'AsPredicted Preregistration',
         'Election Research Preacceptance Competition',

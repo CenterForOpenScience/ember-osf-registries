@@ -48,22 +48,26 @@ export default Component.extend({
     }),
     init() {
         this._super(...arguments);
-        this.get('store')
-            .findAll('metaschema')
+        this.get('store').query('metaschema', {
+            metaschemaType: 'registrations',
+            page: {
+                size: 100,
+            },
+        })
             .then(this._returnResults.bind(this))
             .catch(this._errorMessage.bind(this));
     },
     _returnResults(results) {
-        const typeArr = [];
-        results.forEach(function(result) {
-            typeArr.push(result.get('name'));
-        });
+        const typeArr = results.map(result => result.get('name'));
+        // Manually add 'Election Research Preacceptance Competition' to the list of possible
+        // facets. Metaschema was removed from the API as a possible registration type
+        // but should still be searchable
         typeArr.push('Election Research Preacceptance Competition');
         typeArr.sort();
         this.set('registrationTypes', typeArr);
     },
     _errorMessage() {
-        this.get('toast').error(this.get('i18n').t('discover.type_error'));
+        this.get('toast').error(this.get('i18n').t('discover.registration_metaschema_error'));
     },
     OSFIsSoleProvider() {
         let soleProvider = false;
