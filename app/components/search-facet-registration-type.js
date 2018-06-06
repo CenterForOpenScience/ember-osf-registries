@@ -48,12 +48,7 @@ export default Component.extend({
     }),
     init() {
         this._super(...arguments);
-        this.get('store').query('metaschema', {
-            metaschemaType: 'registrations',
-            page: {
-                size: 100,
-            },
-        })
+        this.get('store').findAll('registration-metaschema')
             .then(this._returnResults.bind(this))
             .catch(this._errorMessage.bind(this));
     },
