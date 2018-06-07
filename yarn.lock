@@ -54,9 +54,9 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@centerforopenscience/ember-osf@https://github.com/CenterForOpenScience/ember-osf.git#release/next-interfaces#2018-05-30T19:00:33Z":
+"@centerforopenscience/ember-osf@https://github.com/CenterForOpenScience/ember-osf.git#release/next-interfaces#2018-06-07T20:58:07Z":
   version "0.17.0"
-  resolved "https://github.com/CenterForOpenScience/ember-osf.git#2432efc3943a36b944fc2ad6946dc075ee198ab1"
+  resolved "https://github.com/CenterForOpenScience/ember-osf.git#f91c391e701260e9830eaa1cc711cebf606faf4d"
   dependencies:
     broccoli-funnel "1.2.0"
     broccoli-merge-trees "2.0.0"
