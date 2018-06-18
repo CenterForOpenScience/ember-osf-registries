@@ -62,7 +62,8 @@
     "eslint": "^4.4.1",
     "hint.css": "^2.5.0",
     "loader.js": "^4.2.3",
-    "postcss": "^5.1.0"
+    "postcss": "^5.1.0",
+    "unicode-byte-truncate": "1.0.0"
   },
   "engines": {
     "node": ">= 0.12.0"
