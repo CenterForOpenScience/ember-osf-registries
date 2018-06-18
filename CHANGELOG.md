@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - use of ember-osf `scheduled-banner` component
+- parameters for `authenticated`, `isPublic` and `resource` to pageView tracking
 
 ## [0.7.0] - 2018-05-01
 ### Added

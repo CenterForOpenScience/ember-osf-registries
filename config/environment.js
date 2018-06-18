@@ -63,6 +63,11 @@ module.exports = function(environment) {
                 config: {
                     id: process.env.GOOGLE_ANALYTICS_ID,
                 },
+                dimensions: {
+                    authenticated: 'dimension1',
+                    resource: 'dimension2',
+                    isPublic: 'dimension3',
+                },
             },
             {
                 name: 'Keen',
