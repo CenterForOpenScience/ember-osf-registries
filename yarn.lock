@@ -54,9 +54,9 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@centerforopenscience/ember-osf@0.16.2":
-  version "0.16.2"
-  resolved "https://registry.yarnpkg.com/@centerforopenscience/ember-osf/-/ember-osf-0.16.2.tgz#c585e13d8d05999bb4727ab4371e9589fddf0bcf"
+"@centerforopenscience/ember-osf@0.17.1":
+  version "0.17.1"
+  resolved "https://registry.yarnpkg.com/@centerforopenscience/ember-osf/-/ember-osf-0.17.1.tgz#f44322bc37082c07e27d7f42e7c43f51608ea06a"
   dependencies:
     broccoli-funnel "1.2.0"
     broccoli-merge-trees "2.0.0"
@@ -72,12 +72,13 @@
     ember-cli-shims "1.0.2"
     ember-collapsible-panel "^2.1.1"
     ember-component-css "^0.6.0"
+    ember-computed-style "^0.2.0"
     ember-concurrency "^0.8.12"
     ember-cp-validations "^3.5.0"
     ember-diff-attrs "^0.2.0"
     ember-get-config "0.2.1"
     ember-i18n "5.0.1"
-    ember-metrics "^0.12.1"
+    ember-metrics "https://github.com/cos-forks/ember-metrics#v0.12.1+cos0"
     ember-moment "^7.4.1"
     ember-power-select "^1.10.4"
     ember-radio-buttons "4.0.3"
@@ -3717,6 +3718,12 @@ ember-component-css@^0.6.0:
     rsvp "^4.8.1"
     walk-sync "^0.3.2"
 
+ember-computed-style@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/ember-computed-style/-/ember-computed-style-0.2.0.tgz#6ceb2f1f10f9555fa5b5092f5668dde2c9df5440"
+  dependencies:
+    ember-cli-babel "^5.1.7"
+
 ember-concurrency@^0.8.12, ember-concurrency@^0.8.7:
   version "0.8.14"
   resolved "https://registry.yarnpkg.com/ember-concurrency/-/ember-concurrency-0.8.14.tgz#4017133e5fbb9d088082ef6ab5b91839ed33107b"
@@ -3935,7 +3942,17 @@ ember-maybe-in-element@^0.1.3:
   dependencies:
     ember-cli-babel "^6.11.0"
 
-ember-metrics@^0.12.1, "ember-metrics@https://github.com/cos-forks/ember-metrics#v0.12.1+cos0":
+"ember-metrics@git+https://github.com/cos-forks/ember-metrics.git#v0.12.1+cos0":
+  version "0.12.1"
+  uid "32fcc6eec0c4bc1974c854435401f94f660c6e74"
+  resolved "git+https://github.com/cos-forks/ember-metrics.git#32fcc6eec0c4bc1974c854435401f94f660c6e74"
+  dependencies:
+    broccoli-funnel "^1.0.1"
+    ember-cli-babel "^6.1.0"
+    ember-getowner-polyfill "^2.0.0"
+    ember-runtime-enumerable-includes-polyfill "^2.0.0"
+
+"ember-metrics@https://github.com/cos-forks/ember-metrics#v0.12.1+cos0":
   version "0.12.1"
   resolved "https://github.com/cos-forks/ember-metrics#32fcc6eec0c4bc1974c854435401f94f660c6e74"
   dependencies:
