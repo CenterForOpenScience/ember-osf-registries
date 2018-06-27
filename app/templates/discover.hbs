@@ -1,19 +1,28 @@
 {{title 'Search'}}
 
 {{discover-page
-    activeFilters=activeFilters
     consumingService=consumingService
-    facets=facets
-    fetchedProviders=model
-    filterMap=filterMap
     filterReplace=filterReplace
-    lockedParams=lockedParams
+    sortOptions=sortOptions
+    searchPlaceholder=searchPlaceholder
+
+    showActiveFilters=showActiveFilters
+    loading=fetchData.isRunning
+    queryError=queryError
+    shareDown=shareDown
+
+    facets=facets
+    numberOfResults=numberOfResults
+    results=results
+    fetchedProviders=model
+    queryParamsState=queryParamsState
+
+    clearFilters=(action 'clearFilters')
+    search=(action 'search')
+
+    type=type
     page=page
     provider=provider
     q=q
-    queryParams=queryParams
-    searchPlaceholder=searchPlaceholder
-    showActiveFilters=showActiveFilters
-    sortOptions=sortOptions
-    type=type
+    sort=sort
 }}
