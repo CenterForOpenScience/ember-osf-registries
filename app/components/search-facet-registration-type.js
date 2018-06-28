@@ -49,7 +49,7 @@ export default Component.extend({
 
     fetchData: task(function* () {
         try {
-            const results = yield this.get('store').findAll('metaschema');
+            const results = yield this.get('store').findAll('registration-metaschema');
             const typeArr = results.map(result => result.get('name'));
             // Manually add 'Election Research Preacceptance Competition' to the list of possible
             // facets. Metaschema was removed from the API as a possible registration type
