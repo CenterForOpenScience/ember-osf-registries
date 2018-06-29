@@ -19,12 +19,13 @@ moduleForComponent('search-facet-registration-type', 'Integration | Component | 
     beforeEach() {
         this.register('service:store', storeStub);
         this.inject.service('store', { as: 'store' });
-        this.set('facet', { key: 'registration_type', title: 'OSF Registration Type', component: 'search-facet-registration-type' });
-        this.set('key', 'registration_type');
+        this.set('facet', { key: 'type', title: 'OSF Registration Type', component: 'search-facet-registration-type' });
+        this.set('key', 'type');
         const noop = () => {};
         this.set('noop', noop);
-        this.set('activeFilters', { providers: [], types: [] });
         this.set('filterReplace', { 'Open Science Framework': 'OSF' });
+        this.set('state', { value: [] });
+        this.set('states', { provider: { value: [] } });
     },
 });
 
@@ -32,8 +33,9 @@ test('it renders', function(assert) {
     this.render(hbs`{{search-facet-registration-type
         key=key
         options=facet
-        updateFilters=(action noop) 
-        activeFilters=activeFilters
+        updateFilters=(action noop)
+        state=state
+        states=states
         filterReplace=filterReplace
     }}`);
 
