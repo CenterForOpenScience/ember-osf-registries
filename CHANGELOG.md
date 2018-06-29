@@ -5,11 +5,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- parameters for `authenticated`, `isPublic` and `resource` to pageView tracking
 
 ## [0.8.0] - 2018-06-21
 ### Added
 - use of ember-osf `scheduled-banner` component
-- `anonymizeIp: true` in GA config to anonymize sender IP.
+- `anonymizeIp: true` in GA config to anonymize sender IP
 - Call to the store to get all registration types on discover page
 
 ### Removed

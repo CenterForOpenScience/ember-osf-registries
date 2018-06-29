@@ -5,6 +5,7 @@ moduleFor('controller:forbidden', 'Unit | Controller | forbidden', {
     needs: [
         'service:metrics',
         'service:theme',
+        'service:session',
     ],
 });
 

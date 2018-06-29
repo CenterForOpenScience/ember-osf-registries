@@ -5,6 +5,7 @@ moduleFor('route:discover', 'Unit | Route | discover', {
     needs: [
         'service:metrics',
         'service:theme',
+        'service:session',
     ],
 });
 

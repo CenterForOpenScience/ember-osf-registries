@@ -6,6 +6,7 @@ moduleFor('route:provider/discover', 'Unit | Route | provider/discover', {
         'route:discover',
         'service:metrics',
         'service:theme',
+        'service:session',
     ],
 });
 

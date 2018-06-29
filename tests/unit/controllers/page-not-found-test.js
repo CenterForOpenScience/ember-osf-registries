@@ -5,6 +5,7 @@ moduleFor('controller:page-not-found', 'Unit | Controller | page not found', {
     needs: [
         'service:metrics',
         'service:theme',
+        'service:session',
     ],
 });
 
