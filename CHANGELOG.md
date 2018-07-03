@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - parameters for `authenticated`, `isPublic` and `resource` to pageView tracking
 - unicode-byte-truncate package
+- `cookie-banner` component to main application template
 
 ## [0.8.1] - 2018-07-05
 ### Removed
