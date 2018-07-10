@@ -5,6 +5,7 @@ moduleFor('route:forbidden', 'Unit | Route | forbidden', {
     needs: [
         'service:metrics',
         'service:theme',
+        'service:session',
     ],
 });
 

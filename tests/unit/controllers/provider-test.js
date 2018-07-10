@@ -5,6 +5,7 @@ moduleFor('controller:provider', 'Unit | Controller | provider', {
     needs: [
         'service:metrics',
         'service:theme',
+        'service:session',
     ],
 });
 

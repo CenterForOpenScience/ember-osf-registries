@@ -6,6 +6,7 @@ moduleFor('route:provider/index', 'Unit | Route | provider/index', {
         'route:index',
         'service:metrics',
         'service:theme',
+        'service:session',
     ],
 });
 
