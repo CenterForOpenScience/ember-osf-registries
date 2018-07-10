@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - parameters for `authenticated`, `isPublic` and `resource` to pageView tracking
+- unicode-byte-truncate package
 
 ## [0.8.0] - 2018-06-21
 ### Added
