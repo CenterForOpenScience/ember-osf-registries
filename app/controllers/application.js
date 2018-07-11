@@ -11,7 +11,7 @@ export default Controller.extend(OSFAgnosticAuthControllerMixin, {
     init() {
         this._super(...arguments);
 
-        if (document.cookie.indexOf('osf_cookieconsent') > -1) {
+        if (document.cookie.includes('osf_cookieconsent')) {
             this.set('hasCookie', true);
         }
     },
