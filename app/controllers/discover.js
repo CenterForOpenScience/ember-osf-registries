@@ -150,6 +150,13 @@ export default Controller.extend(Analytics, discoverQueryParams.Mixin, {
             this.set('page', 1);
         }
 
+        if (changed.provider) {
+            // can only filter by type if OSF Regsitries is the only provider selected
+            if (queryParams.provider.length !== 1 || !queryParams.provider.includes('OSF')) {
+                this.resetQueryParams(['type']);
+            }
+        }
+
         if (changed.q) {
             this.get('trackDebouncedSearch').perform();
         }
