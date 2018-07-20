@@ -134,7 +134,7 @@ export default Controller.extend(Analytics, discoverQueryParams.Mixin, {
 
     actions: {
         clearFilters() {
-            this.resetQueryParams();
+            this.resetQueryParams(Object.keys(filterQueryParams));
         },
         search() {
             this.get('fetchData').perform(this.get('allQueryParams'));
@@ -148,6 +148,13 @@ export default Controller.extend(Analytics, discoverQueryParams.Mixin, {
     queryParamsDidChange({ shouldRefresh, queryParams, changed }) {
         if (queryParams.page !== 1 && !changed.page) {
             this.set('page', 1);
+        }
+
+        if (changed.provider) {
+            // can only filter by type if OSF Regsitries is the only provider selected
+            if (queryParams.provider.length !== 1 || !queryParams.provider.includes('OSF')) {
+                this.resetQueryParams(['type']);
+            }
         }
 
         if (changed.q) {
