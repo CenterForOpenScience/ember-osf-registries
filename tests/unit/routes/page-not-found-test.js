@@ -5,6 +5,7 @@ moduleFor('route:page-not-found', 'Unit | Route | page not found', {
     needs: [
         'service:metrics',
         'service:theme',
+        'service:session',
     ],
 });
 
