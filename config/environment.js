@@ -67,6 +67,11 @@ module.exports = function(environment) {
                         anonymizeIp: true,
                     },
                 },
+                dimensions: {
+                    authenticated: 'dimension1',
+                    resource: 'dimension2',
+                    isPublic: 'dimension3',
+                },
             },
             {
                 name: 'Keen',

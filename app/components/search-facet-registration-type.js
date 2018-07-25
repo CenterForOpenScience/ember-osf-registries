@@ -1,6 +1,8 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
+
+import { task } from 'ember-concurrency';
 import $ from 'jquery';
 
 /**
@@ -16,7 +18,6 @@ import $ from 'jquery';
  * ```handlebars
  * {{search-facet-registration-type
  *      updateFilters=(action 'updateFilters')
- *      activeFilters=activeFilters
  *      options=facet
  *      filterReplace=filterReplace
  *      key=key
@@ -29,44 +30,41 @@ export default Component.extend({
     toast: service(),
     i18n: service(),
 
-    registrationTypeCache: null,
-    setVisibilityOfOSFFilters: computed('activeFilters.providers', function() {
+    setVisibilityOfOSFFilters: computed('state.value', function() {
         if (this.OSFIsSoleProvider()) {
-            if (this.get('registrationTypeCache')) {
-                this.set('activeFilters.types', $.extend(true, [], this.get('registrationTypeCache')));
-                this.set('registrationTypeCache', null);
-            }
             $('.type-selector-warning').hide();
             $('.registration-type-selector').fadeTo('slow', 1);
             return false;
         } else {
-            this.set('registrationTypeCache', $.extend(true, [], this.get('activeFilters.types')));
             $('.type-selector-warning').show();
             $('.registration-type-selector').fadeTo('slow', 0.5);
             return true;
         }
     }),
+
     init() {
         this._super(...arguments);
-        this.get('store').findAll('registration-metaschema')
-            .then(this._returnResults.bind(this))
-            .catch(this._errorMessage.bind(this));
+        this.get('fetchData').perform();
     },
-    _returnResults(results) {
-        const typeArr = results.map(result => result.get('name'));
-        // Manually add 'Election Research Preacceptance Competition' to the list of possible
-        // facets. Metaschema was removed from the API as a possible registration type
-        // but should still be searchable
-        typeArr.push('Election Research Preacceptance Competition');
-        typeArr.sort();
-        this.set('registrationTypes', typeArr);
-    },
-    _errorMessage() {
-        this.get('toast').error(this.get('i18n').t('discover.registration_metaschema_error'));
-    },
+
+    fetchData: task(function* () {
+        try {
+            const results = yield this.get('store').findAll('registration-metaschema');
+            const typeArr = results.map(result => result.get('name'));
+            // Manually add 'Election Research Preacceptance Competition' to the list of possible
+            // facets. Metaschema was removed from the API as a possible registration type
+            // but should still be searchable
+            typeArr.push('Election Research Preacceptance Competition');
+            typeArr.sort();
+            this.set('registrationTypes', typeArr);
+        } catch (e) {
+            this.get('toast').error(this.get('i18n').t('discover.registration_metaschema_error'));
+        }
+    }),
+
     OSFIsSoleProvider() {
         let soleProvider = false;
-        const providers = this.get('activeFilters.providers');
+        const providers = this.get('states.provider.value');
         if (providers.length === 1 && providers[0] === 'OSF') {
             soleProvider = true;
         }

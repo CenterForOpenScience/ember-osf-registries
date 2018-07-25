@@ -1,6 +1,6 @@
 {
   "name": "registries-service",
-  "version": "0.8.1",
+  "version": "0.9.0",
   "description": "Center for Open Science Registries Service",
   "license": "Apache-2.0",
   "author": "",
@@ -21,7 +21,7 @@
     "use-ember-osf-next-interfaces": "yarn upgrade @centerforopenscience/ember-osf@https://github.com/CenterForOpenScience/ember-osf.git#release/next-interfaces#$(date -u +%FT%TZ)"
   },
   "devDependencies": {
-    "@centerforopenscience/ember-osf": "0.18.0",
+    "@centerforopenscience/ember-osf": "0.19.0",
     "@centerforopenscience/eslint-config": "^2.0.0",
     "@centerforopenscience/osf-style": "https://github.com/CenterForOpenScience/osf-style#370b544affcdafc5734cdd388587575895e4b33a",
     "broccoli-asset-rev": "^2.4.5",
@@ -46,6 +46,7 @@
     "ember-cli-sri": "^2.1.0",
     "ember-cli-template-lint": "^0.7.5",
     "ember-cli-uglify": "^1.2.0",
+    "ember-concurrency": "^0.8.19",
     "ember-data": "2.18.0",
     "ember-export-application-global": "^2.0.0",
     "ember-font-awesome": "^3.0.0",
@@ -56,6 +57,7 @@
     "ember-metrics": "https://github.com/cos-forks/ember-metrics#v0.12.1+cos0",
     "ember-moment": "^7.4.1",
     "ember-page-title": "^3.2.2",
+    "ember-parachute": "^0.3.7",
     "ember-resolver": "^4.0.0",
     "ember-route-action-helper": "^2.0.6",
     "ember-source": "2.18.0",
@@ -63,7 +65,8 @@
     "eslint": "^4.4.1",
     "hint.css": "^2.5.0",
     "loader.js": "^4.2.3",
-    "postcss": "^5.1.0"
+    "postcss": "^5.1.0",
+    "unicode-byte-truncate": "1.0.0"
   },
   "engines": {
     "node": ">= 0.12.0"
