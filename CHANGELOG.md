@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - `cookie-banner` component to main application template
 
+### Changed
+- where whitelisted providers are passed into the discover template
+
 ## [0.9.0] - 2018-07-25
 ### Added
 - parameters for `authenticated`, `isPublic` and `resource` to pageView tracking

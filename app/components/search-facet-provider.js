@@ -28,11 +28,6 @@ const getProvidersPayload = '{"from": 0,"query": {"bool": {"must": {"query_strin
 export default Component.extend({
     store: inject(),
     theme: inject(),
-    whiteListedProviders: [
-        'OSF',
-        'ClinicalTrials.gov',
-        'Research Registry',
-    ].map(item => item.toLowerCase()),
 
     init() {
         this._super(...arguments);
