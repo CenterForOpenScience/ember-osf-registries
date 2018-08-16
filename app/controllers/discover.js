@@ -97,6 +97,12 @@ export default Controller.extend(Analytics, discoverQueryParams.Mixin, {
 
     queryParamsChanged: computed.or('queryParamsState.{page,sort,q,type,provider}.changed'),
 
+    whiteListedProviders: [
+        'OSF',
+        'ClinicalTrials.gov',
+        'Research Registry',
+    ].map(item => item.toLowerCase()),
+
     facets: computed('i18n.locale', function() { // List of facets available for registries
         return [
             {
